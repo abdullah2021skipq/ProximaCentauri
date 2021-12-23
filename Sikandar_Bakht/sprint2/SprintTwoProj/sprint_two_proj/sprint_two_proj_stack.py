@@ -27,10 +27,10 @@ class SprintTwoProjStack(cdk.Stack):
         #####################################################################################################################
         
         lambda_role = self.create_lambda_role()
-        WH_Lambda = self.create_lambda("SikandarWebHealthLambda", "./resources/", "WH_Lambda.lambda_handler", lambda_role)
+        WH_Lambda = self.create_lambda("SikandarS2WebHealthLambda", "./resources/", "WH_Lambda.lambda_handler", lambda_role)
         lambda_schedule = events_.Schedule.rate(cdk.Duration.minutes(1))
         lambda_targets = targets_.LambdaFunction(handler=WH_Lambda)
-        rule = events_.Rule(self, "webHealth_Invocation", description="Periodic Lambda", enabled=True, schedule=lambda_schedule, targets=[lambda_targets])
+        rule = events_.Rule(self, "S2webHealth_Invocation", description="Periodic Lambda", enabled=True, schedule=lambda_schedule, targets=[lambda_targets])
         
         #####################################################################################################################
         ##                              Setting Up DynamoDB WebHealth Logging Table                                        ##
@@ -38,14 +38,14 @@ class SprintTwoProjStack(cdk.Stack):
         
         #db_table = self.create_db_table(id = "SprintOneTable", table_Name = "MonitorDB", part_key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
         db_lambda_role = self.create_db_lambda_role()
-        DB_Lambda = self.create_lambda("SikandarDBLambda", "./resources/", "DB_Lambda.lambda_handler", db_lambda_role)
+        DB_Lambda = self.create_lambda("SikandarS2DBLambda", "./resources/", "DB_Lambda.lambda_handler", db_lambda_role)
         #db_table.grant_full_access(DB_Lambda)
         
         #####################################################################################################################
         ##                      Setting Up SNS Notifications for Email and Lambda Triggering                               ##
         #####################################################################################################################
 
-        topic = sns.Topic(self, "webHealthTopic")
+        topic = sns.Topic(self, "S2webHealthTopic")
         topic.add_subscription(subscriptions_.EmailSubscription(email_address = "sikandar.bakht.s@skipq.org"))
         topic.add_subscription(subscriptions_.LambdaSubscription(fn = DB_Lambda))
         
@@ -68,7 +68,7 @@ class SprintTwoProjStack(cdk.Stack):
             dimensions = {'URL': URLS_MONITORED['URLS'][0][K[i]]}
             availability_metric.append(
                                 cloudwatch_.Metric(namespace = constants.URL_MONITOR_NAMESPACE,
-                                metric_name=constants.URL_MONITOR_NAME_AVAILABILITY,
+                                metric_name="S2"+constants.URL_MONITOR_NAME_AVAILABILITY,
                                 dimensions_map = dimensions,
                                 period = cdk.Duration.minutes(5),
                                 label = f'{K[i]} Availability Metric')
@@ -76,7 +76,7 @@ class SprintTwoProjStack(cdk.Stack):
                         
             latency_metric.append(
                                 cloudwatch_.Metric(namespace = constants.URL_MONITOR_NAMESPACE,
-                                metric_name=constants.URL_MONITOR_NAME_LATENCY,
+                                metric_name="S2"+constants.URL_MONITOR_NAME_LATENCY,
                                 dimensions_map = dimensions,
                                 period = cdk.Duration.minutes(1),
                                 label = f'{K[i]} Latency Metric')
@@ -93,9 +93,9 @@ class SprintTwoProjStack(cdk.Stack):
             
             availability_alarm.append(
                                     cloudwatch_.Alarm(self, 
-                                    id = f'Sikandar Bakht_{K[i]}_Availability_Alarm',
+                                    id = f'Sikandar_Bakht_S2_{K[i]}_Availability_Alarm',
                                     alarm_description = f"Alarm to monitor availability of {K[i]}",
-                                    alarm_name = f'{K[i]} Availability Alarm',
+                                    alarm_name = f'S2 {K[i]} Availability Alarm',
                                     metric = availability_metric[i],
                                     comparison_operator =cloudwatch_.ComparisonOperator.LESS_THAN_THRESHOLD,
                                     datapoints_to_alarm = 1,
@@ -105,9 +105,9 @@ class SprintTwoProjStack(cdk.Stack):
                                     
             latency_alarm.append(
                                     cloudwatch_.Alarm(self, 
-                                    id = f'Sikandar Bakht_{K[i]}_Latency_Alarm',
+                                    id = f'Sikandar_Bakht_S2_{K[i]}_Latency_Alarm',
                                     alarm_description = f"Alarm to monitor latency of {K[i]}",
-                                    alarm_name = f'{K[i]} Latency Alarm',
+                                    alarm_name = f'S2 {K[i]} Latency Alarm',
                                     metric = latency_metric[i],
                                     comparison_operator =cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
                                     datapoints_to_alarm = 1,
