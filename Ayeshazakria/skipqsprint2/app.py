@@ -12,6 +12,7 @@ from aws_cdk import core
 from skipqproject.pipelines_stack import PipelinesStack 
 
 app = core.App()
-PipelinesStack(app, "AyeshaPipeline",env=core.Environment(account='315997497220', region='us-east-2'))
+PipelinesStack(app, "AyeshaPipeline",
+ env=core.Environment(account='315997497220', region='us-east-2'))
 
 app.synth()
