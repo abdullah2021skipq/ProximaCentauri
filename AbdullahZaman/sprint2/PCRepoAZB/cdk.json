@@ -30,5 +30,6 @@
     "@aws-cdk/aws-cloudfront:defaultSecurityPolicyTLSv1.2_2021": true,
     "@aws-cdk/core:newStyleStackSynthesis": true,
     "@aws-cdk/core:bootstrapQualifier": "abdullah"
+    
   }
 }
