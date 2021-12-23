@@ -18,7 +18,7 @@ class PipelinesStack(cdk.Stack):
             )
         synth=pipelines.ShellStep("Synth",
                 input=source,
-                commands=["cd Ayeshazakria/skipqsprint2", "pip install -r requirements.txt", "npm install -g aws-cdk","cdk synth"
+                commands=["cd Ayeshazakria/skipqsprint2", "pip install -r requirements.txt", "npm install -g aws-cdk","cdk bootstrap","cdk synth"
                 ],
                 primary_output_directory='Ayeshazakria/skipqsprint2/cdk.out'
             )
