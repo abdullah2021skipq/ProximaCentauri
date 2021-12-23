@@ -34,9 +34,9 @@ class SikandarPipelineStack(cdk.Stack):
                                             'region' : 'us-east-2'
                                             })
 
-        unit_test = pipelines.ShellStep("unit_test", commands=["cd ./Sikandar_Bakht/sprint2/SprintTwoProj",  
-                                                               "pip install -r requirements-dev.txt",
-                                                               "pytest unittest",
-                                                               ""])
+       # unit_test = pipelines.ShellStep("unit_test", commands=["cd ./Sikandar_Bakht/sprint2/SprintTwoProj",  
+        #                                                       "pip install -r requirements-dev.txt",
+        #                                                       "pytest unittest",
+        #                                                       ""])
      
         pipeline.add_stage(Beta)
