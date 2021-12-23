@@ -24,7 +24,7 @@ class PcRepoAzbStack(cdk.Stack):
 
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
-        
+"""        
         # s3 bucket
         #s3bucket.store_file("abdullahzamanbucket")
         #s3bucket.read_file("abdullahzamanbucket", "urlsList.txt")
@@ -94,7 +94,7 @@ class PcRepoAzbStack(cdk.Stack):
                 ])
         return lambdaRole
         
-        """
+        # Create_lambda_role is commented
             def create_lambda_role(self):
         lambdaRole=aws_iam.Role(self,"lambda-role",
         assumed_by=aws_iam.CompositePrincipal(
@@ -108,7 +108,7 @@ class PcRepoAzbStack(cdk.Stack):
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSNSFullAccess")
             ])
         return lambdaRole
-        """
+        # Create_lambda_role is commented
     
     def create_table(self, t_name):
         try:
@@ -124,3 +124,5 @@ class PcRepoAzbStack(cdk.Stack):
                                 code = lambda_.Code.asset(asset),
                                 role=role,
     			                    )
+    			                    
+    			             """

@@ -32,5 +32,5 @@ app = core.App()
     # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
     #)
 
-PipelineStack(app, 'PipelineStackAbdullah1', env=core.Environment(account='315997497220', region='us-east-2'))
+PipelineStack(app, 'PipelineStackAbdullah1', env=core.Environment(account='315997497220', region='eu-west-3'))
 app.synth()
