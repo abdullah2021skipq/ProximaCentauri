@@ -36,10 +36,10 @@ class SprintTwoProjStack(cdk.Stack):
         ##                              Setting Up DynamoDB WebHealth Logging Table                                        ##
         #####################################################################################################################
         
-        db_table = self.create_db_table(id = "SprintOneTable", table_Name = "MonitorDB", part_key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
+        #db_table = self.create_db_table(id = "SprintOneTable", table_Name = "MonitorDB", part_key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
         db_lambda_role = self.create_db_lambda_role()
         DB_Lambda = self.create_lambda("SikandarDBLambda", "./resources/", "DB_Lambda.lambda_handler", db_lambda_role)
-        db_table.grant_full_access(DB_Lambda)
+        #db_table.grant_full_access(DB_Lambda)
         
         #####################################################################################################################
         ##                      Setting Up SNS Notifications for Email and Lambda Triggering                               ##
