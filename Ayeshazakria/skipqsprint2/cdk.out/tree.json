@@ -12,25 +12,25 @@
           "version": "1.135.0"
         }
       },
-      "PipelinesStack": {
-        "id": "PipelinesStack",
-        "path": "PipelinesStack",
+      "AyeshaPipeline": {
+        "id": "AyeshaPipeline",
+        "path": "AyeshaPipeline",
         "children": {
           "ayeshapipeline": {
             "id": "ayeshapipeline",
-            "path": "PipelinesStack/ayeshapipeline",
+            "path": "AyeshaPipeline/ayeshapipeline",
             "children": {
               "Pipeline": {
                 "id": "Pipeline",
-                "path": "PipelinesStack/ayeshapipeline/Pipeline",
+                "path": "AyeshaPipeline/ayeshapipeline/Pipeline",
                 "children": {
                   "ArtifactsBucket": {
                     "id": "ArtifactsBucket",
-                    "path": "PipelinesStack/ayeshapipeline/Pipeline/ArtifactsBucket",
+                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ArtifactsBucket",
                     "children": {
                       "Notifications": {
                         "id": "Notifications",
-                        "path": "PipelinesStack/ayeshapipeline/Pipeline/ArtifactsBucket/Notifications",
+                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ArtifactsBucket/Notifications",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.Construct",
                           "version": "1.135.0"
@@ -38,7 +38,7 @@
                       },
                       "Resource": {
                         "id": "Resource",
-                        "path": "PipelinesStack/ayeshapipeline/Pipeline/ArtifactsBucket/Resource",
+                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ArtifactsBucket/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                           "aws:cdk:cloudformation:props": {
@@ -72,11 +72,11 @@
                   },
                   "Role": {
                     "id": "Role",
-                    "path": "PipelinesStack/ayeshapipeline/Pipeline/Role",
+                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Role",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "PipelinesStack/ayeshapipeline/Pipeline/Role/Resource",
+                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Role/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                           "aws:cdk:cloudformation:props": {
@@ -101,11 +101,11 @@
                       },
                       "DefaultPolicy": {
                         "id": "DefaultPolicy",
-                        "path": "PipelinesStack/ayeshapipeline/Pipeline/Role/DefaultPolicy",
+                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Role/DefaultPolicy",
                         "children": {
                           "Resource": {
                             "id": "Resource",
-                            "path": "PipelinesStack/ayeshapipeline/Pipeline/Role/DefaultPolicy/Resource",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Role/DefaultPolicy/Resource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                               "aws:cdk:cloudformation:props": {
@@ -214,7 +214,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "PipelinesStack/ayeshapipeline/Pipeline/Resource",
+                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::CodePipeline::Pipeline",
                       "aws:cdk:cloudformation:props": {
@@ -277,7 +277,7 @@
                                   "ProjectName": {
                                     "Ref": "ayeshapipelinePipelineBuildSynthCdkBuildProject086D9576"
                                   },
-                                  "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"4c84baa3536fa5ae9d6cd969320731ae8bb291fc9bf99c308e1dc18c7482c7d5\"}]"
+                                  "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"ab86a71580f472f438af95a9563660f89f483765b56b171dea0fa30871ee3ced\"}]"
                                 },
                                 "runOrder": 1,
                                 "roleArn": {
@@ -309,7 +309,7 @@
                                   "ProjectName": {
                                     "Ref": "ayeshapipelineUpdatePipelineSelfMutation83A99BFA"
                                   },
-                                  "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"8e30940b45f8e1763b1a603a946b3ad94e7843706c729e1bbfada08a18f9d88d\"}]"
+                                  "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"7f66db2833b3da1c20880a0d5ad8f87a977cab59e57c26045a09904267866c43\"}]"
                                 },
                                 "runOrder": 1,
                                 "roleArn": {
@@ -338,7 +338,7 @@
                                   "provider": "CloudFormation"
                                 },
                                 "configuration": {
-                                  "StackName": "ayeshabetastage-LambdaStack",
+                                  "StackName": "ayeshabetastage-sprint2projectstackinstance",
                                   "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
                                   "RoleArn": {
                                     "Fn::GetAtt": [
@@ -348,7 +348,7 @@
                                   },
                                   "ActionMode": "CHANGE_SET_REPLACE",
                                   "ChangeSetName": "PipelineChange",
-                                  "TemplatePath": "Synth_Output::assembly-PipelinesStack-ayeshabetastage/PipelinesStackayeshabetastageLambdaStack16BE092C.template.json"
+                                  "TemplatePath": "Synth_Output::assembly-AyeshaPipeline-ayeshabetastage/AyeshaPipelineayeshabetastagesprint2projectstackinstance5359BBAE.template.json"
                                 },
                                 "runOrder": 1,
                                 "roleArn": {
@@ -367,7 +367,7 @@
                                   "provider": "CloudFormation"
                                 },
                                 "configuration": {
-                                  "StackName": "ayeshabetastage-LambdaStack",
+                                  "StackName": "ayeshabetastage-sprint2projectstackinstance",
                                   "ActionMode": "CHANGE_SET_EXECUTE",
                                   "ChangeSetName": "PipelineChange"
                                 },
@@ -398,11 +398,11 @@
                   },
                   "Source": {
                     "id": "Source",
-                    "path": "PipelinesStack/ayeshapipeline/Pipeline/Source",
+                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Source",
                     "children": {
                       "Ayesha-zakria_ProximaCentauri": {
                         "id": "Ayesha-zakria_ProximaCentauri",
-                        "path": "PipelinesStack/ayeshapipeline/Pipeline/Source/Ayesha-zakria_ProximaCentauri",
+                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Source/Ayesha-zakria_ProximaCentauri",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.Construct",
                           "version": "1.135.0"
@@ -416,23 +416,23 @@
                   },
                   "Build": {
                     "id": "Build",
-                    "path": "PipelinesStack/ayeshapipeline/Pipeline/Build",
+                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build",
                     "children": {
                       "Synth": {
                         "id": "Synth",
-                        "path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth",
+                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth",
                         "children": {
                           "CdkBuildProject": {
                             "id": "CdkBuildProject",
-                            "path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject",
                             "children": {
                               "Role": {
                                 "id": "Role",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role",
                                 "children": {
                                   "Resource": {
                                     "id": "Resource",
-                                    "path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role/Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role/Resource",
                                     "attributes": {
                                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                                       "aws:cdk:cloudformation:props": {
@@ -457,11 +457,11 @@
                                   },
                                   "DefaultPolicy": {
                                     "id": "DefaultPolicy",
-                                    "path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role/DefaultPolicy",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role/DefaultPolicy",
                                     "children": {
                                       "Resource": {
                                         "id": "Resource",
-                                        "path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role/DefaultPolicy/Resource",
+                                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role/DefaultPolicy/Resource",
                                         "attributes": {
                                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                           "aws:cdk:cloudformation:props": {
@@ -483,15 +483,7 @@
                                                           {
                                                             "Ref": "AWS::Partition"
                                                           },
-                                                          ":logs:",
-                                                          {
-                                                            "Ref": "AWS::Region"
-                                                          },
-                                                          ":",
-                                                          {
-                                                            "Ref": "AWS::AccountId"
-                                                          },
-                                                          ":log-group:/aws/codebuild/",
+                                                          ":logs:us-east-2:315997497220:log-group:/aws/codebuild/",
                                                           {
                                                             "Ref": "ayeshapipelinePipelineBuildSynthCdkBuildProject086D9576"
                                                           }
@@ -506,15 +498,7 @@
                                                           {
                                                             "Ref": "AWS::Partition"
                                                           },
-                                                          ":logs:",
-                                                          {
-                                                            "Ref": "AWS::Region"
-                                                          },
-                                                          ":",
-                                                          {
-                                                            "Ref": "AWS::AccountId"
-                                                          },
-                                                          ":log-group:/aws/codebuild/",
+                                                          ":logs:us-east-2:315997497220:log-group:/aws/codebuild/",
                                                           {
                                                             "Ref": "ayeshapipelinePipelineBuildSynthCdkBuildProject086D9576"
                                                           },
@@ -541,15 +525,7 @@
                                                         {
                                                           "Ref": "AWS::Partition"
                                                         },
-                                                        ":codebuild:",
-                                                        {
-                                                          "Ref": "AWS::Region"
-                                                        },
-                                                        ":",
-                                                        {
-                                                          "Ref": "AWS::AccountId"
-                                                        },
-                                                        ":report-group/",
+                                                        ":codebuild:us-east-2:315997497220:report-group/",
                                                         {
                                                           "Ref": "ayeshapipelinePipelineBuildSynthCdkBuildProject086D9576"
                                                         },
@@ -621,7 +597,7 @@
                               },
                               "Resource": {
                                 "id": "Resource",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::CodeBuild::Project",
                                   "aws:cdk:cloudformation:props": {
@@ -643,7 +619,7 @@
                                     },
                                     "source": {
                                       "type": "CODEPIPELINE",
-                                      "buildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"cd Ayeshazakria/skipqsprint1\",\n        \"pip install -r requirements.txt\",\n        \"npm install -g aws-cdk\",\n        \"cdk synth\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"Ayeshazakria/skipqsprint1/cdk.out\",\n    \"files\": \"**/*\"\n  }\n}"
+                                      "buildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"cd Ayeshazakria/skipqsprint2\",\n        \"pip install -r requirements.txt\",\n        \"npm install -g aws-cdk\",\n        \"cdk synth\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"Ayeshazakria/skipqsprint2/cdk.out\",\n    \"files\": \"**/*\"\n  }\n}"
                                     },
                                     "encryptionKey": "alias/aws/s3"
                                   }
@@ -661,11 +637,11 @@
                           },
                           "CodePipelineActionRole": {
                             "id": "CodePipelineActionRole",
-                            "path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole",
                             "children": {
                               "Resource": {
                                 "id": "Resource",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole/Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                                   "aws:cdk:cloudformation:props": {
@@ -683,11 +659,7 @@
                                                   {
                                                     "Ref": "AWS::Partition"
                                                   },
-                                                  ":iam::",
-                                                  {
-                                                    "Ref": "AWS::AccountId"
-                                                  },
-                                                  ":root"
+                                                  ":iam::315997497220:root"
                                                 ]
                                               ]
                                             }
@@ -705,11 +677,11 @@
                               },
                               "DefaultPolicy": {
                                 "id": "DefaultPolicy",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole/DefaultPolicy",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole/DefaultPolicy",
                                 "children": {
                                   "Resource": {
                                     "id": "Resource",
-                                    "path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole/DefaultPolicy/Resource",
                                     "attributes": {
                                       "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                       "aws:cdk:cloudformation:props": {
@@ -771,19 +743,19 @@
                   },
                   "UpdatePipeline": {
                     "id": "UpdatePipeline",
-                    "path": "PipelinesStack/ayeshapipeline/Pipeline/UpdatePipeline",
+                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/UpdatePipeline",
                     "children": {
                       "SelfMutate": {
                         "id": "SelfMutate",
-                        "path": "PipelinesStack/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate",
+                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate",
                         "children": {
                           "CodePipelineActionRole": {
                             "id": "CodePipelineActionRole",
-                            "path": "PipelinesStack/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole",
                             "children": {
                               "Resource": {
                                 "id": "Resource",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                                   "aws:cdk:cloudformation:props": {
@@ -801,11 +773,7 @@
                                                   {
                                                     "Ref": "AWS::Partition"
                                                   },
-                                                  ":iam::",
-                                                  {
-                                                    "Ref": "AWS::AccountId"
-                                                  },
-                                                  ":root"
+                                                  ":iam::315997497220:root"
                                                 ]
                                               ]
                                             }
@@ -823,11 +791,11 @@
                               },
                               "DefaultPolicy": {
                                 "id": "DefaultPolicy",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy",
                                 "children": {
                                   "Resource": {
                                     "id": "Resource",
-                                    "path": "PipelinesStack/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy/Resource",
                                     "attributes": {
                                       "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                       "aws:cdk:cloudformation:props": {
@@ -889,19 +857,19 @@
                   },
                   "ayeshabetastage": {
                     "id": "ayeshabetastage",
-                    "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage",
+                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage",
                     "children": {
                       "Prepare": {
                         "id": "Prepare",
-                        "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare",
+                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare",
                         "children": {
                           "CodePipelineActionRole": {
                             "id": "CodePipelineActionRole",
-                            "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole",
                             "children": {
                               "Resource": {
                                 "id": "Resource",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                                   "aws:cdk:cloudformation:props": {
@@ -919,11 +887,7 @@
                                                   {
                                                     "Ref": "AWS::Partition"
                                                   },
-                                                  ":iam::",
-                                                  {
-                                                    "Ref": "AWS::AccountId"
-                                                  },
-                                                  ":root"
+                                                  ":iam::315997497220:root"
                                                 ]
                                               ]
                                             }
@@ -941,7 +905,7 @@
                               },
                               "8389e75f-0810-4838-bf64-d6f85a95cf83": {
                                 "id": "8389e75f-0810-4838-bf64-d6f85a95cf83",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83",
                                 "constructInfo": {
                                   "fqn": "@aws-cdk/core.Construct",
                                   "version": "1.135.0"
@@ -949,11 +913,11 @@
                               },
                               "DefaultPolicy": {
                                 "id": "DefaultPolicy",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/DefaultPolicy",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/DefaultPolicy",
                                 "children": {
                                   "Resource": {
                                     "id": "Resource",
-                                    "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/DefaultPolicy/Resource",
                                     "attributes": {
                                       "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                       "aws:cdk:cloudformation:props": {
@@ -1020,15 +984,7 @@
                                                     {
                                                       "Ref": "AWS::Partition"
                                                     },
-                                                    ":cloudformation:",
-                                                    {
-                                                      "Ref": "AWS::Region"
-                                                    },
-                                                    ":",
-                                                    {
-                                                      "Ref": "AWS::AccountId"
-                                                    },
-                                                    ":stack/ayeshabetastage-LambdaStack/*"
+                                                    ":cloudformation:us-east-2:315997497220:stack/ayeshabetastage-sprint2projectstackinstance/*"
                                                   ]
                                                 ]
                                               }
@@ -1063,11 +1019,11 @@
                           },
                           "Role": {
                             "id": "Role",
-                            "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role",
                             "children": {
                               "Resource": {
                                 "id": "Resource",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role/Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                                   "aws:cdk:cloudformation:props": {
@@ -1092,11 +1048,11 @@
                               },
                               "DefaultPolicy": {
                                 "id": "DefaultPolicy",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role/DefaultPolicy",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role/DefaultPolicy",
                                 "children": {
                                   "Resource": {
                                     "id": "Resource",
-                                    "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role/DefaultPolicy/Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role/DefaultPolicy/Resource",
                                     "attributes": {
                                       "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                       "aws:cdk:cloudformation:props": {
@@ -1173,15 +1129,15 @@
                       },
                       "Deploy": {
                         "id": "Deploy",
-                        "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Deploy",
+                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Deploy",
                         "children": {
                           "CodePipelineActionRole": {
                             "id": "CodePipelineActionRole",
-                            "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole",
                             "children": {
                               "Resource": {
                                 "id": "Resource",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                                   "aws:cdk:cloudformation:props": {
@@ -1199,11 +1155,7 @@
                                                   {
                                                     "Ref": "AWS::Partition"
                                                   },
-                                                  ":iam::",
-                                                  {
-                                                    "Ref": "AWS::AccountId"
-                                                  },
-                                                  ":root"
+                                                  ":iam::315997497220:root"
                                                 ]
                                               ]
                                             }
@@ -1221,7 +1173,7 @@
                               },
                               "8389e75f-0810-4838-bf64-d6f85a95cf83": {
                                 "id": "8389e75f-0810-4838-bf64-d6f85a95cf83",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83",
                                 "constructInfo": {
                                   "fqn": "@aws-cdk/core.Construct",
                                   "version": "1.135.0"
@@ -1229,11 +1181,11 @@
                               },
                               "DefaultPolicy": {
                                 "id": "DefaultPolicy",
-                                "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/DefaultPolicy",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/DefaultPolicy",
                                 "children": {
                                   "Resource": {
                                     "id": "Resource",
-                                    "path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/DefaultPolicy/Resource",
                                     "attributes": {
                                       "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                       "aws:cdk:cloudformation:props": {
@@ -1259,15 +1211,7 @@
                                                     {
                                                       "Ref": "AWS::Partition"
                                                     },
-                                                    ":cloudformation:",
-                                                    {
-                                                      "Ref": "AWS::Region"
-                                                    },
-                                                    ":",
-                                                    {
-                                                      "Ref": "AWS::AccountId"
-                                                    },
-                                                    ":stack/ayeshabetastage-LambdaStack/*"
+                                                    ":cloudformation:us-east-2:315997497220:stack/ayeshabetastage-sprint2projectstackinstance/*"
                                                   ]
                                                 ]
                                               }
@@ -1320,19 +1264,19 @@
               },
               "UpdatePipeline": {
                 "id": "UpdatePipeline",
-                "path": "PipelinesStack/ayeshapipeline/UpdatePipeline",
+                "path": "AyeshaPipeline/ayeshapipeline/UpdatePipeline",
                 "children": {
                   "SelfMutation": {
                     "id": "SelfMutation",
-                    "path": "PipelinesStack/ayeshapipeline/UpdatePipeline/SelfMutation",
+                    "path": "AyeshaPipeline/ayeshapipeline/UpdatePipeline/SelfMutation",
                     "children": {
                       "Role": {
                         "id": "Role",
-                        "path": "PipelinesStack/ayeshapipeline/UpdatePipeline/SelfMutation/Role",
+                        "path": "AyeshaPipeline/ayeshapipeline/UpdatePipeline/SelfMutation/Role",
                         "children": {
                           "Resource": {
                             "id": "Resource",
-                            "path": "PipelinesStack/ayeshapipeline/UpdatePipeline/SelfMutation/Role/Resource",
+                            "path": "AyeshaPipeline/ayeshapipeline/UpdatePipeline/SelfMutation/Role/Resource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                               "aws:cdk:cloudformation:props": {
@@ -1357,11 +1301,11 @@
                           },
                           "DefaultPolicy": {
                             "id": "DefaultPolicy",
-                            "path": "PipelinesStack/ayeshapipeline/UpdatePipeline/SelfMutation/Role/DefaultPolicy",
+                            "path": "AyeshaPipeline/ayeshapipeline/UpdatePipeline/SelfMutation/Role/DefaultPolicy",
                             "children": {
                               "Resource": {
                                 "id": "Resource",
-                                "path": "PipelinesStack/ayeshapipeline/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                   "aws:cdk:cloudformation:props": {
@@ -1383,15 +1327,7 @@
                                                   {
                                                     "Ref": "AWS::Partition"
                                                   },
-                                                  ":logs:",
-                                                  {
-                                                    "Ref": "AWS::Region"
-                                                  },
-                                                  ":",
-                                                  {
-                                                    "Ref": "AWS::AccountId"
-                                                  },
-                                                  ":log-group:/aws/codebuild/",
+                                                  ":logs:us-east-2:315997497220:log-group:/aws/codebuild/",
                                                   {
                                                     "Ref": "ayeshapipelineUpdatePipelineSelfMutation83A99BFA"
                                                   }
@@ -1406,15 +1342,7 @@
                                                   {
                                                     "Ref": "AWS::Partition"
                                                   },
-                                                  ":logs:",
-                                                  {
-                                                    "Ref": "AWS::Region"
-                                                  },
-                                                  ":",
-                                                  {
-                                                    "Ref": "AWS::AccountId"
-                                                  },
-                                                  ":log-group:/aws/codebuild/",
+                                                  ":logs:us-east-2:315997497220:log-group:/aws/codebuild/",
                                                   {
                                                     "Ref": "ayeshapipelineUpdatePipelineSelfMutation83A99BFA"
                                                   },
@@ -1441,15 +1369,7 @@
                                                 {
                                                   "Ref": "AWS::Partition"
                                                 },
-                                                ":codebuild:",
-                                                {
-                                                  "Ref": "AWS::Region"
-                                                },
-                                                ":",
-                                                {
-                                                  "Ref": "AWS::AccountId"
-                                                },
-                                                ":report-group/",
+                                                ":codebuild:us-east-2:315997497220:report-group/",
                                                 {
                                                   "Ref": "ayeshapipelineUpdatePipelineSelfMutation83A99BFA"
                                                 },
@@ -1470,18 +1390,7 @@
                                             }
                                           },
                                           "Effect": "Allow",
-                                          "Resource": {
-                                            "Fn::Join": [
-                                              "",
-                                              [
-                                                "arn:*:iam::",
-                                                {
-                                                  "Ref": "AWS::AccountId"
-                                                },
-                                                ":role/*"
-                                              ]
-                                            ]
-                                          }
+                                          "Resource": "arn:*:iam::315997497220:role/*"
                                         },
                                         {
                                           "Action": "cloudformation:DescribeStacks",
@@ -1553,7 +1462,7 @@
                       },
                       "Resource": {
                         "id": "Resource",
-                        "path": "PipelinesStack/ayeshapipeline/UpdatePipeline/SelfMutation/Resource",
+                        "path": "AyeshaPipeline/ayeshapipeline/UpdatePipeline/SelfMutation/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::CodeBuild::Project",
                           "aws:cdk:cloudformation:props": {
@@ -1575,7 +1484,7 @@
                             },
                             "source": {
                               "type": "CODEPIPELINE",
-                              "buildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g aws-cdk\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk -a . deploy PipelinesStack --require-approval=never --verbose\"\n      ]\n    }\n  }\n}"
+                              "buildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g aws-cdk\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk -a . deploy AyeshaPipeline --require-approval=never --verbose\"\n      ]\n    }\n  }\n}"
                             },
                             "encryptionKey": "alias/aws/s3"
                           }
@@ -1605,112 +1514,21 @@
           },
           "ayeshabetastage": {
             "id": "ayeshabetastage",
-            "path": "PipelinesStack/ayeshabetastage",
+            "path": "AyeshaPipeline/ayeshabetastage",
             "children": {
-              "LambdaStack": {
-                "id": "LambdaStack",
-                "path": "PipelinesStack/ayeshabetastage/LambdaStack",
+              "sprint2projectstackinstance": {
+                "id": "sprint2projectstackinstance",
+                "path": "AyeshaPipeline/ayeshabetastage/sprint2projectstackinstance",
                 "children": {
-                  "LambdaFunction": {
-                    "id": "LambdaFunction",
-                    "path": "PipelinesStack/ayeshabetastage/LambdaStack/LambdaFunction",
-                    "children": {
-                      "ServiceRole": {
-                        "id": "ServiceRole",
-                        "path": "PipelinesStack/ayeshabetastage/LambdaStack/LambdaFunction/ServiceRole",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "PipelinesStack/ayeshabetastage/LambdaStack/LambdaFunction/ServiceRole/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
-                              "aws:cdk:cloudformation:props": {
-                                "assumeRolePolicyDocument": {
-                                  "Statement": [
-                                    {
-                                      "Action": "sts:AssumeRole",
-                                      "Effect": "Allow",
-                                      "Principal": {
-                                        "Service": "lambda.amazonaws.com"
-                                      }
-                                    }
-                                  ],
-                                  "Version": "2012-10-17"
-                                },
-                                "managedPolicyArns": [
-                                  {
-                                    "Fn::Join": [
-                                      "",
-                                      [
-                                        "arn:",
-                                        {
-                                          "Ref": "AWS::Partition"
-                                        },
-                                        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-                                      ]
-                                    ]
-                                  }
-                                ]
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.CfnRole",
-                              "version": "1.135.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.Role",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "PipelinesStack/ayeshabetastage/LambdaStack/LambdaFunction/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
-                          "aws:cdk:cloudformation:props": {
-                            "code": {
-                              "zipFile": "exports.handler = _ => 'Hello, CDK';"
-                            },
-                            "role": {
-                              "Fn::GetAtt": [
-                                "LambdaFunctionServiceRoleC555A460",
-                                "Arn"
-                              ]
-                            },
-                            "handler": "index.handler",
-                            "runtime": "nodejs12.x"
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-lambda.CfnFunction",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-lambda.Function",
-                      "version": "1.135.0"
-                    }
-                  },
                   "CDKMetadata": {
                     "id": "CDKMetadata",
-                    "path": "PipelinesStack/ayeshabetastage/LambdaStack/CDKMetadata",
+                    "path": "AyeshaPipeline/ayeshabetastage/sprint2projectstackinstance/CDKMetadata",
                     "children": {
                       "Default": {
                         "id": "Default",
-                        "path": "PipelinesStack/ayeshabetastage/LambdaStack/CDKMetadata/Default",
+                        "path": "AyeshaPipeline/ayeshabetastage/sprint2projectstackinstance/CDKMetadata/Default",
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.CfnResource",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "Condition": {
-                        "id": "Condition",
-                        "path": "PipelinesStack/ayeshabetastage/LambdaStack/CDKMetadata/Condition",
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/core.CfnCondition",
                           "version": "1.135.0"
                         }
                       }
@@ -1734,21 +1552,13 @@
           },
           "CDKMetadata": {
             "id": "CDKMetadata",
-            "path": "PipelinesStack/CDKMetadata",
+            "path": "AyeshaPipeline/CDKMetadata",
             "children": {
               "Default": {
                 "id": "Default",
-                "path": "PipelinesStack/CDKMetadata/Default",
+                "path": "AyeshaPipeline/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.135.0"
-                }
-              },
-              "Condition": {
-                "id": "Condition",
-                "path": "PipelinesStack/CDKMetadata/Condition",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnCondition",
                   "version": "1.135.0"
                 }
               }

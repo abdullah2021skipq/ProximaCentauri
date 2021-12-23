@@ -22,7 +22,7 @@
       "UpdateReplacePolicy": "Retain",
       "DeletionPolicy": "Retain",
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/ArtifactsBucket/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ArtifactsBucket/Resource"
       }
     },
     "ayeshapipelinePipelineRole52DBD386": {
@@ -42,7 +42,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/Role/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Role/Resource"
       }
     },
     "ayeshapipelinePipelineRoleDefaultPolicyBB8E8970": {
@@ -134,7 +134,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/Role/DefaultPolicy/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Role/DefaultPolicy/Resource"
       }
     },
     "ayeshapipelinePipeline1E4B869C": {
@@ -187,7 +187,7 @@
                   "ProjectName": {
                     "Ref": "ayeshapipelinePipelineBuildSynthCdkBuildProject086D9576"
                   },
-                  "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"4c84baa3536fa5ae9d6cd969320731ae8bb291fc9bf99c308e1dc18c7482c7d5\"}]"
+                  "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"ab86a71580f472f438af95a9563660f89f483765b56b171dea0fa30871ee3ced\"}]"
                 },
                 "InputArtifacts": [
                   {
@@ -224,7 +224,7 @@
                   "ProjectName": {
                     "Ref": "ayeshapipelineUpdatePipelineSelfMutation83A99BFA"
                   },
-                  "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"8e30940b45f8e1763b1a603a946b3ad94e7843706c729e1bbfada08a18f9d88d\"}]"
+                  "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"7f66db2833b3da1c20880a0d5ad8f87a977cab59e57c26045a09904267866c43\"}]"
                 },
                 "InputArtifacts": [
                   {
@@ -253,7 +253,7 @@
                   "Version": "1"
                 },
                 "Configuration": {
-                  "StackName": "ayeshabetastage-LambdaStack",
+                  "StackName": "ayeshabetastage-sprint2projectstackinstance",
                   "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
                   "RoleArn": {
                     "Fn::GetAtt": [
@@ -263,7 +263,7 @@
                   },
                   "ActionMode": "CHANGE_SET_REPLACE",
                   "ChangeSetName": "PipelineChange",
-                  "TemplatePath": "Synth_Output::assembly-PipelinesStack-ayeshabetastage/PipelinesStackayeshabetastageLambdaStack16BE092C.template.json"
+                  "TemplatePath": "Synth_Output::assembly-AyeshaPipeline-ayeshabetastage/AyeshaPipelineayeshabetastagesprint2projectstackinstance5359BBAE.template.json"
                 },
                 "InputArtifacts": [
                   {
@@ -287,7 +287,7 @@
                   "Version": "1"
                 },
                 "Configuration": {
-                  "StackName": "ayeshabetastage-LambdaStack",
+                  "StackName": "ayeshabetastage-sprint2projectstackinstance",
                   "ActionMode": "CHANGE_SET_EXECUTE",
                   "ChangeSetName": "PipelineChange"
                 },
@@ -317,7 +317,7 @@
         "ayeshapipelinePipelineRole52DBD386"
       ],
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Resource"
       }
     },
     "ayeshapipelinePipelineBuildSynthCdkBuildProjectRole381C419D": {
@@ -337,7 +337,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role/Resource"
       }
     },
     "ayeshapipelinePipelineBuildSynthCdkBuildProjectRoleDefaultPolicyFFDA16CF": {
@@ -456,7 +456,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role/DefaultPolicy/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Role/DefaultPolicy/Resource"
       }
     },
     "ayeshapipelinePipelineBuildSynthCdkBuildProject086D9576": {
@@ -479,13 +479,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"cd Ayeshazakria/skipqsprint1\",\n        \"pip install -r requirements.txt\",\n        \"npm install -g aws-cdk\",\n        \"cdk synth\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"Ayeshazakria/skipqsprint1/cdk.out\",\n    \"files\": \"**/*\"\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"cd Ayeshazakria/skipqsprint2\",\n        \"pip install -r requirements.txt\",\n        \"npm install -g aws-cdk\",\n        \"cdk synth\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"Ayeshazakria/skipqsprint2/cdk.out\",\n    \"files\": \"**/*\"\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": "alias/aws/s3"
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CdkBuildProject/Resource"
       }
     },
     "ayeshapipelinePipelineBuildSynthCodePipelineActionRole14866387": {
@@ -516,7 +516,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole/Resource"
       }
     },
     "ayeshapipelinePipelineBuildSynthCodePipelineActionRoleDefaultPolicy301E5BE2": {
@@ -549,7 +549,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Build/Synth/CodePipelineActionRole/DefaultPolicy/Resource"
       }
     },
     "ayeshapipelinePipelineUpdatePipelineSelfMutateCodePipelineActionRoleEC102D72": {
@@ -580,7 +580,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/Resource"
       }
     },
     "ayeshapipelinePipelineUpdatePipelineSelfMutateCodePipelineActionRoleDefaultPolicy2F9F1E55": {
@@ -613,7 +613,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy/Resource"
       }
     },
     "ayeshapipelinePipelineayeshabetastagePrepareCodePipelineActionRole3A758469": {
@@ -644,7 +644,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/Resource"
       }
     },
     "ayeshapipelinePipelineayeshabetastagePrepareCodePipelineActionRoleDefaultPolicy49594D9C": {
@@ -713,7 +713,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":cloudformation:us-east-2:315997497220:stack/ayeshabetastage-LambdaStack/*"
+                    ":cloudformation:us-east-2:315997497220:stack/ayeshabetastage-sprint2projectstackinstance/*"
                   ]
                 ]
               }
@@ -729,7 +729,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/CodePipelineActionRole/DefaultPolicy/Resource"
       }
     },
     "ayeshapipelinePipelineayeshabetastagePrepareRole5220B6C1": {
@@ -749,7 +749,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role/Resource"
       }
     },
     "ayeshapipelinePipelineayeshabetastagePrepareRoleDefaultPolicy6679206B": {
@@ -803,7 +803,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role/DefaultPolicy/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Prepare/Role/DefaultPolicy/Resource"
       }
     },
     "ayeshapipelinePipelineayeshabetastageDeployCodePipelineActionRoleAEBE3C6B": {
@@ -834,7 +834,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/Resource"
       }
     },
     "ayeshapipelinePipelineayeshabetastageDeployCodePipelineActionRoleDefaultPolicy8066986B": {
@@ -862,7 +862,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":cloudformation:us-east-2:315997497220:stack/ayeshabetastage-LambdaStack/*"
+                    ":cloudformation:us-east-2:315997497220:stack/ayeshabetastage-sprint2projectstackinstance/*"
                   ]
                 ]
               }
@@ -878,7 +878,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/Deploy/CodePipelineActionRole/DefaultPolicy/Resource"
       }
     },
     "ayeshapipelineUpdatePipelineSelfMutationRole14F6FDF0": {
@@ -898,7 +898,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/UpdatePipeline/SelfMutation/Role/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/UpdatePipeline/SelfMutation/Role/Resource"
       }
     },
     "ayeshapipelineUpdatePipelineSelfMutationRoleDefaultPolicy5FCA1E49": {
@@ -1038,7 +1038,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource"
       }
     },
     "ayeshapipelineUpdatePipelineSelfMutation83A99BFA": {
@@ -1061,13 +1061,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g aws-cdk\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk -a . deploy PipelinesStack --require-approval=never --verbose\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g aws-cdk\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk -a . deploy AyeshaPipeline --require-approval=never --verbose\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": "alias/aws/s3"
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/ayeshapipeline/UpdatePipeline/SelfMutation/Resource"
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/UpdatePipeline/SelfMutation/Resource"
       }
     },
     "CDKMetadata": {
@@ -1076,7 +1076,7 @@
         "Analytics": "v2:deflate64:H4sIAAAAAAAA/02OTQqDMBBGz+I+jkoobku9QLAnsHFKozGR/FAk5O7VqNjVvMWbx1dBqOgNyuzefW3O+7EIXBuE8HQdH0mjlXXGc0eat2rRam84RrK5q9fjLGaUQq0+O2gTT47EUggPz0dMgZ0iEd0EodUyyekyLQVf0m+iSLb6ywvZX2lm9ID7lANjjKSi9f/8c5GFZi1cS9jiPloVFGqoymywQuTGKycmhHa/Pym5yQMLAQAA"
       },
       "Metadata": {
-        "aws:cdk:path": "PipelinesStack/CDKMetadata/Default"
+        "aws:cdk:path": "AyeshaPipeline/CDKMetadata/Default"
       }
     }
   }

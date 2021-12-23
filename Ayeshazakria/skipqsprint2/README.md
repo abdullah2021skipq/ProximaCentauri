@@ -1,5 +1,5 @@
 <div align="center">
-<h1>SkipQ Sprint 1 Project </h1>
+<h1>SkipQ Sprint 2 Project </h1>
 <img src="https://pngset.com/images/aws-lambda-icon-text-symbol-alphabet-number-transparent-png-662520.png" height="200px">
 <br>
 <br>
