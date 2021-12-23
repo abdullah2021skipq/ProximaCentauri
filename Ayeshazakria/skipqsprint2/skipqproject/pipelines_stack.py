@@ -18,18 +18,19 @@ class PipelinesStack(cdk.Stack):
             )
         synth=pipelines.ShellStep("Synth",
                 input=source,
-                commands=["cd Ayeshazakria/skipqsprint2", "pip install -r requirements.txt", "npm install -g aws-cdk","cdk bootstrap","cdk synth"
+                commands=["cd Ayeshazakria/skipqsprint2", "pip install -r requirements.txt", "npm install -g aws-cdk","cdk synth"
                 ],
                 primary_output_directory='Ayeshazakria/skipqsprint2/cdk.out'
             )
             
             
-        pipeline=pipelines.CodePipeline(self, 'ayeshapipeline',synth=synth)
+        pipeline=pipelines.CodePipeline(self, 'ayeshapipeline',synth=synth,self_mutation = True)
         
-        beta = PipelineStage(self, "ayeshabetastage", env = {
-                                            'account':'315997497220',
-                                            'region' : 'us-east-2'
-                                            })
+        beta = PipelineStage(self, "ayeshabetastage",
+        env = {
+            'account':'315997497220',
+            'region' : 'us-east-2'
+        })
        
         pipeline.add_stage(beta)
         
