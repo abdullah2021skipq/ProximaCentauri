@@ -17,4 +17,4 @@ class InfraStage(cdk.Stage):
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs):
         super().__init__(scope, construct_id, **kwargs)
         
-        infra_stack = PcRepoAzbStack1(self, 'infraStack')
+        infra_stack = PcRepoAzbStack1(self, 'infraStackAZB')
