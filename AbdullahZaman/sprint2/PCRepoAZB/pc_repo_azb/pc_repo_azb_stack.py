@@ -115,7 +115,7 @@ class PcRepoAzbStack1(cdk.Stack):
  #           return db.Table(self, id="Table", table_name=t_name,
  #                       partition_key=db.Attribute(name="AlarmDetails", type=db.AttributeType.STRING))
  #       except:
-            pass
+#            pass
     
     def create_lambda(self, newid, asset, handler, role):
         return lambda_.Function(self, id = newid,
