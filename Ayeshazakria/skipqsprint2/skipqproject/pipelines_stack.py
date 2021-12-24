@@ -26,11 +26,11 @@ class PipelinesStack(cdk.Stack):
             
         pipeline=pipelines.CodePipeline(self, 'ayeshapipeline',synth=synth)
         
-        # beta = PipelineStage(self, "ayeshabetastage",
-        # env = {
-        #     'account':'315997497220',
-        #     'region' : 'us-east-2'
-        # })
+        beta = PipelineStage(self, "ayeshabetastage",
+        env = {
+            'account':'315997497220',
+             'region' : 'us-east-2'
+         })
        
-        # pipeline.add_stage(beta)
+        pipeline.add_stage(beta)
         

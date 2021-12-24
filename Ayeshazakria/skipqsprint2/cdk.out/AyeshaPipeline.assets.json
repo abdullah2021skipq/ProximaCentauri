@@ -1,17 +1,17 @@
 {
   "version": "15.0.0",
   "files": {
-    "ce40c9b87b8ce5c2fc6c4c4f2c5f40bcf321f03838bba9d17c50673117336f3a": {
+    "00c36645f44e9586c98bb4a85468c83e791c2021565328d559d5f97cd7507e0d": {
       "source": {
         "path": "AyeshaPipeline.template.json",
         "packaging": "file"
       },
       "destinations": {
         "315997497220-us-east-2": {
-          "bucketName": "cdk-ayeshapipeline-assets-315997497220-us-east-2",
-          "objectKey": "ce40c9b87b8ce5c2fc6c4c4f2c5f40bcf321f03838bba9d17c50673117336f3a.json",
+          "bucketName": "cdk-ayesha-assets-315997497220-us-east-2",
+          "objectKey": "00c36645f44e9586c98bb4a85468c83e791c2021565328d559d5f97cd7507e0d.json",
           "region": "us-east-2",
-          "assumeRoleArn": "arn:${AWS::Partition}:iam::315997497220:role/cdk-ayeshapipeline-file-publishing-role-315997497220-us-east-2"
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::315997497220:role/cdk-ayesha-file-publishing-role-315997497220-us-east-2"
         }
       }
     }

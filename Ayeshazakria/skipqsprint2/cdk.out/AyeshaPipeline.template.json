@@ -25,6 +25,66 @@
         "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ArtifactsBucket/Resource"
       }
     },
+    "ayeshapipelinePipelineArtifactsBucketPolicy47E1E5D8": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "ayeshapipelinePipelineArtifactsBucketB9CA0422"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*"
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
+                    ]
+                  ]
+                }
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ArtifactsBucket/Policy/Resource"
+      }
+    },
     "ayeshapipelinePipelineRole52DBD386": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -100,6 +160,22 @@
                 "Fn::GetAtt": [
                   "ayeshapipelinePipelineUpdatePipelineSelfMutateCodePipelineActionRoleEC102D72",
                   "Arn"
+                ]
+              }
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
+                  ]
                 ]
               }
             }
@@ -222,6 +298,84 @@
               }
             ],
             "Name": "UpdatePipeline"
+          },
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Deploy",
+                  "Owner": "AWS",
+                  "Provider": "CloudFormation",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "StackName": "ayeshabetastage-sprint2projectstackinstance",
+                  "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+                  "RoleArn": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":iam::315997497220:role/cdk-ayesha-cfn-exec-role-315997497220-us-east-2"
+                      ]
+                    ]
+                  },
+                  "ActionMode": "CHANGE_SET_REPLACE",
+                  "ChangeSetName": "PipelineChange",
+                  "TemplatePath": "Synth_Output::assembly-AyeshaPipeline-ayeshabetastage/AyeshaPipelineayeshabetastagesprint2projectstackinstance5359BBAE.template.json"
+                },
+                "InputArtifacts": [
+                  {
+                    "Name": "Synth_Output"
+                  }
+                ],
+                "Name": "Prepare",
+                "RoleArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
+                    ]
+                  ]
+                },
+                "RunOrder": 1
+              },
+              {
+                "ActionTypeId": {
+                  "Category": "Deploy",
+                  "Owner": "AWS",
+                  "Provider": "CloudFormation",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "StackName": "ayeshabetastage-sprint2projectstackinstance",
+                  "ActionMode": "CHANGE_SET_EXECUTE",
+                  "ChangeSetName": "PipelineChange"
+                },
+                "Name": "Deploy",
+                "RoleArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
+                    ]
+                  ]
+                },
+                "RunOrder": 2
+              }
+            ],
+            "Name": "ayeshabetastage"
           }
         ],
         "ArtifactStore": {
@@ -281,15 +435,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":logs:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":log-group:/aws/codebuild/",
+                      ":logs:us-east-2:315997497220:log-group:/aws/codebuild/",
                       {
                         "Ref": "ayeshapipelinePipelineBuildSynthCdkBuildProject086D9576"
                       }
@@ -304,15 +450,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":logs:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":log-group:/aws/codebuild/",
+                      ":logs:us-east-2:315997497220:log-group:/aws/codebuild/",
                       {
                         "Ref": "ayeshapipelinePipelineBuildSynthCdkBuildProject086D9576"
                       },
@@ -339,15 +477,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":codebuild:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":report-group/",
+                    ":codebuild:us-east-2:315997497220:report-group/",
                     {
                       "Ref": "ayeshapipelinePipelineBuildSynthCdkBuildProject086D9576"
                     },
@@ -449,11 +579,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":iam::",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":root"
+                      ":iam::315997497220:root"
                     ]
                   ]
                 }
@@ -517,11 +643,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":iam::",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":root"
+                      ":iam::315997497220:root"
                     ]
                   ]
                 }
@@ -609,15 +731,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":logs:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":log-group:/aws/codebuild/",
+                      ":logs:us-east-2:315997497220:log-group:/aws/codebuild/",
                       {
                         "Ref": "ayeshapipelineUpdatePipelineSelfMutation83A99BFA"
                       }
@@ -632,15 +746,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":logs:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":log-group:/aws/codebuild/",
+                      ":logs:us-east-2:315997497220:log-group:/aws/codebuild/",
                       {
                         "Ref": "ayeshapipelineUpdatePipelineSelfMutation83A99BFA"
                       },
@@ -667,15 +773,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":codebuild:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":report-group/",
+                    ":codebuild:us-east-2:315997497220:report-group/",
                     {
                       "Ref": "ayeshapipelineUpdatePipelineSelfMutation83A99BFA"
                     },
@@ -696,18 +794,7 @@
                 }
               },
               "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:*:iam::",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":role/*"
-                  ]
-                ]
-              }
+              "Resource": "arn:*:iam::315997497220:role/*"
             },
             {
               "Action": "cloudformation:DescribeStacks",
@@ -795,204 +882,43 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/02PXQqDMBCEz+J7XA2h+FrqBcSewMaUrj+J5IciIXdvjIp9mg92Zpil4Cm7QZndu6/JeT8WnistwD9tx0dSK2msdtyS+i1bYZTTXGwcDz1aVDKQLRhDvVhwERPKGG4O2pwnB2IY+Ifjo0htOwWC3Qy+VVMyJ23UhHxN2USBbO0vh1N/VTdaDWLfdWAIgVBW/f9yLjJQx4ZrSbPaj5IFgwpomQ0GMddOWpwFtLv+AHSI/d8YAQAA"
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/02PXQ6DIBCEz+I7rhrS+NrUCxB7Aos0RREaftIYwt0rRUKf5mMzw+x24Dt8gba6Th9T03ltPFWagb/bia5oUNJY7ahFIzPKacrQ8JSZA4qhIzCzN38zweURJCdFY+aADAZ/c3RlNs5PSkKU4HQv4/QOiE8b+FGJVBm1OLMnVj8cF3PpJVotjP5qTgwhoA73/0fmdQ0Mxw9lTbLbl5INhh66tloM57V20vKNwZj0CyAR2jAxAQAA"
       },
       "Metadata": {
         "aws:cdk:path": "AyeshaPipeline/CDKMetadata/Default"
-      },
-      "Condition": "CDKMetadataAvailable"
+      }
     }
   },
-  "Conditions": {
-    "CDKMetadataAvailable": {
-      "Fn::Or": [
+  "Parameters": {
+    "BootstrapVersion": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cdk-bootstrap/ayesha/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+    }
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
         {
-          "Fn::Or": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "af-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-east-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-northeast-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-northeast-2"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-southeast-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-southeast-2"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ca-central-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "cn-north-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "cn-northwest-1"
-              ]
-            }
-          ]
-        },
-        {
-          "Fn::Or": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-central-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-north-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-west-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-west-2"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-west-3"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "me-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "sa-east-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-east-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-east-2"
-              ]
-            }
-          ]
-        },
-        {
-          "Fn::Or": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-west-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-west-2"
-              ]
-            }
-          ]
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ],
+                  {
+                    "Ref": "BootstrapVersion"
+                  }
+                ]
+              }
+            ]
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
         }
       ]
     }
