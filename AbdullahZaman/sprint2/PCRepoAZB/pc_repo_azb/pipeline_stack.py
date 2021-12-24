@@ -19,7 +19,7 @@ class PipelineStack(core.Stack):
         synth = pipelines.ShellStep('synth', input=source,
                 commands = [
                 "cd AbdullahZaman/sprint2/PCRepoAZB", "pip install -r requirements.txt", "npm install -g aws-cdk", "cdk synth"],
-            primary_output_directory="/ProximaCentauri/AbdullahZaman/sprint2/PCRepoAZB/cdk.out"
+            primary_output_directory="AbdullahZaman/sprint2/PCRepoAZB/cdk.out"
                 )
                 
         
