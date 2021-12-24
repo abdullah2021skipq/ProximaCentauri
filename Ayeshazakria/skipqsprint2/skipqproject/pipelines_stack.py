@@ -31,7 +31,7 @@ class PipelinesStack(cdk.Stack):
         beta = PipelineStage(self, "ayeshabetastage",
         env = {
             'account':'315997497220',
-             'region' : 'us-east-2'
+            'region' : 'us-east-2'
          })
        
         pipeline.add_stage(beta)

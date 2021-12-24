@@ -15,34 +15,17 @@
 
 ## project description:
 
-In this project we created a weblambda which checks latency and availability of websites <br>
-put their metrics to cloudwatch.<br>
-created alarms and sns notifications <br>
-place data in dynamodb table<br>
-
+In this project we are building CI/CD Pipeline using AWS Pipelines.
 
 ## services used:
 
--- CodeBuild<br>
--- Cloudformation<br>
--- S3<br>
--- IAM<br>
--- cloudwatch<br>
+- CodeBuild
+- Cloudformation
+- S3
+- IAM
 
 ## Installation steps
 
-## Author
-You can get in touch with me on my LinkedIn Profile:
-
-#### Ayesha Zakria
-[![LinkedIn Link](https://img.shields.io/badge/Connect-Ayeshzakria-blue.svg?logo=linkedin&longCache=true&style=social&label=Connect
-)](https://www.linkedin.com/in/ayesha-zakria)
-
-You can also follow my GitHub Profile to stay updated about my latest projects: [![GitHub Follow](https://img.shields.io/badge/Connect-Ayesha-zakria-blue.svg?logo=Github&longCache=true&style=social&label=Follow)](https://github.com/Ayesha-zakria)
-
-If you liked the repo then kindly support it by giving it a star ⭐!
-
-If you find any bug in the code or have any improvements in mind then feel free to generate a pull request.
 
 ```
 $ source .venv/bin/activate
@@ -60,10 +43,43 @@ Once the virtualenv is activated, you can install the required dependencies.
 $ pip install -r requirements.txt
 ```
 
+Install aws-cdk using npm
+
+```
+npm install -g aws-cdk
+```
+
+Bootstrap the project to provision resources from the aws cloud
+
+```
+cdk bootstrap
+```
+
+Once the virtualenv is activated, you can install the required dependencies.
+
+```
+$ pip install -r requirements.txt
+```
+
 At this point you can now synthesize the CloudFormation template for this code.
 
 ```
 $ cdk synth
+$ cdk deploy
 ```
+
+## Author
+You can get in touch with me on my LinkedIn Profile:
+
+#### Ayesha Zakria
+[![LinkedIn Link](https://img.shields.io/badge/Connect-Ayeshzakria-blue.svg?logo=linkedin&longCache=true&style=social&label=Connect
+)](https://www.linkedin.com/in/ayesha-zakria)
+
+You can also follow my GitHub Profile to stay updated about my latest projects: [![GitHub Follow](https://img.shields.io/badge/Connect-Ayesha-zakria-blue.svg?logo=Github&longCache=true&style=social&label=Follow)](https://github.com/Ayesha-zakria)
+
+If you liked the repo then kindly support it by giving it a star ⭐!
+
+If you find any bug in the code or have any improvements in mind then feel free to generate a pull request.
+
 ## LICENSE 🔑
 - GNU General Public
