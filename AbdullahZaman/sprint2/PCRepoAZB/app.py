@@ -9,7 +9,7 @@ from aws_cdk import core as cdk
 # being updated to use `cdk`.  You may delete this import if you don't need it.
 from aws_cdk import core
 
-from pc_repo_azb.pc_repo_azb_stack import PcRepoAzbStack1
+#from pc_repo_azb.pc_repo_azb_stack import PcRepoAzbStack1
 from pc_repo_azb.pipeline_stack import PipelineStack
 
 
