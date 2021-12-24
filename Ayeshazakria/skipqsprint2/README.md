@@ -1,18 +1,16 @@
 <div align="center">
 <h1>SkipQ Sprint 2 Project </h1>
-<img src="https://pngset.com/images/aws-lambda-icon-text-symbol-alphabet-number-transparent-png-662520.png" height="200px">
+<img src="https://miro.medium.com/max/676/1*WbWJPlN15MSayaA8QP2O0w.png" height="200px">
 <br>
 <br>
 </div>
 <div align="center">
-<img src="https://logowik.com/content/uploads/images/aws-dynamodb5235.jpg" height="150px" width="250px">
-<img src="https://static.bossinsights.com/img/integrations/amazonaws_logs.png" height="150px" width="250px">
+<img src="https://miro.medium.com/max/640/1*B9CIOrxdROHvtdmouQA1_A.png" height="150px" width="250px">
+<img src="https://www.singlestoneconsulting.com/wp-content/uploads/2021/02/cformation.png" height="150px" width="250px">
 <br>
 <br>
 </div>
 <hr>
-
-
 
 
 ## project description:
@@ -25,11 +23,11 @@ place data in dynamodb table<br>
 
 ## services used:
 
---lambda<br>
---dynamodb<br>
---s3 bucket<br>
---sns<br>
---cloudwatch<br>
+-- CodeBuild<br>
+-- Cloudformation<br>
+-- S3<br>
+-- IAM<br>
+-- cloudwatch<br>
 
 ## Installation steps
 
@@ -37,7 +35,7 @@ place data in dynamodb table<br>
 You can get in touch with me on my LinkedIn Profile:
 
 #### Ayesha Zakria
-[![LinkedIn Link](https://img.shields.io/badge/Connect-Ayesha-zakria-blue.svg?logo=linkedin&longCache=true&style=social&label=Connect
+[![LinkedIn Link](https://img.shields.io/badge/Connect-Ayeshzakria-blue.svg?logo=linkedin&longCache=true&style=social&label=Connect
 )](https://www.linkedin.com/in/ayesha-zakria)
 
 You can also follow my GitHub Profile to stay updated about my latest projects: [![GitHub Follow](https://img.shields.io/badge/Connect-Ayesha-zakria-blue.svg?logo=Github&longCache=true&style=social&label=Follow)](https://github.com/Ayesha-zakria)
