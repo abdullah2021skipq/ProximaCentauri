@@ -9,7 +9,7 @@ from aws_cdk import core as cdk
 # being updated to use `cdk`.  You may delete this import if you don't need it.
 from aws_cdk import core
 
-from pc_repo_azb.pc_repo_azb_stack import PcRepoAzbStack
+from pc_repo_azb.pc_repo_azb_stack import PcRepoAzbStack1
 from pc_repo_azb.pipeline_stack import PipelineStack
 
 
@@ -32,5 +32,5 @@ app = core.App()
     # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
     #)
 
-PipelineStack(app, 'PipelineStackAbdullah1', env=core.Environment(account='315997497220', region='us-east-2'))
+PipelineStack(app, 'PipelineStackAbdullah3', env=core.Environment(account='315997497220', region='us-east-2'))
 app.synth()
