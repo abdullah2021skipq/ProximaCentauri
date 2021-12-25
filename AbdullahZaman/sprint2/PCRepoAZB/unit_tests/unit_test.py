@@ -4,7 +4,7 @@ from pc_repo_azb.pc_repo_azb_stack import PcRepoAzbStack1
 
 
 def lambda_test():
-
+    
     app=core.App()
     PcRepoAzbStack1(app,'Stack')
     template=app.synth().get_stack_by_name('Stack').template
