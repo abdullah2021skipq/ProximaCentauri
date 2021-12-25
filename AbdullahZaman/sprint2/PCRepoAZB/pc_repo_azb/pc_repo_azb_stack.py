@@ -34,7 +34,7 @@ class PcRepoAzbStack1(cdk.Stack):
         # The code that defines your stack goes here
         lambda_role = self.create_lambda_role()
         hw_lambda = self.create_lambda("FirstHWLambda", "./resources", "webhealth_lambda.lambda_handler", lambda_role)
-#        db_lambda = self.create_lambda("DynamoLambda", "./resources", "dynamodb_lambda.lambda_handler", lambda_role)
+        db_lambda = self.create_lambda("DynamoLambda", "./resources", "dynamodb_lambda.lambda_handler", lambda_role)
         
         
         # We define the schedule, target and the rule for our lambda
@@ -44,13 +44,13 @@ class PcRepoAzbStack1(cdk.Stack):
         rule = events_.Rule(self, "WebHealth_Invocation", description = "Periodic Lambda",      # rule: which targets will get our event
                             enabled=True, schedule=lambda_schedule, targets=[lambda_target])
         
- #       dynamo_table = self.create_table("AbdullahTable")
-  #      dynamo_table.grant_read_write_data(db_lambda)
+        dynamo_table = self.create_table("AbdullahTable")
+        dynamo_table.grant_read_write_data(db_lambda)
         # db_lambda.add_environment('table_name',"AbdullahTable")   ##No need for this
         
-  #      topic = sns.Topic(self, "WebHealthTopic")
-   #     topic.add_subscription(subscriptions_.EmailSubscription("abdullah.zaman.babar.s@skipq.org"))
-    #    topic.add_subscription(subscriptions_.LambdaSubscription(fn=db_lambda))
+        topic = sns.Topic(self, "WebHealthTopic")
+        topic.add_subscription(subscriptions_.EmailSubscription("abdullah.zaman.babar.s@skipq.org"))
+        topic.add_subscription(subscriptions_.LambdaSubscription(fn=db_lambda))
         
         
         #subscriptions_.EmailSubscription("abdullah.zaman.babar.s@skipq.org")
@@ -60,27 +60,27 @@ class PcRepoAzbStack1(cdk.Stack):
                                             metric_name=constants.URL_MONITOR_NAME_Availability, 
                                             dimensions_map=dimension, 
                                             period=cdk.Duration.minutes(1), label="Availability Metric")
-  #      availability_alarm = cloudwatch_.Alarm(self, id="AvailabilityAlarm",
-   #                                     metric=availability_metric,
-    #                                    comparison_operator=cloudwatch_.ComparisonOperator.LESS_THAN_THRESHOLD,
-     #                                   datapoints_to_alarm=1,
-      #                                  evaluation_periods=1,
-       #                                 threshold=1)
+        availability_alarm = cloudwatch_.Alarm(self, id="AvailabilityAlarm",
+                                        metric=availability_metric,
+                                        comparison_operator=cloudwatch_.ComparisonOperator.LESS_THAN_THRESHOLD,
+                                        datapoints_to_alarm=1,
+                                        evaluation_periods=1,
+                                        threshold=1)
                                         
         dimension = {"URL" : constants.URL_TO_MONITOR}
         latency_metric = cloudwatch_.Metric(namespace=constants.URL_MONITOR_NAMESPACE,
                                             metric_name=constants.URL_MONITOR_NAME_Latency, 
                                             dimensions_map=dimension, 
                                             period=cdk.Duration.minutes(1), label="Latency Metric")
-     #   latency_alarm = cloudwatch_.Alarm(self, id="LatencyAlarm",
-     #                                   metric=latency_metric,
-     #                                   comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
-     #                                   datapoints_to_alarm=1,
-     #                                   evaluation_periods=1,
-     #                                   threshold=0.28)
+        latency_alarm = cloudwatch_.Alarm(self, id="LatencyAlarm",
+                                        metric=latency_metric,
+                                        comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
+                                        datapoints_to_alarm=1,
+                                        evaluation_periods=1,
+                                        threshold=0.28)
     
-     #   availability_alarm.add_alarm_action(actions_.SnsAction(topic))
-     #   latency_alarm.add_alarm_action(actions_.SnsAction(topic))
+        availability_alarm.add_alarm_action(actions_.SnsAction(topic))
+        latency_alarm.add_alarm_action(actions_.SnsAction(topic))
         
     
     def create_lambda_role(self):
@@ -110,12 +110,12 @@ class PcRepoAzbStack1(cdk.Stack):
         return lambdaRole
         # Create_lambda_role is commented"""
     
-#    def create_table(self, t_name):
- #       try:
- #           return db.Table(self, id="Table", table_name=t_name,
- #                       partition_key=db.Attribute(name="AlarmDetails", type=db.AttributeType.STRING))
- #       except:
-#            pass
+    def create_table(self, t_name):
+        try:
+            return db.Table(self, id="Table", table_name=t_name,
+                        partition_key=db.Attribute(name="AlarmDetails", type=db.AttributeType.STRING))
+        except:
+            pass
     
     def create_lambda(self, newid, asset, handler, role):
         return lambda_.Function(self, id = newid,
