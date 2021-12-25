@@ -44,13 +44,13 @@ class PcRepoAzbStack1(cdk.Stack):
         rule = events_.Rule(self, "WebHealth_Invocation", description = "Periodic Lambda",      # rule: which targets will get our event
                             enabled=True, schedule=lambda_schedule, targets=[lambda_target])
         
-        dynamo_table = self.create_table("AbdullahTable")
-        dynamo_table.grant_read_write_data(db_lambda)
+        #dynamo_table = self.create_table("AbdullahTable")
+        #dynamo_table.grant_read_write_data(db_lambda)
         # db_lambda.add_environment('table_name',"AbdullahTable")   ##No need for this
         
         topic = sns.Topic(self, "WebHealthTopic")
         topic.add_subscription(subscriptions_.EmailSubscription("abdullah.zaman.babar.s@skipq.org"))
-        topic.add_subscription(subscriptions_.LambdaSubscription(fn=db_lambda))
+        #topic.add_subscription(subscriptions_.LambdaSubscription(fn=db_lambda))
         
         
         #subscriptions_.EmailSubscription("abdullah.zaman.babar.s@skipq.org")
@@ -110,12 +110,12 @@ class PcRepoAzbStack1(cdk.Stack):
         return lambdaRole
         # Create_lambda_role is commented"""
     
-    def create_table(self, t_name):
-        try:
-            return db.Table(self, id="Table", table_name=t_name,
-                        partition_key=db.Attribute(name="AlarmDetails", type=db.AttributeType.STRING))
-        except:
-            pass
+    #def create_table(self, t_name):
+     #   try:
+      #      return db.Table(self, id="Table", table_name=t_name,
+       #                 partition_key=db.Attribute(name="AlarmDetails", type=db.AttributeType.STRING))
+        #except:
+         #   pass
     
     def create_lambda(self, newid, asset, handler, role):
         return lambda_.Function(self, id = newid,
