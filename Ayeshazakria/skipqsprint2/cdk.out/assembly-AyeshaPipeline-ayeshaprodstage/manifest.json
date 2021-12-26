@@ -1,16 +1,16 @@
 {
   "version": "15.0.0",
   "artifacts": {
-    "AyeshaPipelineayeshabetastagesprint2projectstackinstance5359BBAE": {
+    "AyeshaPipelineayeshaprodstagesprint2projectstackinstance1208F356": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://315997497220/us-east-2",
       "properties": {
-        "templateFile": "AyeshaPipelineayeshabetastagesprint2projectstackinstance5359BBAE.template.json",
-        "validateOnSynth": true,
-        "stackName": "ayeshabetastage-sprint2projectstackinstance"
+        "templateFile": "AyeshaPipelineayeshaprodstagesprint2projectstackinstance1208F356.template.json",
+        "validateOnSynth": false,
+        "stackName": "ayeshaprodstage-sprint2projectstackinstance"
       },
       "metadata": {
-        "/AyeshaPipeline/ayeshabetastage/sprint2projectstackinstance/CDKMetadata/Default": [
+        "/AyeshaPipeline/ayeshaprodstage/sprint2projectstackinstance/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadata",
@@ -22,10 +22,10 @@
               "injectMetadataResources (/tmp/jsii-kernel-JiwU7t/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
               "Object.synthesize (/tmp/jsii-kernel-JiwU7t/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
               "Stage.synth (/tmp/jsii-kernel-JiwU7t/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
-              "Object.pipelineSynth (/tmp/jsii-kernel-JiwU7t/node_modules/@aws-cdk/pipelines/lib/private/construct-internals.js:25:18)",
-              "Function.fromStage (/tmp/jsii-kernel-JiwU7t/node_modules/@aws-cdk/pipelines/lib/blueprint/stage-deployment.js:40:48)",
-              "Wave.addStage (/tmp/jsii-kernel-JiwU7t/node_modules/@aws-cdk/pipelines/lib/blueprint/wave.js:43:56)",
-              "CodePipeline.addStage (/tmp/jsii-kernel-JiwU7t/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:60:46)",
+              "synthNestedAssemblies (/tmp/jsii-kernel-JiwU7t/node_modules/@aws-cdk/core/lib/private/synthesis.js:56:19)",
+              "synthNestedAssemblies (/tmp/jsii-kernel-JiwU7t/node_modules/@aws-cdk/core/lib/private/synthesis.js:59:13)",
+              "Object.synthesize (/tmp/jsii-kernel-JiwU7t/node_modules/@aws-cdk/core/lib/private/synthesis.js:15:5)",
+              "App.synth (/tmp/jsii-kernel-JiwU7t/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
               "/tmp/tmpi_mcka7c/lib/program.js:8248:134",
               "Kernel._wrapSandboxCode (/tmp/tmpi_mcka7c/lib/program.js:8860:24)",
               "/tmp/tmpi_mcka7c/lib/program.js:8248:107",
@@ -39,7 +39,7 @@
           }
         ]
       },
-      "displayName": "AyeshaPipeline/ayeshabetastage/sprint2projectstackinstance"
+      "displayName": "AyeshaPipeline/ayeshaprodstage/sprint2projectstackinstance"
     }
   }
 }

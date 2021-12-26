@@ -11,6 +11,7 @@ class PipelinesStack(cdk.Stack):
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
         
+        
                                                    #owner/reponame
         source=pipelines.CodePipelineSource.git_hub("Ayesha-zakria/ProximaCentauri", "main",
             authentication=cdk.SecretValue.secrets_manager('ayeshazakria'),
@@ -33,15 +34,29 @@ class PipelinesStack(cdk.Stack):
             'account':'315997497220',
             'region' : 'us-east-2'
          })
+         
+        prod = PipelineStage(self, "ayeshaprodstage",
+        env = {
+            'account':'315997497220',
+            'region' : 'us-east-2'
+         })
+         
+        unit_test=pipelines.ShellStep('unit_test',
+          commands=["cd Ayeshazakria/skipqsprint2", "pip install -r requirements.txt", "pytest unittests","pytest integrationtests"
+              ]
+           
+        )
+         
        
-        pipeline.add_stage(beta)
+        pipeline.add_stage(beta,pre=[unit_test])
         
     def createrole(self):
         role=aws_iam.Role(self,"pipeline-role",
         assumed_by=aws_iam.CompositePrincipal(
             aws_iam.ServicePrincipal("lambda.amazonaws.com"),
             aws_iam.ServicePrincipal("sns.amazonaws.com"),
-            aws_iam.ServicePrincipal('codebuild.amazonaws.com')
+            aws_iam.ServicePrincipal('codebuild.amazonaws.com'),
+      
             ),
         managed_policies=[
             aws_iam.ManagedPolicy.from_aws_managed_policy_name('service-role/AWSLambdaBasicExecutionRole'),
@@ -50,7 +65,8 @@ class PipelinesStack(cdk.Stack):
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AwsCloudFormationFullAccess"),
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess"),
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSCodePipeline_FullAccess"),
-            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3FullAccess")
-            ])
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3FullAccess"),
+            ]
+        )
         return role 
         
