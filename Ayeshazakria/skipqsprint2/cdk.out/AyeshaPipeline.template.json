@@ -254,6 +254,66 @@
         "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ArtifactsBucket/Resource"
       }
     },
+    "ayeshapipelinePipelineArtifactsBucketPolicy47E1E5D8": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "ayeshapipelinePipelineArtifactsBucketB9CA0422"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*"
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
+                    ]
+                  ]
+                }
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ArtifactsBucket/Policy/Resource"
+      }
+    },
     "ayeshapipelinePipelineRole52DBD386": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -337,6 +397,16 @@
               "Effect": "Allow",
               "Resource": {
                 "Fn::GetAtt": [
+                  "ayeshapipelinePipelineAssetsFileAsset1CodePipelineActionRoleF3DA1EDD",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
                   "ayeshapipelinePipelineayeshabetastageunittestCodePipelineActionRole89D9473D",
                   "Arn"
                 ]
@@ -346,19 +416,15 @@
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
               "Resource": {
-                "Fn::GetAtt": [
-                  "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareCodePipelineActionRole0308B015",
-                  "Arn"
-                ]
-              }
-            },
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "ayeshapipelinePipelineayeshabetastagesprint2projectinstanceDeployCodePipelineActionRole30C4F843",
-                  "Arn"
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
+                  ]
                 ]
               }
             },
@@ -368,26 +434,6 @@
               "Resource": {
                 "Fn::GetAtt": [
                   "ayeshapipelinePipelineProdProductionbuildCodePipelineActionRole832A7032",
-                  "Arn"
-                ]
-              }
-            },
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "ayeshapipelinePipelineProdsprint2projectinstancePrepareCodePipelineActionRoleF3C3AB4B",
-                  "Arn"
-                ]
-              }
-            },
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "ayeshapipelinePipelineProdsprint2projectinstanceDeployCodePipelineActionRole928F97D3",
                   "Arn"
                 ]
               }
@@ -523,6 +569,37 @@
                 },
                 "Configuration": {
                   "ProjectName": {
+                    "Ref": "ayeshapipelineAssetsFileAsset1DED4736A"
+                  }
+                },
+                "InputArtifacts": [
+                  {
+                    "Name": "Synth_Output"
+                  }
+                ],
+                "Name": "FileAsset1",
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "ayeshapipelinePipelineAssetsFileAsset1CodePipelineActionRoleF3DA1EDD",
+                    "Arn"
+                  ]
+                },
+                "RunOrder": 1
+              }
+            ],
+            "Name": "Assets"
+          },
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "ProjectName": {
                     "Ref": "ayeshapipelinePipelineayeshabetastageunittest66ABA685"
                   }
                 },
@@ -551,9 +628,15 @@
                   "StackName": "ayeshabetastage-sprint2projectinstance",
                   "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
                   "RoleArn": {
-                    "Fn::GetAtt": [
-                      "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareRole778A73A8",
-                      "Arn"
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":iam::315997497220:role/cdk-ayesha-cfn-exec-role-315997497220-us-east-2"
+                      ]
                     ]
                   },
                   "ActionMode": "CHANGE_SET_REPLACE",
@@ -567,9 +650,15 @@
                 ],
                 "Name": "sprint2projectinstance.Prepare",
                 "RoleArn": {
-                  "Fn::GetAtt": [
-                    "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareCodePipelineActionRole0308B015",
-                    "Arn"
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
+                    ]
                   ]
                 },
                 "RunOrder": 2
@@ -588,9 +677,15 @@
                 },
                 "Name": "sprint2projectinstance.Deploy",
                 "RoleArn": {
-                  "Fn::GetAtt": [
-                    "ayeshapipelinePipelineayeshabetastagesprint2projectinstanceDeployCodePipelineActionRole30C4F843",
-                    "Arn"
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
+                    ]
                   ]
                 },
                 "RunOrder": 3
@@ -627,9 +722,15 @@
                   "StackName": "Prod-sprint2projectinstance",
                   "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
                   "RoleArn": {
-                    "Fn::GetAtt": [
-                      "ayeshapipelinePipelineProdsprint2projectinstancePrepareRole50685582",
-                      "Arn"
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":iam::315997497220:role/cdk-ayesha-cfn-exec-role-315997497220-us-east-2"
+                      ]
                     ]
                   },
                   "ActionMode": "CHANGE_SET_REPLACE",
@@ -643,9 +744,15 @@
                 ],
                 "Name": "sprint2projectinstance.Prepare",
                 "RoleArn": {
-                  "Fn::GetAtt": [
-                    "ayeshapipelinePipelineProdsprint2projectinstancePrepareCodePipelineActionRoleF3C3AB4B",
-                    "Arn"
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
+                    ]
                   ]
                 },
                 "RunOrder": 2
@@ -664,9 +771,15 @@
                 },
                 "Name": "sprint2projectinstance.Deploy",
                 "RoleArn": {
-                  "Fn::GetAtt": [
-                    "ayeshapipelinePipelineProdsprint2projectinstanceDeployCodePipelineActionRole928F97D3",
-                    "Arn"
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
+                    ]
                   ]
                 },
                 "RunOrder": 3
@@ -846,6 +959,70 @@
       },
       "Metadata": {
         "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy/Resource"
+      }
+    },
+    "ayeshapipelinePipelineAssetsFileAsset1CodePipelineActionRoleF3DA1EDD": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::315997497220:root"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Assets/FileAsset1/CodePipelineActionRole/Resource"
+      }
+    },
+    "ayeshapipelinePipelineAssetsFileAsset1CodePipelineActionRoleDefaultPolicy7500A488": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "ayeshapipelineAssetsFileAsset1DED4736A",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "ayeshapipelinePipelineAssetsFileAsset1CodePipelineActionRoleDefaultPolicy7500A488",
+        "Roles": [
+          {
+            "Ref": "ayeshapipelinePipelineAssetsFileAsset1CodePipelineActionRoleF3DA1EDD"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Assets/FileAsset1/CodePipelineActionRole/DefaultPolicy/Resource"
       }
     },
     "ayeshapipelinePipelineayeshabetastageunittestRole29F92266": {
@@ -1077,271 +1254,6 @@
         "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/unit_test/CodePipelineActionRole/DefaultPolicy/Resource"
       }
     },
-    "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareCodePipelineActionRole0308B015": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":iam::315997497220:root"
-                    ]
-                  ]
-                }
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/CodePipelineActionRole/Resource"
-      }
-    },
-    "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareCodePipelineActionRoleDefaultPolicy02F8BE71": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": "iam:PassRole",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareRole778A73A8",
-                  "Arn"
-                ]
-              }
-            },
-            {
-              "Action": [
-                "s3:GetObject*",
-                "s3:GetBucket*",
-                "s3:List*"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                {
-                  "Fn::GetAtt": [
-                    "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                    "Arn"
-                  ]
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      {
-                        "Fn::GetAtt": [
-                          "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                          "Arn"
-                        ]
-                      },
-                      "/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Action": [
-                "cloudformation:CreateChangeSet",
-                "cloudformation:DeleteChangeSet",
-                "cloudformation:DescribeChangeSet",
-                "cloudformation:DescribeStacks"
-              ],
-              "Condition": {
-                "StringEqualsIfExists": {
-                  "cloudformation:ChangeSetName": "PipelineChange"
-                }
-              },
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":cloudformation:us-east-2:315997497220:stack/ayeshabetastage-sprint2projectinstance/*"
-                  ]
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareCodePipelineActionRoleDefaultPolicy02F8BE71",
-        "Roles": [
-          {
-            "Ref": "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareCodePipelineActionRole0308B015"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/CodePipelineActionRole/DefaultPolicy/Resource"
-      }
-    },
-    "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareRole778A73A8": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "cloudformation.amazonaws.com"
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/Role/Resource"
-      }
-    },
-    "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareRoleDefaultPolicyD1166247": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "s3:GetObject*",
-                "s3:GetBucket*",
-                "s3:List*"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                {
-                  "Fn::GetAtt": [
-                    "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                    "Arn"
-                  ]
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      {
-                        "Fn::GetAtt": [
-                          "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                          "Arn"
-                        ]
-                      },
-                      "/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Action": "*",
-              "Effect": "Allow",
-              "Resource": "*"
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareRoleDefaultPolicyD1166247",
-        "Roles": [
-          {
-            "Ref": "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareRole778A73A8"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/Role/DefaultPolicy/Resource"
-      }
-    },
-    "ayeshapipelinePipelineayeshabetastagesprint2projectinstanceDeployCodePipelineActionRole30C4F843": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":iam::315997497220:root"
-                    ]
-                  ]
-                }
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Deploy/CodePipelineActionRole/Resource"
-      }
-    },
-    "ayeshapipelinePipelineayeshabetastagesprint2projectinstanceDeployCodePipelineActionRoleDefaultPolicyAED971B1": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "cloudformation:DescribeChangeSet",
-                "cloudformation:DescribeStacks",
-                "cloudformation:ExecuteChangeSet"
-              ],
-              "Condition": {
-                "StringEqualsIfExists": {
-                  "cloudformation:ChangeSetName": "PipelineChange"
-                }
-              },
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":cloudformation:us-east-2:315997497220:stack/ayeshabetastage-sprint2projectinstance/*"
-                  ]
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "ayeshapipelinePipelineayeshabetastagesprint2projectinstanceDeployCodePipelineActionRoleDefaultPolicyAED971B1",
-        "Roles": [
-          {
-            "Ref": "ayeshapipelinePipelineayeshabetastagesprint2projectinstanceDeployCodePipelineActionRole30C4F843"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Deploy/CodePipelineActionRole/DefaultPolicy/Resource"
-      }
-    },
     "ayeshapipelinePipelineProdProductionbuildCodePipelineActionRole832A7032": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -1371,271 +1283,6 @@
       },
       "Metadata": {
         "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/Productionbuild/CodePipelineActionRole/Resource"
-      }
-    },
-    "ayeshapipelinePipelineProdsprint2projectinstancePrepareCodePipelineActionRoleF3C3AB4B": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":iam::315997497220:root"
-                    ]
-                  ]
-                }
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/CodePipelineActionRole/Resource"
-      }
-    },
-    "ayeshapipelinePipelineProdsprint2projectinstancePrepareCodePipelineActionRoleDefaultPolicy48B4C3FF": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": "iam:PassRole",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "ayeshapipelinePipelineProdsprint2projectinstancePrepareRole50685582",
-                  "Arn"
-                ]
-              }
-            },
-            {
-              "Action": [
-                "s3:GetObject*",
-                "s3:GetBucket*",
-                "s3:List*"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                {
-                  "Fn::GetAtt": [
-                    "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                    "Arn"
-                  ]
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      {
-                        "Fn::GetAtt": [
-                          "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                          "Arn"
-                        ]
-                      },
-                      "/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Action": [
-                "cloudformation:CreateChangeSet",
-                "cloudformation:DeleteChangeSet",
-                "cloudformation:DescribeChangeSet",
-                "cloudformation:DescribeStacks"
-              ],
-              "Condition": {
-                "StringEqualsIfExists": {
-                  "cloudformation:ChangeSetName": "PipelineChange"
-                }
-              },
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":cloudformation:us-east-2:315997497220:stack/Prod-sprint2projectinstance/*"
-                  ]
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "ayeshapipelinePipelineProdsprint2projectinstancePrepareCodePipelineActionRoleDefaultPolicy48B4C3FF",
-        "Roles": [
-          {
-            "Ref": "ayeshapipelinePipelineProdsprint2projectinstancePrepareCodePipelineActionRoleF3C3AB4B"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/CodePipelineActionRole/DefaultPolicy/Resource"
-      }
-    },
-    "ayeshapipelinePipelineProdsprint2projectinstancePrepareRole50685582": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "cloudformation.amazonaws.com"
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/Role/Resource"
-      }
-    },
-    "ayeshapipelinePipelineProdsprint2projectinstancePrepareRoleDefaultPolicyF3F32EA2": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "s3:GetObject*",
-                "s3:GetBucket*",
-                "s3:List*"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                {
-                  "Fn::GetAtt": [
-                    "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                    "Arn"
-                  ]
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      {
-                        "Fn::GetAtt": [
-                          "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                          "Arn"
-                        ]
-                      },
-                      "/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Action": "*",
-              "Effect": "Allow",
-              "Resource": "*"
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "ayeshapipelinePipelineProdsprint2projectinstancePrepareRoleDefaultPolicyF3F32EA2",
-        "Roles": [
-          {
-            "Ref": "ayeshapipelinePipelineProdsprint2projectinstancePrepareRole50685582"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/Role/DefaultPolicy/Resource"
-      }
-    },
-    "ayeshapipelinePipelineProdsprint2projectinstanceDeployCodePipelineActionRole928F97D3": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":iam::315997497220:root"
-                    ]
-                  ]
-                }
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Deploy/CodePipelineActionRole/Resource"
-      }
-    },
-    "ayeshapipelinePipelineProdsprint2projectinstanceDeployCodePipelineActionRoleDefaultPolicy5CE3C459": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "cloudformation:DescribeChangeSet",
-                "cloudformation:DescribeStacks",
-                "cloudformation:ExecuteChangeSet"
-              ],
-              "Condition": {
-                "StringEqualsIfExists": {
-                  "cloudformation:ChangeSetName": "PipelineChange"
-                }
-              },
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":cloudformation:us-east-2:315997497220:stack/Prod-sprint2projectinstance/*"
-                  ]
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "ayeshapipelinePipelineProdsprint2projectinstanceDeployCodePipelineActionRoleDefaultPolicy5CE3C459",
-        "Roles": [
-          {
-            "Ref": "ayeshapipelinePipelineProdsprint2projectinstanceDeployCodePipelineActionRole928F97D3"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Deploy/CodePipelineActionRole/DefaultPolicy/Resource"
       }
     },
     "ayeshapipelineUpdatePipelineSelfMutationRole14F6FDF0": {
@@ -1827,14 +1474,218 @@
         "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/UpdatePipeline/SelfMutation/Resource"
       }
     },
+    "ayeshapipelineAssetsFileRole0FF16841": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "codebuild.amazonaws.com",
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::315997497220:root"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Assets/FileRole/Resource"
+      }
+    },
+    "ayeshapipelineAssetsFileRoleDefaultPolicy9967DE91": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":logs:us-east-2:315997497220:log-group:/aws/codebuild/*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":codebuild:us-east-2:315997497220:report-group/*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:iam::315997497220:role/cdk-ayesha-file-publishing-role-315997497220-us-east-2"
+                }
+              ]
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "ayeshapipelineAssetsFileRoleDefaultPolicy9967DE91",
+        "Roles": [
+          {
+            "Ref": "ayeshapipelineAssetsFileRole0FF16841"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Assets/FileRole/DefaultPolicy/Resource"
+      }
+    },
+    "ayeshapipelineAssetsFileAsset1DED4736A": {
+      "Type": "AWS::CodeBuild::Project",
+      "Properties": {
+        "Artifacts": {
+          "Type": "CODEPIPELINE"
+        },
+        "Environment": {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER"
+        },
+        "ServiceRole": {
+          "Fn::GetAtt": [
+            "ayeshapipelineAssetsFileRole0FF16841",
+            "Arn"
+          ]
+        },
+        "Source": {
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-AyeshaPipeline-ayeshabetastage/AyeshaPipelineayeshabetastagesprint2projectinstanceCF6613F7.assets.json\\\" --verbose publish \\\"310b3109783230cefca06e1a39ef90d57d22fbdcc9632a44ca398e149269c8d5:315997497220-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+          "Type": "CODEPIPELINE"
+        },
+        "EncryptionKey": "alias/aws/s3"
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/ayeshapipeline/Assets/FileAsset1/Resource"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/02OXQ6DIBCEz+I7rhLS+NrUCxB7AovbFEVo+EljCHevio19mm+zuzNDIVJ2gbq49h9XimGqojAWId59LybSGu28DcKT9qk7dCZYgYlst1H2M8TOKNx3m3KjpFi2MVMiwgz4lm9UUq+e/KD94uBEHIN4C2LCPSRT/nwEqYbzjVszYq5yYEqJUNb81/+lOWhXhzOFL/5ldMWgAVoXo5OytEF7OSN0Wb82RSDpCwEAAA=="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/02PWw6DIBBF19J/HDWk8bepGzB2BXakKT7A8EhjCHuvCEa/7pkZOJkpwZX0DsXt0f10hv2YO5SKgXuZDkdSS6GNsmhIy7S0ChmpP+JgT8Inx7sZXCunOAvZyInjGspInqDs2cIXNnGxyZtE+4vEnmgK7mlxZCb0E8U4hdc6at+WT/3pbJQcGO6KhN57UtLqeuSxioZ6M5wrNKv5SpFTqKAsboPmPFNWGD4zaGP+ASP2A0QxAQAA"
       },
       "Metadata": {
         "aws:cdk:path": "AyeshaPipeline/CDKMetadata/Default"
       }
+    }
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cdk-bootstrap/ayesha/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+    }
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ],
+                  {
+                    "Ref": "BootstrapVersion"
+                  }
+                ]
+              }
+            ]
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+        }
+      ]
     }
   }
 }

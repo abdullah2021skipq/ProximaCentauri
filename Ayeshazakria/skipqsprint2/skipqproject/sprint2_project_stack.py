@@ -52,28 +52,76 @@ class SprintTwoProjectStack(cdk.Stack):
         topic.add_subscription(subscriptions_.EmailSubscription(email_address="ayesha.zakria.s@skipq.org"))
         topic.add_subscription(subscriptions_.LambdaSubscription(fn=dynamodb_lambda))
 
-        urls = self.get_file("ayeshaskipqbucket","urls_list.txt")
-        # self.create_alarm(topic,urls)
+        # urls = self.get_file("ayeshaskipqbucket","urls_list.txt")
+        # for url in urls:
+        #     print(url)
+        dimension= {'URL':constants.URL_TO_MONITOR}
         
-        ############Creating Alarm on aws metrics for lambda duration ###########
-        metricduration= cloudwatch_.Metric(namespace='AWS/Lambda', metric_name='Duration',
-            dimensions_map={'FunctionName': dynamodb_lambda.function_name}  )
+        #create cloudwatch metric for availability
+        availability_metric=cloudwatch_.Metric(
+            namespace= constants.URL_MONITOR_NAMESPACE,
+            metric_name=constants.URL_MONITOR_NAME_AVAILABILITY,
+            dimensions_map=dimension, 
+            period=cdk.Duration.minutes(1), 
+            label='AvailabilityMetric'
+            )
         
-        failure_alarm =cloudwatch_.Alarm(self, 'FailureAlarm', metric=metricduration,
-            threshold=4000,
+        #setting an alarm for availability
+        availability_alarm= cloudwatch_.Alarm(self,
+            id='Availability_alarm', 
+            metric=availability_metric,
+            comparison_operator= cloudwatch_.ComparisonOperator.LESS_THAN_THRESHOLD,
+            datapoints_to_alarm=1,
+            evaluation_periods=1,
+            threshold= 1
+            )
+        
+        #create a metric class for latency
+        latency_metric=cloudwatch_.Metric(
+            namespace= constants.URL_MONITOR_NAMESPACE, 
+            metric_name=constants.URL_MONITOR_NAME_LATENCY,
+            dimensions_map=dimension, 
+            period=cdk.Duration.minutes(1),
+            label='LatencyMetric'
+            )
+        
+        #create an alarm for latency
+        latency_alarm= cloudwatch_.Alarm(self,
+            id='Latency_alarm', 
+            metric=latency_metric,
             comparison_operator= cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
-            evaluation_periods=1) 
-                
-        ##Defining alias for my url health lambda    
-        try:
-            db_alias=_lambda.Alias(self, "AyeshaAlias",
-            alias_name="AyeshaWhAlias",
-            version=HWlambda.current_version)
-        #### Defining code deployment group to auto roll back, on the basis of
-        ####  aws lambda function's Alarm on metrics(Duration).               ########### 
-            codedeploy.LambdaDeploymentGroup(self, "id",alias=db_alias,
-            alarms=[failure_alarm])
-        except: pass
+            datapoints_to_alarm=1,
+            evaluation_periods=1,  
+            threshold=0.30
+            )
+            
+        #link sns and sns subscription to alarm
+        availability_alarm.add_alarm_action(actions_.SnsAction(topic))
+        latency_alarm.add_alarm_action(actions_.SnsAction(topic))
+        
+        rollback_metric=cloudwatch_.Metric(
+        namespace='AWS/Lambda',
+        metric_name='Duration',
+        dimensions_map={'FunctionName':HWlambda.function_name},
+        period= cdk.Duration.minutes(1))
+    
+        rollback_alarm= cloudwatch_.Alarm(self,
+        id="RollbackAlarm",
+        metric= rollback_metric,
+        comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
+        datapoints_to_alarm=1,
+        evaluation_periods=1,
+        threshold=2500) # THRESHOLD IS IN MILLISECONDS
+        
+        rollback_alarm.add_alarm_action(actions_.SnsAction(topic))
+
+        alias = _lambda.Alias(self, "WebHealthLambdaAlias"+construct_id,alias_name="Lambda",version=HWlambda.current_version)
+
+        codedeploy.LambdaDeploymentGroup(self, "AyeshaWebHealthLambda_DeploymentGroup",
+        alias=alias,
+        deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
+        alarms=[rollback_alarm]
+        )
 
 
     def create_lambda_role(self):
@@ -105,56 +153,7 @@ class SprintTwoProjectStack(cdk.Stack):
             sort_key = db.Attribute(name="timestamp",type=db.AttributeType.STRING),
         )
         return dynamo_table
-        
-
-    def create_alarm(self, topic, urls):
-        for url in urls:
-            print(url)
-            dimension= {'URL':  url}
-            
-            #create cloudwatch metric for availability
-            availability_metric=cloudwatch_.Metric(
-                namespace= constants.URL_MONITOR_NAMESPACE,
-                metric_name=constants.URL_MONITOR_NAME_AVAILABILITY,
-                dimensions_map=dimension, 
-                period=cdk.Duration.minutes(1), 
-                label='AvailabilityMetric'
-                )
-            
-            #setting an alarm for availability
-            availability_alarm= cloudwatch_.Alarm(self,
-                id='Availability_alarm', 
-                metric=availability_metric,
-                comparison_operator= cloudwatch_.ComparisonOperator.LESS_THAN_THRESHOLD,
-                datapoints_to_alarm=1,
-                evaluation_periods=1,
-                threshold= 1
-                )
-            
-            dimension= {'URL': url}
-            
-            #create a metric class for latency
-            latency_metric=cloudwatch_.Metric(
-                namespace= constants.URL_MONITOR_NAMESPACE, 
-                metric_name=constants.URL_MONITOR_NAME_LATENCY,
-                dimensions_map=dimension, 
-                period=cdk.Duration.minutes(1),
-                label='LatencyMetric'
-                )
-            
-            #create an alarm for latency
-            latency_alarm= cloudwatch_.Alarm(self,
-                id='Latency_alarm', 
-                metric=latency_metric,
-                comparison_operator= cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
-                datapoints_to_alarm=1,
-                evaluation_periods=1,  
-                threshold=0.30
-                )
-                
-            #link sns and sns subscription to alarm
-            availability_alarm.add_alarm_action(actions_.SnsAction(topic))
-            latency_alarm.add_alarm_action(actions_.SnsAction(topic))
+    
     
     def get_file(self,bucket, item):
     # function to read data from urls_list.txt
