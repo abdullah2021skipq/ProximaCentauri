@@ -33,10 +33,20 @@ class SikandarPipelineStack(cdk.Stack):
                                             'account':'315997497220',
                                             'region' : 'us-east-2'
                                             })
+                                            
+        Prod = SprintTwoProjStage(self, "Prod", env = {
+                                            'account':'315997497220',
+                                            'region' : 'us-east-2'
+                                            })
+        
 
-       # unit_test = pipelines.ShellStep("unit_test", commands=["cd ./Sikandar_Bakht/sprint2/SprintTwoProj",  
-        #                                                       "pip install -r requirements-dev.txt",
-        #                                                       "pytest unittest",
-        #                                                       ""])
+        unit_test = pipelines.ShellStep("unit_test", commands=["cd ./Sikandar_Bakht/sprint2/SprintTwoProj",  
+                                                               "pip install -r requirements-dev.txt",
+                                                               "pytest unittest",
+                                                               "pytest integtest"])
      
-        pipeline.add_stage(Beta)
+        pipeline.add_stage(Beta, pre=[unit_test])
+        
+
+        pipeline.add_stage(Prod, pre=[pipelines.ManualApprovalStep("PromoteToProd")])
+        
