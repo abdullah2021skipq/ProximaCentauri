@@ -14,4 +14,4 @@ alarm.
 * <p>cdk deploy %pipelineName%</p>
 * <p>pytest %DirectoryHavingTestFiles%</p>
 ## Troubleshooting Instructions
-Push the code to GitHub before bootstrapping and deploying afterchanges have been done. 
+Push the code to GitHub before bootstrapping and deploying after changes have been done. 
