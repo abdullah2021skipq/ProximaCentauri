@@ -1,6 +1,6 @@
 import pytest
 from aws_cdk import core
-from skipq_project.sprint2_project_stack import SprintTwoProjectStack
+from skipqproject.sprint2_project_stack import SprintTwoProjectStack
 def test_lambda():
     app=core.App()
     stack=SprintTwoProjectStack(app, 'sprint2stack')
