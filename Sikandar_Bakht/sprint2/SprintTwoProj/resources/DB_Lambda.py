@@ -6,7 +6,7 @@ print('Loading function')
 def lambda_handler(event, context):
     '''handles lambda for SNS notification. Performs alarm log update in DynamoDB Table'''
     message = event['Records'][0]['Sns']
-    add_log(message, 'MonitorDB')
+    add_log(message, 'S2MonitorDB')
     return message
 
 
