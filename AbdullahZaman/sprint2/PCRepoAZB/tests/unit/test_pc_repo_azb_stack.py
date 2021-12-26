@@ -9,10 +9,10 @@ from pc_repo_azb.pc_repo_azb_stack import PcRepoAzbStack1
 # resource in pc_repo_azb/pc_repo_azb_stack.py
 def test_sqs_queue_created():
      app = core.App()
-     stack = PcRepoAzbStack1(app, "pc_repo_azb")
+     stack = PcRepoAzbStack1(app, "pc-repo-azb")
      template = assertions.Template.from_stack(stack)
 
-#     template.has_resource_properties("AWS::SQS::Queue", {
-#         "VisibilityTimeout": 300
-#     })
+     template.has_resource_properties("AWS::SQS::Queue", {
+         "VisibilityTimeout": 300
+     })
 #  pass
