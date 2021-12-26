@@ -1,13 +1,17 @@
 # SPINT2 : Continuous Integration and Continuous Deployment
 ## Overview
-Using AWS CDK to measure the availability and latency(delay) of a custom list of websites and monitor the results on a CloudWatch. Then setting up alarms on metrics when the prescribed thresholds are breached. Each alarm is published to SNS notifications which triggers a lambda function that writes the alarm information into DynamoDB.
-![WebHealth](https://github.com/abdullah2021skipq/ProximaCentauri/blob/main/AbdullahZaman/tinker.png)
-## Configuration Instructions
-* Update Python and aws
-* Use _aws codecommit_ to create a local repository.
-* Add _ssh keys_ for authentication.
-* Create a CDK project using _**cdk init --language python**_
-* Install the dependencies from _requirements.txt_
+Creating a multi-stage pipeline that has a beta, gemma and production stage using 
+AWS CDK. Then adding unit and integration test to the defined stages. The project 
+is concluded by automating a rollback to the previous version if the metric is in 
+alarm.
+![CI/CD](https://github.com/abdullah2021skipq/ProximaCentauri/blob/main/AbdullahZaman/pipeline.jpg)
+## Useful Commands
+* git add <directory>
+* git commit -m "message"
+* git push
+* git pull
+* <p>cdk bootstrap --qualifier <qualifier name> --toolkit-stack-name <name> aws://<accountid>/region</p>
+* <p>cdk deploy <pipelineName></p>
+* <p>pytest <DirectoryHavingTestFiles><>
 ## Troubleshooting Instructions
-If the _**cdk synth**_ instruction doesn't create CLOUDFORMATION template in the virtual environemt, navigate to the _**.venv/bin**_ directory and execute the following:
-<p align=center><span style="color:red">python3 -m pip install -r path_to_requirements.txt/requirements.txt</span></p>
+Push the code to GitHub before bootstrapping and deploying afterchanges have been done. 
