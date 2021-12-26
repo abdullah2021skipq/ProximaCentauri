@@ -6,8 +6,11 @@ This project is a continuation of Webhealth monitoring crawler from Sprint 1. He
 ## To run this project, follow these steps:
 
 Generate a clean environment (recommended)
+
 Clone this repository in your environment.
+
 Navigate to SprintTwoProj directory by using the command `cd ./ProximaCentauri/Sikandar_Bakht/sprint2/SprintTwoProj`
+
 Create a new python virtual environment and activate it by running these commands: `python -m venv .venv` and `source .venv/bin/activate`
 
 If this is your first time running this project or bootstrapping, you need to follow these steps:
