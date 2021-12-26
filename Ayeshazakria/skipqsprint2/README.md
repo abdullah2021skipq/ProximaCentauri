@@ -15,7 +15,15 @@
 
 ## project description:
 
-In this project we are building CI/CD Pipeline using AWS Pipelines.
+In this project we are building CI/CD Pipeline using AWS Pipelines.<br>
+
+-CI/CD
+An integral part of DevOps is adopting the culture of continuous integration and continuous delivery/deployment (CI/CD)<br>
+where a commit or change to code passes through various automated stage gates, all the way from building and testing to deploying applications,<br>
+from development to production environments.<br>
+AWS CodePipeline is a continuous delivery service you can use to model, visualize, and automate the steps required to release your software.<br>
+You can quickly model and configure the different stages of a software release process. CodePipeline automates the steps required to release<br>
+your software changes continuously<br>
 
 ## services used:
 
