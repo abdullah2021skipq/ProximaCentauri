@@ -1,16 +1,16 @@
 {
   "version": "15.0.0",
   "artifacts": {
-    "AyeshaPipelineayeshaprodstagesprint2projectinstance1E10918C": {
+    "AyeshaPipelineProdsprint2projectinstanceD4D0CD76": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://315997497220/us-east-2",
       "properties": {
-        "templateFile": "AyeshaPipelineayeshaprodstagesprint2projectinstance1E10918C.template.json",
-        "validateOnSynth": false,
-        "stackName": "ayeshaprodstage-sprint2projectinstance"
+        "templateFile": "AyeshaPipelineProdsprint2projectinstanceD4D0CD76.template.json",
+        "validateOnSynth": true,
+        "stackName": "Prod-sprint2projectinstance"
       },
       "metadata": {
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance": [
           {
             "type": "aws:cdk:asset",
             "data": {
@@ -41,7 +41,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/lambda-role/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/lambda-role/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "lambdaroleDFE21467",
@@ -58,7 +58,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/lambda-role/DefaultPolicy/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/lambda-role/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "lambdaroleDefaultPolicyB1623966",
@@ -80,7 +80,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambda/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/WebHealthLambda/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "WebHealthLambdaB270CBD9",
@@ -97,7 +97,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambda/CurrentVersion/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/WebHealthLambda/CurrentVersion/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "WebHealthLambdaCurrentVersion2CE84F0999487a6cc6f3fb7302ec2c3236a9d812",
@@ -116,7 +116,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/AssetParameters/a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7/S3Bucket": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/AssetParameters/a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7S3Bucket13C0704B",
@@ -139,7 +139,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/AssetParameters/a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7/S3VersionKey": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/AssetParameters/a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7S3VersionKeyE98801BC",
@@ -162,7 +162,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/AssetParameters/a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7/ArtifactHash": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/AssetParameters/a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7ArtifactHash4EE8B345",
@@ -185,7 +185,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/Dynamolambda/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "Dynamolambda5AB7FD5B",
@@ -202,10 +202,10 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda/AllowInvoke:AyeshaPipelineayeshaprodstagesprint2projectinstanceWebHealthTopicAE8EF20D": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/Dynamolambda/AllowInvoke:AyeshaPipelineProdsprint2projectinstanceWebHealthTopicD6E4D7BE": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DynamolambdaAllowInvokeAyeshaPipelineayeshaprodstagesprint2projectinstanceWebHealthTopicAE8EF20D9117D226",
+            "data": "DynamolambdaAllowInvokeAyeshaPipelineProdsprint2projectinstanceWebHealthTopicD6E4D7BEA462C6F2",
             "trace": [
               "Function.addPermission (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:44:9)",
               "LambdaSubscription.bind (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/aws-sns-subscriptions/lib/lambda.js:38:17)",
@@ -222,7 +222,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda/WebHealthTopic/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/Dynamolambda/WebHealthTopic/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "DynamolambdaWebHealthTopic9FCF1778",
@@ -241,7 +241,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealth_Invokation/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/WebHealth_Invokation/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "WebHealthInvokation871F98AF",
@@ -258,10 +258,10 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealth_Invokation/AllowEventRuleAyeshaPipelineayeshaprodstagesprint2projectinstanceWebHealthLambda2852ADA3": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/WebHealth_Invokation/AllowEventRuleAyeshaPipelineProdsprint2projectinstanceWebHealthLambda519ACB61": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebHealthInvokationAllowEventRuleAyeshaPipelineayeshaprodstagesprint2projectinstanceWebHealthLambda2852ADA3D7746D2F",
+            "data": "WebHealthInvokationAllowEventRuleAyeshaPipelineProdsprint2projectinstanceWebHealthLambda519ACB61F04643EB",
             "trace": [
               "Function.addPermission (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:44:9)",
               "Object.addLambdaPermission (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/aws-events-targets/lib/util.js:63:17)",
@@ -279,7 +279,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/DynamoTable/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/DynamoTable/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "DynamoTableB2B22E15",
@@ -296,7 +296,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthTopic/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/WebHealthTopic/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "WebHealthTopicE559FD56",
@@ -313,7 +313,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthTopic/ayesha.zakria.s@skipq.org/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/WebHealthTopic/ayesha.zakria.s@skipq.org/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "WebHealthTopicayeshazakriasskipqorg87A42A01",
@@ -332,7 +332,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/FailureAlarm/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/FailureAlarm/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "FailureAlarm93B41FAF",
@@ -349,7 +349,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/AyeshaAlias/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/AyeshaAlias/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AyeshaAlias3BBDBD4D",
@@ -366,7 +366,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/id/Application/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/id/Application/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "idApplicationEE49D5B5",
@@ -384,7 +384,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/id/ServiceRole/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/id/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "idServiceRoleBB9E4988",
@@ -402,7 +402,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/id/Resource": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/id/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "id4D1900E5",
@@ -419,7 +419,7 @@
             ]
           }
         ],
-        "/AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/CDKMetadata/Default": [
+        "/AyeshaPipeline/Prod/sprint2projectinstance/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadata",
@@ -431,10 +431,10 @@
               "injectMetadataResources (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
               "Object.synthesize (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
               "Stage.synth (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
-              "synthNestedAssemblies (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/core/lib/private/synthesis.js:56:19)",
-              "synthNestedAssemblies (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/core/lib/private/synthesis.js:59:13)",
-              "Object.synthesize (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/core/lib/private/synthesis.js:15:5)",
-              "App.synth (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "Object.pipelineSynth (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/pipelines/lib/private/construct-internals.js:25:18)",
+              "Function.fromStage (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/pipelines/lib/blueprint/stage-deployment.js:40:48)",
+              "Wave.addStage (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/pipelines/lib/blueprint/wave.js:43:56)",
+              "CodePipeline.addStage (/tmp/jsii-kernel-lp4cpX/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:60:46)",
               "/tmp/tmpw72wbt31/lib/program.js:8248:134",
               "Kernel._wrapSandboxCode (/tmp/tmpw72wbt31/lib/program.js:8860:24)",
               "/tmp/tmpw72wbt31/lib/program.js:8248:107",
@@ -448,7 +448,7 @@
           }
         ]
       },
-      "displayName": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance"
+      "displayName": "AyeshaPipeline/Prod/sprint2projectinstance"
     }
   }
 }

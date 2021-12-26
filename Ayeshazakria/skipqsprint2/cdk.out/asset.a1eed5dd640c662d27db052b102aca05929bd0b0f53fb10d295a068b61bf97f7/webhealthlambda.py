@@ -2,10 +2,10 @@ import datetime
 import urllib3
 import constant as constants
 from cloudwatch import Cloudwatchputmetrics
-from uploadtobucket import upload_file, get_file
+from uploadtobucket import get_file
 
 def lambda_handler(event,context):
-    urls = get_file("ayeshaskipqbucket","urls_list.txt")
+    urls = get_file("ayeshaskipqbucket","url_list.txt")
     values =dict()
     cw=Cloudwatchputmetrics()
     for url in urls:

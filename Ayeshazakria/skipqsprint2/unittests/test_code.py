@@ -1,17 +1,10 @@
 import pytest
-import aws_cdk as core
-from skipqproject.pipeline_stack import PipelinesStack
-
-# def test_code():
-#     assert 2==2
-    
-    
+from aws_cdk import core
+from skipq_project.sprint2_project_stack import SprintTwoProjectStack
 def test_lambda():
-   app=core.App()
-   #creating stack named Stack
-   PipelinesStack(app,"Stack")
-   template=app.synth().get_stack_by_name("Stack").template
-   functions=[ resource for resource in template["Resources"].values() if resource['Type']=='AWS::Lambda::Function']
-   
-   #Assert
-   assert len(functions)==2
+    app=core.App()
+    stack=SprintTwoProjectStack(app, 'sprint2stack')
+    #template = assertions.Template.from_stack(stack)
+    template=app.synth().get_stack_by_name('sprint2stack').template
+    functions= [resource for resource in template['Resources'].values() if resource['Type']=='AWS::Lambda::Function']
+    assert len(functions)==2

@@ -10,14 +10,3 @@ def upload_file():
     except:
         s3.upload_file("urls.txt", "ayeshaskipqbucket" ,"urls_list.txt")
         
-
-def get_file(bucket, item):
-    # function to read data from urls_list.txt
-    name_url = []
-    s3 = boto3.resource('s3')
-    obj = s3.Object(bucket, item)
-    for line in obj.get()['Body']._raw_stream.readline(): 
-        name_url.append(line)
-    return name_url
-
-upload_file()

@@ -1,0 +1,531 @@
+{
+  "Resources": {
+    "lambdaroleDFE21467": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/CloudWatchFullAccess"
+              ]
+            ]
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/AmazonDynamoDBFullAccess"
+              ]
+            ]
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/AWSLambdaInvocation-DynamoDB"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/lambda-role/Resource"
+      }
+    },
+    "lambdaroleDefaultPolicyB1623966": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "dynamodb:*",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "DynamoTableB2B22E15",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "lambdaroleDefaultPolicyB1623966",
+        "Roles": [
+          {
+            "Ref": "lambdaroleDFE21467"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/lambda-role/DefaultPolicy/Resource"
+      }
+    },
+    "WebHealthLambdaB270CBD9": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7S3Bucket13C0704B"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7S3VersionKeyE98801BC"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7S3VersionKeyE98801BC"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "lambdaroleDFE21467",
+            "Arn"
+          ]
+        },
+        "Handler": "webhealthlambda.lambda_handler",
+        "Runtime": "python3.6"
+      },
+      "DependsOn": [
+        "lambdaroleDefaultPolicyB1623966",
+        "lambdaroleDFE21467"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/WebHealthLambda/Resource",
+        "aws:asset:path": "../asset.a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7",
+        "aws:asset:is-bundled": false,
+        "aws:asset:property": "Code"
+      }
+    },
+    "WebHealthLambdaCurrentVersion2CE84F0999487a6cc6f3fb7302ec2c3236a9d812": {
+      "Type": "AWS::Lambda::Version",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "WebHealthLambdaB270CBD9"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/WebHealthLambda/CurrentVersion/Resource"
+      }
+    },
+    "Dynamolambda5AB7FD5B": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7S3Bucket13C0704B"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7S3VersionKeyE98801BC"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7S3VersionKeyE98801BC"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "lambdaroleDFE21467",
+            "Arn"
+          ]
+        },
+        "Handler": "dynamo_lambda.lambda_handler",
+        "Runtime": "python3.6"
+      },
+      "DependsOn": [
+        "lambdaroleDefaultPolicyB1623966",
+        "lambdaroleDFE21467"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/Dynamolambda/Resource",
+        "aws:asset:path": "../asset.a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7",
+        "aws:asset:is-bundled": false,
+        "aws:asset:property": "Code"
+      }
+    },
+    "DynamolambdaAllowInvokeAyeshaPipelineProdsprint2projectinstanceWebHealthTopicD6E4D7BEA462C6F2": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "Dynamolambda5AB7FD5B",
+            "Arn"
+          ]
+        },
+        "Principal": "sns.amazonaws.com",
+        "SourceArn": {
+          "Ref": "WebHealthTopicE559FD56"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/Dynamolambda/AllowInvoke:AyeshaPipelineProdsprint2projectinstanceWebHealthTopicD6E4D7BE"
+      }
+    },
+    "DynamolambdaWebHealthTopic9FCF1778": {
+      "Type": "AWS::SNS::Subscription",
+      "Properties": {
+        "Protocol": "lambda",
+        "TopicArn": {
+          "Ref": "WebHealthTopicE559FD56"
+        },
+        "Endpoint": {
+          "Fn::GetAtt": [
+            "Dynamolambda5AB7FD5B",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/Dynamolambda/WebHealthTopic/Resource"
+      }
+    },
+    "WebHealthInvokation871F98AF": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Periodic Lambda",
+        "ScheduleExpression": "rate(1 minute)",
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "WebHealthLambdaB270CBD9",
+                "Arn"
+              ]
+            },
+            "Id": "Target0"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/WebHealth_Invokation/Resource"
+      }
+    },
+    "WebHealthInvokationAllowEventRuleAyeshaPipelineProdsprint2projectinstanceWebHealthLambda519ACB61F04643EB": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "WebHealthLambdaB270CBD9",
+            "Arn"
+          ]
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "WebHealthInvokation871F98AF",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/WebHealth_Invokation/AllowEventRuleAyeshaPipelineProdsprint2projectinstanceWebHealthLambda519ACB61"
+      }
+    },
+    "DynamoTableB2B22E15": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "timestamp",
+            "KeyType": "RANGE"
+          }
+        ],
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "timestamp",
+            "AttributeType": "S"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        }
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/DynamoTable/Resource"
+      }
+    },
+    "WebHealthTopicE559FD56": {
+      "Type": "AWS::SNS::Topic",
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/WebHealthTopic/Resource"
+      }
+    },
+    "WebHealthTopicayeshazakriasskipqorg87A42A01": {
+      "Type": "AWS::SNS::Subscription",
+      "Properties": {
+        "Protocol": "email",
+        "TopicArn": {
+          "Ref": "WebHealthTopicE559FD56"
+        },
+        "Endpoint": "ayesha.zakria.s@skipq.org"
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/WebHealthTopic/ayesha.zakria.s@skipq.org/Resource"
+      }
+    },
+    "FailureAlarm93B41FAF": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "ComparisonOperator": "GreaterThanThreshold",
+        "EvaluationPeriods": 1,
+        "Dimensions": [
+          {
+            "Name": "FunctionName",
+            "Value": {
+              "Ref": "Dynamolambda5AB7FD5B"
+            }
+          }
+        ],
+        "MetricName": "Duration",
+        "Namespace": "AWS/Lambda",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 4000
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/FailureAlarm/Resource"
+      }
+    },
+    "AyeshaAlias3BBDBD4D": {
+      "Type": "AWS::Lambda::Alias",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "WebHealthLambdaB270CBD9"
+        },
+        "FunctionVersion": {
+          "Fn::GetAtt": [
+            "WebHealthLambdaCurrentVersion2CE84F0999487a6cc6f3fb7302ec2c3236a9d812",
+            "Version"
+          ]
+        },
+        "Name": "AyeshaWhAlias"
+      },
+      "UpdatePolicy": {
+        "CodeDeployLambdaAliasUpdate": {
+          "ApplicationName": {
+            "Ref": "idApplicationEE49D5B5"
+          },
+          "DeploymentGroupName": {
+            "Ref": "id4D1900E5"
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/AyeshaAlias/Resource"
+      }
+    },
+    "idApplicationEE49D5B5": {
+      "Type": "AWS::CodeDeploy::Application",
+      "Properties": {
+        "ComputePlatform": "Lambda"
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/id/Application/Resource"
+      }
+    },
+    "idServiceRoleBB9E4988": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "codedeploy.us-east-2.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSCodeDeployRoleForLambdaLimited"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/id/ServiceRole/Resource"
+      }
+    },
+    "id4D1900E5": {
+      "Type": "AWS::CodeDeploy::DeploymentGroup",
+      "Properties": {
+        "ApplicationName": {
+          "Ref": "idApplicationEE49D5B5"
+        },
+        "ServiceRoleArn": {
+          "Fn::GetAtt": [
+            "idServiceRoleBB9E4988",
+            "Arn"
+          ]
+        },
+        "AlarmConfiguration": {
+          "Alarms": [
+            {
+              "Name": {
+                "Ref": "FailureAlarm93B41FAF"
+              }
+            }
+          ],
+          "Enabled": true
+        },
+        "AutoRollbackConfiguration": {
+          "Enabled": true,
+          "Events": [
+            "DEPLOYMENT_FAILURE",
+            "DEPLOYMENT_STOP_ON_ALARM"
+          ]
+        },
+        "DeploymentConfigName": "CodeDeployDefault.LambdaCanary10Percent5Minutes",
+        "DeploymentStyle": {
+          "DeploymentOption": "WITH_TRAFFIC_CONTROL",
+          "DeploymentType": "BLUE_GREEN"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/id/Resource"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/12QQW/DIAyFf0vvlDaKpl6XdtouO0RZtbtDvJY1QIRhVYT47yOkmbqe/L1nYT9c8FCUT3y7eoYrrUV32QRhLPLw4UBcWEWELuFJ6hM7GE3OeuHY4UvXYEGhQ8saJOOtwMldOLJpXJCgeGhMP/emWpteijEPyBRZD6rtgIdXr4WTRk+9P/5ESzfvDmu0SlJWVS+BJi9DZFSuYcpMPEdPmu+9uKDbAyEjTelnviVh5bAs+6ePZpBicjNEhj+o07DQ+NsnUo2sGzUo07U8HKGdGxkiE73x3RWcOPNQ9WDVnC1BjJEV5e7+1LmaDjscejPy8J5P8ZKVSnvfrPEDm91qGNK9YAn9IB/epFX16M5Gb0q+48V29U1Srq3XTirkzVx/ASI6sIb7AQAA"
+      },
+      "Metadata": {
+        "aws:cdk:path": "AyeshaPipeline/Prod/sprint2projectinstance/CDKMetadata/Default"
+      }
+    }
+  },
+  "Parameters": {
+    "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7S3Bucket13C0704B": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7\""
+    },
+    "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7S3VersionKeyE98801BC": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7\""
+    },
+    "AssetParametersa1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7ArtifactHash4EE8B345": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7\""
+    }
+  }
+}

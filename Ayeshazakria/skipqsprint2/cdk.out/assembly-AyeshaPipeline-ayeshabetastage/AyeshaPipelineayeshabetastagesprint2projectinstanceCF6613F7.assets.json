@@ -1,0 +1,34 @@
+{
+  "version": "15.0.0",
+  "files": {
+    "a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7": {
+      "source": {
+        "path": "../asset.a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "315997497220-us-east-2": {
+          "bucketName": "cdk-ayesha-assets-315997497220-us-east-2",
+          "objectKey": "a1eed5dd640c662d27db052b102aca05929bd0b0f53fb10d295a068b61bf97f7.zip",
+          "region": "us-east-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::315997497220:role/cdk-ayesha-file-publishing-role-315997497220-us-east-2"
+        }
+      }
+    },
+    "9ec31853a7b85a02100d62d360855576f6e9d20afa50bca99a444a2a4889e511": {
+      "source": {
+        "path": "AyeshaPipelineayeshabetastagesprint2projectinstanceCF6613F7.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "315997497220-us-east-2": {
+          "bucketName": "cdk-ayesha-assets-315997497220-us-east-2",
+          "objectKey": "9ec31853a7b85a02100d62d360855576f6e9d20afa50bca99a444a2a4889e511.json",
+          "region": "us-east-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::315997497220:role/cdk-ayesha-file-publishing-role-315997497220-us-east-2"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
