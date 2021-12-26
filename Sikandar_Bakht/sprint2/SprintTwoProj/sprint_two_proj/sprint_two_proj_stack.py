@@ -8,7 +8,8 @@ from aws_cdk import (
     aws_sns as sns,
     aws_sns_subscriptions as subscriptions_,
     aws_cloudwatch_actions as actions_,
-    aws_dynamodb as db
+    aws_dynamodb as db,
+    aws_codedeploy as cdp
 )
 from resources import constants as constants
 from resources.S3bucket import S3Bucket as sb
@@ -124,6 +125,35 @@ class SprintTwoProjStack(cdk.Stack):
             availability_alarm[i].add_alarm_action(actions_.SnsAction(topic))
             latency_alarm[i].add_alarm_action(actions_.SnsAction(topic))
        
+        #####################################################################################################################
+        ##                                      Creating Rollback resources                                                ##
+        #####################################################################################################################
+        
+        rollback_metric=cloudwatch_.Metric(namespace='AWS/Lambda',
+                                           metric_name='Duration',
+                                           dimensions_map={'FunctionName':WH_Lambda.function_name},
+                                           period= cdk.Duration.minutes(1))
+    
+        
+        rollback_alarm=cloudwatch_.Alarm(self, id="Sikandar_Rollback_Alarm",
+                                        metric= rollback_metric,
+                                        comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
+                                        datapoints_to_alarm=1,
+                                        evaluation_periods=1,
+                                        threshold=9000) 
+        
+        rollback_alarm.add_alarm_action(actions_.SnsAction(topic))
+
+        alias = lambda_.Alias(self, 
+                             "S2WHLambdaAlias"+rollback_alarm.alarm_name,
+                              alias_name="S2Lambda",
+                              version=WH_Lambda.current_version)
+
+        cdp.LambdaDeploymentGroup(self, "WH_LambdaDeploymentGroup",
+                                 alias=alias,
+                                 deployment_config=cdp.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
+                                 alarms=[rollback_alarm])
+                                 
         #####################################################################################################################
         ##                                           Class Method Definitions                                              ##
         #####################################################################################################################
