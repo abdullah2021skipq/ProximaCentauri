@@ -51,7 +51,7 @@ class PipelineStack(core.Stack):
             commands=["cd AbdullahZaman/sprint2/PCRepoAZB/","pip install -r requirements.txt", "npm install -g aws-cdk", "pytest integration_tests"]
             )
         
-        pipeline.add_stage(beta, post=[unitTest], pre=[pipelines.ManualApprovalStep("Check Beta")])
+        pipeline.add_stage(beta, pre=[unitTest], post=[pipelines.ManualApprovalStep("Check Beta")])
         pipeline.add_stage(gemma, pre=[integrationTest], post=[pipelines.ManualApprovalStep("Check Gemma")])
         pipeline.add_stage(production)
         

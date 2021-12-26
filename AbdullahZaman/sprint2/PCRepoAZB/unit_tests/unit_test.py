@@ -3,7 +3,7 @@ from aws_cdk import core
 from pc_repo_azb.pc_repo_azb_stack import PcRepoAzbStack1
 
 
-def lambda_test():
+def test_lambda():
     
     app=core.App()
     PcRepoAzbStack1(app,'Unittest')
