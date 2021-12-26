@@ -8,7 +8,8 @@ from aws_cdk import (
     aws_sns as sns,
     aws_sns_subscriptions as subscriptions_,
     aws_cloudwatch_actions as actions_,
-    aws_dynamodb as db
+    aws_dynamodb as db,
+    aws_codedeploy as codedeploy
 )
 from resources import constants as constants
 from resources import s3bucket
@@ -79,6 +80,26 @@ class PcRepoAzbStack1(cdk.Stack):
                                         evaluation_periods=1,
                                         threshold=0.28)
     
+        # ROLLBACK to the previous version if an alarm is raised
+        metric_roll = cloudwatch_.Metric(namespace='AWS/Lambda', metric_name='Duration',
+                                        dimensions_map={'FunctionName':hw_lambda.function_name},
+                                        period= cdk.Duration.minutes(1))
+    
+        alarm_roll = cloudwatch_.Alarm(self, id="RollBackAlarm", metric= metric_roll,
+                                        comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
+                                        datapoints_to_alarm=1,
+                                        evaluation_periods=1,
+                                        threshold=3000)         # 3000 ms = 3 sec
+        
+        alarm_roll.add_alarm_action(actions_.SnsAction(topic))
+        alias = lambda_.Alias(self, "LambdaAlias",alias_name="Lambda",version=hw_lambda.current_version)
+
+        codedeploy.LambdaDeploymentGroup(self, "WebHealth Lambda", alias=alias,
+                                        deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
+                                        alarms=[alarm_roll]
+        )
+        
+        
         availability_alarm.add_alarm_action(actions_.SnsAction(topic))
         latency_alarm.add_alarm_action(actions_.SnsAction(topic))
         
