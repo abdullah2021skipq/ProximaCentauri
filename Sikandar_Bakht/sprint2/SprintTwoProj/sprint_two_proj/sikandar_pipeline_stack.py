@@ -36,16 +36,15 @@ class SikandarPipelineStack(cdk.Stack):
                                             
         Prod = SprintTwoProjStage(self, "Prod", env = {
                                             'account':'315997497220',
-                                            'region' : 'us-east-2'
+                                            'region' : 'us-east-1'
                                             })
-        
 
         unit_test = pipelines.ShellStep("unit_test", commands=["cd ./Sikandar_Bakht/sprint2/SprintTwoProj",  
                                                                "pip install -r requirements.txt",
                                                                "pytest unit_test",
                                                                "pytest integtest"])
      
-        pipeline.add_stage(Beta, pre=[unit_test])
+        pipeline.add_stage(Beta, post=[unit_test])
         
 
         pipeline.add_stage(Prod, pre=[pipelines.ManualApprovalStep("PromoteToProd")])
