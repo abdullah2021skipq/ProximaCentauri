@@ -14,6 +14,8 @@ from aws_cdk import (
 from resources import constants as constants
 from resources.S3bucket import S3Bucket as sb
 import json 
+import random
+import string
 
 
 class SprintTwoProjStack(cdk.Stack):
@@ -145,7 +147,7 @@ class SprintTwoProjStack(cdk.Stack):
         rollback_alarm.add_alarm_action(actions_.SnsAction(topic))
 
         alias = lambda_.Alias(self, 
-                             "S2WHLambdaAlias"+rollback_alarm.alarm_name,
+                             "S2WHLambdaAlias_"+random.choice(string.ascii_lowercase),
                               alias_name="S2Lambda",
                               version=WH_Lambda.current_version)
 
