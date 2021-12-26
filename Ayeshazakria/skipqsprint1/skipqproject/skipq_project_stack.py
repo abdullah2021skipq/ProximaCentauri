@@ -143,18 +143,6 @@ class SkipqProjectStack(cdk.Stack):
             sort_key = db.Attribute(name="timestamp",type=db.AttributeType.STRING),
         )
         return dynamo_table
-        
-        
-#
-#  #       pipeline =  CodePipeline(self, "Pipeline",
-#         pipeline_name="Ayesha_Pipeline",
-#         synth=ShellStep("Synth",
-#         input=CodePipelineSource.git_hub("https://github.com/Ayesha-zakria/sprint2", "main"),
-#         commands=["pip install -r requirements.txt", 
-#         "cdk synth",
-#         "cdk deploy"]
-#         )
-  
 
 
 

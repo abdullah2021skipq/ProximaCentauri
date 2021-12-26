@@ -50,6 +50,13 @@ class PipelinesStack(cdk.Stack):
        
         pipeline.add_stage(beta,pre=[unit_test])
         
+        
+        prod=PipelineStage(self, "Prod", 
+        env={'account':'315997497220',
+                'region': 'us-east-2'} )
+        pipeline.add_stage(prod, pre=[  pipelines.ManualApprovalStep("Productionbuild") ]) 
+        
+        
     def createrole(self):
         role=aws_iam.Role(self,"pipeline-role",
         assumed_by=aws_iam.CompositePrincipal(
