@@ -92,10 +92,8 @@ class PcRepoAzbStack1(cdk.Stack):
                                         threshold=2000)         # 3000 ms = 3 sec
         
         alarm_roll.add_alarm_action(actions_.SnsAction(topic))
-        try:
-            alias = lambda_.Alias(self, "LambdaAlias",alias_name="Lambda",version=hw_lambda.current_version)
-        except:
-            pass
+       
+        alias = lambda_.Alias(self, "LambdaAlias",alias_name="Lambda",version=hw_lambda.current_version)
         
         codedeploy.LambdaDeploymentGroup(self, "WebHealth Lambda", alias=alias,
                                         deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
