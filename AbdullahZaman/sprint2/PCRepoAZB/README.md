@@ -22,7 +22,7 @@ alarm.
 ## Project Setup
 To setup the project it is necessary to follow the steps listed below in successsion.
 1. Clone the git repository to your local environment:
-`git clone https://github.com/abdullah2021skipq/ProximaCentauri.git`
+<SCRIPT LANGUAGE="Python">git clone https://github.com/abdullah2021skipq/ProximaCentauri.git</script>
 2. Change the directory to the following:
 `ProximaCentauri/AbdullahZaman/sprint2/PCRepoAZB/`
 3. Any changes made locally need to be pushed to GitHub as follows:
