@@ -39,7 +39,7 @@ class SprintTwoProjStack(cdk.Stack):
         ##                              Setting Up DynamoDB WebHealth Logging Table                                        ##
         #####################################################################################################################
 
-        ##db_table = self.create_db_table(id = "SprintOneTable", table_Name = "S2MonitorDB", part_key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
+        db_table = self.create_db_table(id = "SprintOneTable", table_Name = "S2MonitorDB", part_key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
         db_lambda_role = self.create_db_lambda_role()
         print("something")
         DB_Lambda = self.create_lambda("SikandarS2DBLambda", "./resources/", "DB_Lambda.lambda_handler", db_lambda_role)
@@ -149,8 +149,8 @@ class SprintTwoProjStack(cdk.Stack):
         rollback_alarm.add_alarm_action(actions_.SnsAction(topic))
 
         alias = lambda_.Alias(self, 
-                             "S2WHLambdaAlias_"+random.choice(string.ascii_lowercase),
-                              alias_name="S2Lambda",
+                             "S2WHLambdaAlias",
+                              alias_name="S2Lambda" + construct_id,
                               version=WH_Lambda.current_version)
 
         cdp.LambdaDeploymentGroup(self, "WH_LambdaDeploymentGroup",
