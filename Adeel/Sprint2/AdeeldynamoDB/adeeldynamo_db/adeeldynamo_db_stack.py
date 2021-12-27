@@ -41,7 +41,7 @@ class AdeeldynamoDbStack(cdk.Stack):
         db_lambda_role = self.create_db_lambda_role()
         db_lamda = self.create_lambda('secondHellammbda',"./resources1/",'dynamo_lambda.lambda_handler',db_lambda_role)
         dynamo_table.grant_full_access(db_lamda)
-        Table_Name = dynamo_table.table_name
+        db_lamda.add_environment('table_name', dynamo_table.table_name)
         
          ############################## Subscriptions ###############################
         
@@ -89,18 +89,17 @@ class AdeeldynamoDbStack(cdk.Stack):
          ##############################  Failure matrix creation ###############################
          
         duration_metric= cloudwatch_.Metric(namespace='AWS/Lambda', metric_name='Duration',
-        dimensions_map={'FunctionName': WH_lamda.function_name},period=cdk.Duration.minutes(1) ) 
+        dimensions_map={'FunctionName': WH_lamda.function_name}) 
         
         alarm_fail=cloudwatch_.Alarm(self, 'AlarmFail', metric=duration_metric, 
         threshold=4500, comparison_operator= cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD, 
         evaluation_periods=1)
         ##Defining alias for my dblambda
-        WH_alias=lambda_.Alias(self, "AlaisForLambda",alias_name="AdeelLambdaVersion",
-        version=WH_lamda.current_version)
+        
+        WH_alias=self.create_alais(id = "AlaisForLambda",name = "AdeelLambdaVersion",
+        version = WH_lamda.current_version)
         #### Defining code deployment group
-        application = codedeploy.ServerApplication(self, "CodeDeployApplication",)
-            
-        codedeploy.LambdaDeploymentGroup(self, "id",application=application,alias=WH_alias,
+        codedeploy.LambdaDeploymentGroup(self, "BlueGreenDeployment",alias=WH_alias,
         alarms=[alarm_fail])
         
         
@@ -144,3 +143,6 @@ class AdeeldynamoDbStack(cdk.Stack):
     def create_table(self,id,key):
         return db.Table(self,id,
         partition_key=key)
+    def create_alais(self,id,name,version):
+        return lambda_.Alias(self , id , alias_name = name,
+        version = version)
