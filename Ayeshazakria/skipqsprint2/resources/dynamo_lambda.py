@@ -1,6 +1,5 @@
 import datetime
 import urllib3
-import constant as constants
 from cloudwatch import Cloudwatchputmetrics
 import json
 import boto3
