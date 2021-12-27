@@ -41,6 +41,7 @@ class AdeeldynamoDbStack(cdk.Stack):
         db_lambda_role = self.create_db_lambda_role()
         db_lamda = self.create_lambda('secondHellammbda',"./resources1/",'dynamo_lambda.lambda_handler',db_lambda_role)
         dynamo_table.grant_full_access(db_lamda)
+        Table_Name = db_lamda.table_name
         
          ############################## Subscriptions ###############################
         
@@ -93,18 +94,15 @@ class AdeeldynamoDbStack(cdk.Stack):
         alarm_fail=cloudwatch_.Alarm(self, 'AlarmFail', metric=duration_metric, 
         threshold=4500, comparison_operator= cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD, 
         evaluation_periods=1)
-        ##Defining alias for my dblambda 
-        try:
-            WH_alias=lambda_.Alias(self, "AlaisForLambda", alias_name="WebHeathAlias",
-            version=WH_lamda.current_version)
-            #### Defining code deployment group
-            application = codedeploy.ServerApplication(self, "CodeDeployApplication",)
+        ##Defining alias for my dblambda
+        WH_alias=lambda_.Alias(self, "AlaisForLambda",
+        version=WH_lamda.current_version)
+        #### Defining code deployment group
+        application = codedeploy.ServerApplication(self, "CodeDeployApplication",)
             
-            codedeploy.LambdaDeploymentGroup(self, "id",application=application,alias=WH_alias,
-            deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10PERCENT_EVERY_1MINUTE,
-            alarms=[alarm_fail])
-        except:
-            pass
+        codedeploy.LambdaDeploymentGroup(self, "id",application=application,alias=WH_alias,
+        deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10PERCENT_EVERY_1MINUTE,
+        alarms=[alarm_fail])
         
         
         ##############################  role for Cloud watch ###############################
