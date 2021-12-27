@@ -41,7 +41,7 @@ class AdeeldynamoDbStack(cdk.Stack):
         db_lambda_role = self.create_db_lambda_role()
         db_lamda = self.create_lambda('secondHellammbda',"./resources1/",'dynamo_lambda.lambda_handler',db_lambda_role)
         dynamo_table.grant_full_access(db_lamda)
-        Table_Name = db_lamda.table_name
+        Table_Name = dynamo_table.table_name
         
          ############################## Subscriptions ###############################
         
