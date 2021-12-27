@@ -322,81 +322,6 @@
                           "fqn": "@aws-cdk/aws-s3.CfnBucket",
                           "version": "1.135.0"
                         }
-                      },
-                      "Policy": {
-                        "id": "Policy",
-                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ArtifactsBucket/Policy",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ArtifactsBucket/Policy/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
-                              "aws:cdk:cloudformation:props": {
-                                "bucket": {
-                                  "Ref": "ayeshapipelinePipelineArtifactsBucketB9CA0422"
-                                },
-                                "policyDocument": {
-                                  "Statement": [
-                                    {
-                                      "Action": [
-                                        "s3:GetObject*",
-                                        "s3:GetBucket*",
-                                        "s3:List*"
-                                      ],
-                                      "Effect": "Allow",
-                                      "Principal": {
-                                        "AWS": {
-                                          "Fn::Join": [
-                                            "",
-                                            [
-                                              "arn:",
-                                              {
-                                                "Ref": "AWS::Partition"
-                                              },
-                                              ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
-                                            ]
-                                          ]
-                                        }
-                                      },
-                                      "Resource": [
-                                        {
-                                          "Fn::GetAtt": [
-                                            "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                                            "Arn"
-                                          ]
-                                        },
-                                        {
-                                          "Fn::Join": [
-                                            "",
-                                            [
-                                              {
-                                                "Fn::GetAtt": [
-                                                  "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                                                  "Arn"
-                                                ]
-                                              },
-                                              "/*"
-                                            ]
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ],
-                                  "Version": "2012-10-17"
-                                }
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-s3.CfnBucketPolicy",
-                              "version": "1.135.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-s3.BucketPolicy",
-                          "version": "1.135.0"
-                        }
                       }
                     },
                     "constructInfo": {
@@ -503,16 +428,6 @@
                                       "Effect": "Allow",
                                       "Resource": {
                                         "Fn::GetAtt": [
-                                          "ayeshapipelinePipelineAssetsFileAsset1CodePipelineActionRoleF3DA1EDD",
-                                          "Arn"
-                                        ]
-                                      }
-                                    },
-                                    {
-                                      "Action": "sts:AssumeRole",
-                                      "Effect": "Allow",
-                                      "Resource": {
-                                        "Fn::GetAtt": [
                                           "ayeshapipelinePipelineayeshabetastageunittestCodePipelineActionRole89D9473D",
                                           "Arn"
                                         ]
@@ -522,15 +437,19 @@
                                       "Action": "sts:AssumeRole",
                                       "Effect": "Allow",
                                       "Resource": {
-                                        "Fn::Join": [
-                                          "",
-                                          [
-                                            "arn:",
-                                            {
-                                              "Ref": "AWS::Partition"
-                                            },
-                                            ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
-                                          ]
+                                        "Fn::GetAtt": [
+                                          "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareCodePipelineActionRole0308B015",
+                                          "Arn"
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::GetAtt": [
+                                          "ayeshapipelinePipelineayeshabetastagesprint2projectinstanceDeployCodePipelineActionRole30C4F843",
+                                          "Arn"
                                         ]
                                       }
                                     },
@@ -540,6 +459,26 @@
                                       "Resource": {
                                         "Fn::GetAtt": [
                                           "ayeshapipelinePipelineProdProductionbuildCodePipelineActionRole832A7032",
+                                          "Arn"
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::GetAtt": [
+                                          "ayeshapipelinePipelineProdsprint2projectinstancePrepareCodePipelineActionRoleF3C3AB4B",
+                                          "Arn"
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::GetAtt": [
+                                          "ayeshapipelinePipelineProdsprint2projectinstanceDeployCodePipelineActionRole928F97D3",
                                           "Arn"
                                         ]
                                       }
@@ -682,37 +621,6 @@
                             ]
                           },
                           {
-                            "name": "Assets",
-                            "actions": [
-                              {
-                                "name": "FileAsset1",
-                                "inputArtifacts": [
-                                  {
-                                    "name": "Synth_Output"
-                                  }
-                                ],
-                                "actionTypeId": {
-                                  "category": "Build",
-                                  "version": "1",
-                                  "owner": "AWS",
-                                  "provider": "CodeBuild"
-                                },
-                                "configuration": {
-                                  "ProjectName": {
-                                    "Ref": "ayeshapipelineAssetsFileAsset1DED4736A"
-                                  }
-                                },
-                                "runOrder": 1,
-                                "roleArn": {
-                                  "Fn::GetAtt": [
-                                    "ayeshapipelinePipelineAssetsFileAsset1CodePipelineActionRoleF3DA1EDD",
-                                    "Arn"
-                                  ]
-                                }
-                              }
-                            ]
-                          },
-                          {
                             "name": "ayeshabetastage",
                             "actions": [
                               {
@@ -758,15 +666,9 @@
                                   "StackName": "ayeshabetastage-sprint2projectinstance",
                                   "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
                                   "RoleArn": {
-                                    "Fn::Join": [
-                                      "",
-                                      [
-                                        "arn:",
-                                        {
-                                          "Ref": "AWS::Partition"
-                                        },
-                                        ":iam::315997497220:role/cdk-ayesha-cfn-exec-role-315997497220-us-east-2"
-                                      ]
+                                    "Fn::GetAtt": [
+                                      "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareRole778A73A8",
+                                      "Arn"
                                     ]
                                   },
                                   "ActionMode": "CHANGE_SET_REPLACE",
@@ -775,15 +677,9 @@
                                 },
                                 "runOrder": 2,
                                 "roleArn": {
-                                  "Fn::Join": [
-                                    "",
-                                    [
-                                      "arn:",
-                                      {
-                                        "Ref": "AWS::Partition"
-                                      },
-                                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
-                                    ]
+                                  "Fn::GetAtt": [
+                                    "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareCodePipelineActionRole0308B015",
+                                    "Arn"
                                   ]
                                 }
                               },
@@ -802,15 +698,9 @@
                                 },
                                 "runOrder": 3,
                                 "roleArn": {
-                                  "Fn::Join": [
-                                    "",
-                                    [
-                                      "arn:",
-                                      {
-                                        "Ref": "AWS::Partition"
-                                      },
-                                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
-                                    ]
+                                  "Fn::GetAtt": [
+                                    "ayeshapipelinePipelineayeshabetastagesprint2projectinstanceDeployCodePipelineActionRole30C4F843",
+                                    "Arn"
                                   ]
                                 }
                               }
@@ -852,15 +742,9 @@
                                   "StackName": "Prod-sprint2projectinstance",
                                   "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
                                   "RoleArn": {
-                                    "Fn::Join": [
-                                      "",
-                                      [
-                                        "arn:",
-                                        {
-                                          "Ref": "AWS::Partition"
-                                        },
-                                        ":iam::315997497220:role/cdk-ayesha-cfn-exec-role-315997497220-us-east-2"
-                                      ]
+                                    "Fn::GetAtt": [
+                                      "ayeshapipelinePipelineProdsprint2projectinstancePrepareRole50685582",
+                                      "Arn"
                                     ]
                                   },
                                   "ActionMode": "CHANGE_SET_REPLACE",
@@ -869,15 +753,9 @@
                                 },
                                 "runOrder": 2,
                                 "roleArn": {
-                                  "Fn::Join": [
-                                    "",
-                                    [
-                                      "arn:",
-                                      {
-                                        "Ref": "AWS::Partition"
-                                      },
-                                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
-                                    ]
+                                  "Fn::GetAtt": [
+                                    "ayeshapipelinePipelineProdsprint2projectinstancePrepareCodePipelineActionRoleF3C3AB4B",
+                                    "Arn"
                                   ]
                                 }
                               },
@@ -896,15 +774,9 @@
                                 },
                                 "runOrder": 3,
                                 "roleArn": {
-                                  "Fn::Join": [
-                                    "",
-                                    [
-                                      "arn:",
-                                      {
-                                        "Ref": "AWS::Partition"
-                                      },
-                                      ":iam::315997497220:role/cdk-ayesha-deploy-role-315997497220-us-east-2"
-                                    ]
+                                  "Fn::GetAtt": [
+                                    "ayeshapipelinePipelineProdsprint2projectinstanceDeployCodePipelineActionRole928F97D3",
+                                    "Arn"
                                   ]
                                 }
                               }
@@ -1215,120 +1087,6 @@
                       "version": "1.135.0"
                     }
                   },
-                  "Assets": {
-                    "id": "Assets",
-                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Assets",
-                    "children": {
-                      "FileAsset1": {
-                        "id": "FileAsset1",
-                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Assets/FileAsset1",
-                        "children": {
-                          "CodePipelineActionRole": {
-                            "id": "CodePipelineActionRole",
-                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Assets/FileAsset1/CodePipelineActionRole",
-                            "children": {
-                              "Resource": {
-                                "id": "Resource",
-                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Assets/FileAsset1/CodePipelineActionRole/Resource",
-                                "attributes": {
-                                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
-                                  "aws:cdk:cloudformation:props": {
-                                    "assumeRolePolicyDocument": {
-                                      "Statement": [
-                                        {
-                                          "Action": "sts:AssumeRole",
-                                          "Effect": "Allow",
-                                          "Principal": {
-                                            "AWS": {
-                                              "Fn::Join": [
-                                                "",
-                                                [
-                                                  "arn:",
-                                                  {
-                                                    "Ref": "AWS::Partition"
-                                                  },
-                                                  ":iam::315997497220:root"
-                                                ]
-                                              ]
-                                            }
-                                          }
-                                        }
-                                      ],
-                                      "Version": "2012-10-17"
-                                    }
-                                  }
-                                },
-                                "constructInfo": {
-                                  "fqn": "@aws-cdk/aws-iam.CfnRole",
-                                  "version": "1.135.0"
-                                }
-                              },
-                              "DefaultPolicy": {
-                                "id": "DefaultPolicy",
-                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Assets/FileAsset1/CodePipelineActionRole/DefaultPolicy",
-                                "children": {
-                                  "Resource": {
-                                    "id": "Resource",
-                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Assets/FileAsset1/CodePipelineActionRole/DefaultPolicy/Resource",
-                                    "attributes": {
-                                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
-                                      "aws:cdk:cloudformation:props": {
-                                        "policyDocument": {
-                                          "Statement": [
-                                            {
-                                              "Action": [
-                                                "codebuild:BatchGetBuilds",
-                                                "codebuild:StartBuild",
-                                                "codebuild:StopBuild"
-                                              ],
-                                              "Effect": "Allow",
-                                              "Resource": {
-                                                "Fn::GetAtt": [
-                                                  "ayeshapipelineAssetsFileAsset1DED4736A",
-                                                  "Arn"
-                                                ]
-                                              }
-                                            }
-                                          ],
-                                          "Version": "2012-10-17"
-                                        },
-                                        "policyName": "ayeshapipelinePipelineAssetsFileAsset1CodePipelineActionRoleDefaultPolicy7500A488",
-                                        "roles": [
-                                          {
-                                            "Ref": "ayeshapipelinePipelineAssetsFileAsset1CodePipelineActionRoleF3DA1EDD"
-                                          }
-                                        ]
-                                      }
-                                    },
-                                    "constructInfo": {
-                                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                                      "version": "1.135.0"
-                                    }
-                                  }
-                                },
-                                "constructInfo": {
-                                  "fqn": "@aws-cdk/aws-iam.Policy",
-                                  "version": "1.135.0"
-                                }
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.Role",
-                              "version": "1.135.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/core.Construct",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.135.0"
-                    }
-                  },
                   "ayeshabetastage": {
                     "id": "ayeshabetastage",
                     "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage",
@@ -1531,7 +1289,7 @@
                                     },
                                     "source": {
                                       "type": "CODEPIPELINE",
-                                      "buildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"cd Ayeshazakria/skipqsprint2\",\n        \"pip install -r requirements.txt\",\n        \"pytest unittests\",\n        \"pytest integrationtests\"\n      ]\n    }\n  }\n}"
+                                      "buildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"cd Ayeshazakria/skipqsprint2\",\n        \"pip install -r requirements-dev.txt\",\n        \"pytest unittests\",\n        \"pytest integrationtests\"\n      ]\n    }\n  }\n}"
                                     },
                                     "encryptionKey": "alias/aws/s3"
                                   }
@@ -1650,6 +1408,266 @@
                       "sprint2projectinstance.Prepare": {
                         "id": "sprint2projectinstance.Prepare",
                         "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare",
+                        "children": {
+                          "CodePipelineActionRole": {
+                            "id": "CodePipelineActionRole",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/CodePipelineActionRole",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/CodePipelineActionRole/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                                  "aws:cdk:cloudformation:props": {
+                                    "assumeRolePolicyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": "sts:AssumeRole",
+                                          "Effect": "Allow",
+                                          "Principal": {
+                                            "AWS": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":iam::315997497220:root"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                                  "version": "1.135.0"
+                                }
+                              },
+                              "8389e75f-0810-4838-bf64-d6f85a95cf83": {
+                                "id": "8389e75f-0810-4838-bf64-d6f85a95cf83",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83",
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/core.Construct",
+                                  "version": "1.135.0"
+                                }
+                              },
+                              "DefaultPolicy": {
+                                "id": "DefaultPolicy",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/CodePipelineActionRole/DefaultPolicy",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                      "aws:cdk:cloudformation:props": {
+                                        "policyDocument": {
+                                          "Statement": [
+                                            {
+                                              "Action": "iam:PassRole",
+                                              "Effect": "Allow",
+                                              "Resource": {
+                                                "Fn::GetAtt": [
+                                                  "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareRole778A73A8",
+                                                  "Arn"
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "Action": [
+                                                "s3:GetObject*",
+                                                "s3:GetBucket*",
+                                                "s3:List*"
+                                              ],
+                                              "Effect": "Allow",
+                                              "Resource": [
+                                                {
+                                                  "Fn::GetAtt": [
+                                                    "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                                                    "Arn"
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      {
+                                                        "Fn::GetAtt": [
+                                                          "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                                                          "Arn"
+                                                        ]
+                                                      },
+                                                      "/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Action": [
+                                                "cloudformation:CreateChangeSet",
+                                                "cloudformation:DeleteChangeSet",
+                                                "cloudformation:DescribeChangeSet",
+                                                "cloudformation:DescribeStacks"
+                                              ],
+                                              "Condition": {
+                                                "StringEqualsIfExists": {
+                                                  "cloudformation:ChangeSetName": "PipelineChange"
+                                                }
+                                              },
+                                              "Effect": "Allow",
+                                              "Resource": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":cloudformation:us-east-2:315997497220:stack/ayeshabetastage-sprint2projectinstance/*"
+                                                  ]
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          "Version": "2012-10-17"
+                                        },
+                                        "policyName": "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareCodePipelineActionRoleDefaultPolicy02F8BE71",
+                                        "roles": [
+                                          {
+                                            "Ref": "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareCodePipelineActionRole0308B015"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                                      "version": "1.135.0"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.Policy",
+                                  "version": "1.135.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-iam.Role",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "Role": {
+                            "id": "Role",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/Role",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/Role/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                                  "aws:cdk:cloudformation:props": {
+                                    "assumeRolePolicyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": "sts:AssumeRole",
+                                          "Effect": "Allow",
+                                          "Principal": {
+                                            "Service": "cloudformation.amazonaws.com"
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                                  "version": "1.135.0"
+                                }
+                              },
+                              "DefaultPolicy": {
+                                "id": "DefaultPolicy",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/Role/DefaultPolicy",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Prepare/Role/DefaultPolicy/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                      "aws:cdk:cloudformation:props": {
+                                        "policyDocument": {
+                                          "Statement": [
+                                            {
+                                              "Action": [
+                                                "s3:GetObject*",
+                                                "s3:GetBucket*",
+                                                "s3:List*"
+                                              ],
+                                              "Effect": "Allow",
+                                              "Resource": [
+                                                {
+                                                  "Fn::GetAtt": [
+                                                    "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                                                    "Arn"
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      {
+                                                        "Fn::GetAtt": [
+                                                          "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                                                          "Arn"
+                                                        ]
+                                                      },
+                                                      "/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Action": "*",
+                                              "Effect": "Allow",
+                                              "Resource": "*"
+                                            }
+                                          ],
+                                          "Version": "2012-10-17"
+                                        },
+                                        "policyName": "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareRoleDefaultPolicyD1166247",
+                                        "roles": [
+                                          {
+                                            "Ref": "ayeshapipelinePipelineayeshabetastagesprint2projectinstancePrepareRole778A73A8"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                                      "version": "1.135.0"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.Policy",
+                                  "version": "1.135.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-iam.Role",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.Construct",
                           "version": "1.135.0"
@@ -1658,6 +1676,121 @@
                       "sprint2projectinstance.Deploy": {
                         "id": "sprint2projectinstance.Deploy",
                         "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Deploy",
+                        "children": {
+                          "CodePipelineActionRole": {
+                            "id": "CodePipelineActionRole",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Deploy/CodePipelineActionRole",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Deploy/CodePipelineActionRole/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                                  "aws:cdk:cloudformation:props": {
+                                    "assumeRolePolicyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": "sts:AssumeRole",
+                                          "Effect": "Allow",
+                                          "Principal": {
+                                            "AWS": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":iam::315997497220:root"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                                  "version": "1.135.0"
+                                }
+                              },
+                              "8389e75f-0810-4838-bf64-d6f85a95cf83": {
+                                "id": "8389e75f-0810-4838-bf64-d6f85a95cf83",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Deploy/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83",
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/core.Construct",
+                                  "version": "1.135.0"
+                                }
+                              },
+                              "DefaultPolicy": {
+                                "id": "DefaultPolicy",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Deploy/CodePipelineActionRole/DefaultPolicy",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ayeshabetastage/sprint2projectinstance.Deploy/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                      "aws:cdk:cloudformation:props": {
+                                        "policyDocument": {
+                                          "Statement": [
+                                            {
+                                              "Action": [
+                                                "cloudformation:DescribeChangeSet",
+                                                "cloudformation:DescribeStacks",
+                                                "cloudformation:ExecuteChangeSet"
+                                              ],
+                                              "Condition": {
+                                                "StringEqualsIfExists": {
+                                                  "cloudformation:ChangeSetName": "PipelineChange"
+                                                }
+                                              },
+                                              "Effect": "Allow",
+                                              "Resource": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":cloudformation:us-east-2:315997497220:stack/ayeshabetastage-sprint2projectinstance/*"
+                                                  ]
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          "Version": "2012-10-17"
+                                        },
+                                        "policyName": "ayeshapipelinePipelineayeshabetastagesprint2projectinstanceDeployCodePipelineActionRoleDefaultPolicyAED971B1",
+                                        "roles": [
+                                          {
+                                            "Ref": "ayeshapipelinePipelineayeshabetastagesprint2projectinstanceDeployCodePipelineActionRole30C4F843"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                                      "version": "1.135.0"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.Policy",
+                                  "version": "1.135.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-iam.Role",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.Construct",
                           "version": "1.135.0"
@@ -1666,48 +1799,6 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "arn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-deploy-role-315997497220-us-east-2": {
-                    "id": "arn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-deploy-role-315997497220-us-east-2",
-                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/arn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-deploy-role-315997497220-us-east-2",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "ImmutableRolearn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-deploy-role-315997497220-us-east-2": {
-                    "id": "ImmutableRolearn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-deploy-role-315997497220-us-east-2",
-                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ImmutableRolearn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-deploy-role-315997497220-us-east-2",
-                    "children": {
-                      "8389e75f-0810-4838-bf64-d6f85a95cf83": {
-                        "id": "8389e75f-0810-4838-bf64-d6f85a95cf83",
-                        "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ImmutableRolearn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-deploy-role-315997497220-us-east-2/8389e75f-0810-4838-bf64-d6f85a95cf83",
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/core.Construct",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "arn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-cfn-exec-role-315997497220-us-east-2": {
-                    "id": "arn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-cfn-exec-role-315997497220-us-east-2",
-                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/arn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-cfn-exec-role-315997497220-us-east-2",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "ImmutableRolearn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-cfn-exec-role-315997497220-us-east-2": {
-                    "id": "ImmutableRolearn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-cfn-exec-role-315997497220-us-east-2",
-                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/ImmutableRolearn:${AWS::Partition}:iam::315997497220:role--cdk-ayesha-cfn-exec-role-315997497220-us-east-2",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Resource",
                       "version": "1.135.0"
                     }
                   },
@@ -1774,6 +1865,266 @@
                       "sprint2projectinstance.Prepare": {
                         "id": "sprint2projectinstance.Prepare",
                         "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare",
+                        "children": {
+                          "CodePipelineActionRole": {
+                            "id": "CodePipelineActionRole",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/CodePipelineActionRole",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/CodePipelineActionRole/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                                  "aws:cdk:cloudformation:props": {
+                                    "assumeRolePolicyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": "sts:AssumeRole",
+                                          "Effect": "Allow",
+                                          "Principal": {
+                                            "AWS": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":iam::315997497220:root"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                                  "version": "1.135.0"
+                                }
+                              },
+                              "8389e75f-0810-4838-bf64-d6f85a95cf83": {
+                                "id": "8389e75f-0810-4838-bf64-d6f85a95cf83",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83",
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/core.Construct",
+                                  "version": "1.135.0"
+                                }
+                              },
+                              "DefaultPolicy": {
+                                "id": "DefaultPolicy",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/CodePipelineActionRole/DefaultPolicy",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                      "aws:cdk:cloudformation:props": {
+                                        "policyDocument": {
+                                          "Statement": [
+                                            {
+                                              "Action": "iam:PassRole",
+                                              "Effect": "Allow",
+                                              "Resource": {
+                                                "Fn::GetAtt": [
+                                                  "ayeshapipelinePipelineProdsprint2projectinstancePrepareRole50685582",
+                                                  "Arn"
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "Action": [
+                                                "s3:GetObject*",
+                                                "s3:GetBucket*",
+                                                "s3:List*"
+                                              ],
+                                              "Effect": "Allow",
+                                              "Resource": [
+                                                {
+                                                  "Fn::GetAtt": [
+                                                    "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                                                    "Arn"
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      {
+                                                        "Fn::GetAtt": [
+                                                          "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                                                          "Arn"
+                                                        ]
+                                                      },
+                                                      "/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Action": [
+                                                "cloudformation:CreateChangeSet",
+                                                "cloudformation:DeleteChangeSet",
+                                                "cloudformation:DescribeChangeSet",
+                                                "cloudformation:DescribeStacks"
+                                              ],
+                                              "Condition": {
+                                                "StringEqualsIfExists": {
+                                                  "cloudformation:ChangeSetName": "PipelineChange"
+                                                }
+                                              },
+                                              "Effect": "Allow",
+                                              "Resource": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":cloudformation:us-east-2:315997497220:stack/Prod-sprint2projectinstance/*"
+                                                  ]
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          "Version": "2012-10-17"
+                                        },
+                                        "policyName": "ayeshapipelinePipelineProdsprint2projectinstancePrepareCodePipelineActionRoleDefaultPolicy48B4C3FF",
+                                        "roles": [
+                                          {
+                                            "Ref": "ayeshapipelinePipelineProdsprint2projectinstancePrepareCodePipelineActionRoleF3C3AB4B"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                                      "version": "1.135.0"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.Policy",
+                                  "version": "1.135.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-iam.Role",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "Role": {
+                            "id": "Role",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/Role",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/Role/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                                  "aws:cdk:cloudformation:props": {
+                                    "assumeRolePolicyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": "sts:AssumeRole",
+                                          "Effect": "Allow",
+                                          "Principal": {
+                                            "Service": "cloudformation.amazonaws.com"
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                                  "version": "1.135.0"
+                                }
+                              },
+                              "DefaultPolicy": {
+                                "id": "DefaultPolicy",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/Role/DefaultPolicy",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Prepare/Role/DefaultPolicy/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                      "aws:cdk:cloudformation:props": {
+                                        "policyDocument": {
+                                          "Statement": [
+                                            {
+                                              "Action": [
+                                                "s3:GetObject*",
+                                                "s3:GetBucket*",
+                                                "s3:List*"
+                                              ],
+                                              "Effect": "Allow",
+                                              "Resource": [
+                                                {
+                                                  "Fn::GetAtt": [
+                                                    "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                                                    "Arn"
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      {
+                                                        "Fn::GetAtt": [
+                                                          "ayeshapipelinePipelineArtifactsBucketB9CA0422",
+                                                          "Arn"
+                                                        ]
+                                                      },
+                                                      "/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Action": "*",
+                                              "Effect": "Allow",
+                                              "Resource": "*"
+                                            }
+                                          ],
+                                          "Version": "2012-10-17"
+                                        },
+                                        "policyName": "ayeshapipelinePipelineProdsprint2projectinstancePrepareRoleDefaultPolicyF3F32EA2",
+                                        "roles": [
+                                          {
+                                            "Ref": "ayeshapipelinePipelineProdsprint2projectinstancePrepareRole50685582"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                                      "version": "1.135.0"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.Policy",
+                                  "version": "1.135.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-iam.Role",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.Construct",
                           "version": "1.135.0"
@@ -1782,6 +2133,121 @@
                       "sprint2projectinstance.Deploy": {
                         "id": "sprint2projectinstance.Deploy",
                         "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Deploy",
+                        "children": {
+                          "CodePipelineActionRole": {
+                            "id": "CodePipelineActionRole",
+                            "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Deploy/CodePipelineActionRole",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Deploy/CodePipelineActionRole/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                                  "aws:cdk:cloudformation:props": {
+                                    "assumeRolePolicyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": "sts:AssumeRole",
+                                          "Effect": "Allow",
+                                          "Principal": {
+                                            "AWS": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":iam::315997497220:root"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                                  "version": "1.135.0"
+                                }
+                              },
+                              "8389e75f-0810-4838-bf64-d6f85a95cf83": {
+                                "id": "8389e75f-0810-4838-bf64-d6f85a95cf83",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Deploy/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83",
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/core.Construct",
+                                  "version": "1.135.0"
+                                }
+                              },
+                              "DefaultPolicy": {
+                                "id": "DefaultPolicy",
+                                "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Deploy/CodePipelineActionRole/DefaultPolicy",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "AyeshaPipeline/ayeshapipeline/Pipeline/Prod/sprint2projectinstance.Deploy/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                      "aws:cdk:cloudformation:props": {
+                                        "policyDocument": {
+                                          "Statement": [
+                                            {
+                                              "Action": [
+                                                "cloudformation:DescribeChangeSet",
+                                                "cloudformation:DescribeStacks",
+                                                "cloudformation:ExecuteChangeSet"
+                                              ],
+                                              "Condition": {
+                                                "StringEqualsIfExists": {
+                                                  "cloudformation:ChangeSetName": "PipelineChange"
+                                                }
+                                              },
+                                              "Effect": "Allow",
+                                              "Resource": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":cloudformation:us-east-2:315997497220:stack/Prod-sprint2projectinstance/*"
+                                                  ]
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          "Version": "2012-10-17"
+                                        },
+                                        "policyName": "ayeshapipelinePipelineProdsprint2projectinstanceDeployCodePipelineActionRoleDefaultPolicy5CE3C459",
+                                        "roles": [
+                                          {
+                                            "Ref": "ayeshapipelinePipelineProdsprint2projectinstanceDeployCodePipelineActionRole928F97D3"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                                      "version": "1.135.0"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "@aws-cdk/aws-iam.Policy",
+                                  "version": "1.135.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/aws-iam.Role",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
                         "constructInfo": {
                           "fqn": "@aws-cdk/core.Construct",
                           "version": "1.135.0"
@@ -2042,231 +2508,6 @@
                   "fqn": "@aws-cdk/core.Construct",
                   "version": "1.135.0"
                 }
-              },
-              "Assets": {
-                "id": "Assets",
-                "path": "AyeshaPipeline/ayeshapipeline/Assets",
-                "children": {
-                  "FileRole": {
-                    "id": "FileRole",
-                    "path": "AyeshaPipeline/ayeshapipeline/Assets/FileRole",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshapipeline/Assets/FileRole/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
-                          "aws:cdk:cloudformation:props": {
-                            "assumeRolePolicyDocument": {
-                              "Statement": [
-                                {
-                                  "Action": "sts:AssumeRole",
-                                  "Effect": "Allow",
-                                  "Principal": {
-                                    "Service": "codebuild.amazonaws.com",
-                                    "AWS": {
-                                      "Fn::Join": [
-                                        "",
-                                        [
-                                          "arn:",
-                                          {
-                                            "Ref": "AWS::Partition"
-                                          },
-                                          ":iam::315997497220:root"
-                                        ]
-                                      ]
-                                    }
-                                  }
-                                }
-                              ],
-                              "Version": "2012-10-17"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.CfnRole",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "DefaultPolicy": {
-                        "id": "DefaultPolicy",
-                        "path": "AyeshaPipeline/ayeshapipeline/Assets/FileRole/DefaultPolicy",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "AyeshaPipeline/ayeshapipeline/Assets/FileRole/DefaultPolicy/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
-                              "aws:cdk:cloudformation:props": {
-                                "policyDocument": {
-                                  "Statement": [
-                                    {
-                                      "Action": [
-                                        "logs:CreateLogGroup",
-                                        "logs:CreateLogStream",
-                                        "logs:PutLogEvents"
-                                      ],
-                                      "Effect": "Allow",
-                                      "Resource": {
-                                        "Fn::Join": [
-                                          "",
-                                          [
-                                            "arn:",
-                                            {
-                                              "Ref": "AWS::Partition"
-                                            },
-                                            ":logs:us-east-2:315997497220:log-group:/aws/codebuild/*"
-                                          ]
-                                        ]
-                                      }
-                                    },
-                                    {
-                                      "Action": [
-                                        "codebuild:CreateReportGroup",
-                                        "codebuild:CreateReport",
-                                        "codebuild:UpdateReport",
-                                        "codebuild:BatchPutTestCases",
-                                        "codebuild:BatchPutCodeCoverages"
-                                      ],
-                                      "Effect": "Allow",
-                                      "Resource": {
-                                        "Fn::Join": [
-                                          "",
-                                          [
-                                            "arn:",
-                                            {
-                                              "Ref": "AWS::Partition"
-                                            },
-                                            ":codebuild:us-east-2:315997497220:report-group/*"
-                                          ]
-                                        ]
-                                      }
-                                    },
-                                    {
-                                      "Action": [
-                                        "codebuild:BatchGetBuilds",
-                                        "codebuild:StartBuild",
-                                        "codebuild:StopBuild"
-                                      ],
-                                      "Effect": "Allow",
-                                      "Resource": "*"
-                                    },
-                                    {
-                                      "Action": "sts:AssumeRole",
-                                      "Effect": "Allow",
-                                      "Resource": [
-                                        {
-                                          "Fn::Sub": "arn:${AWS::Partition}:iam::315997497220:role/cdk-ayesha-file-publishing-role-315997497220-us-east-2"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "Action": [
-                                        "s3:GetObject*",
-                                        "s3:GetBucket*",
-                                        "s3:List*"
-                                      ],
-                                      "Effect": "Allow",
-                                      "Resource": [
-                                        {
-                                          "Fn::GetAtt": [
-                                            "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                                            "Arn"
-                                          ]
-                                        },
-                                        {
-                                          "Fn::Join": [
-                                            "",
-                                            [
-                                              {
-                                                "Fn::GetAtt": [
-                                                  "ayeshapipelinePipelineArtifactsBucketB9CA0422",
-                                                  "Arn"
-                                                ]
-                                              },
-                                              "/*"
-                                            ]
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ],
-                                  "Version": "2012-10-17"
-                                },
-                                "policyName": "ayeshapipelineAssetsFileRoleDefaultPolicy9967DE91",
-                                "roles": [
-                                  {
-                                    "Ref": "ayeshapipelineAssetsFileRole0FF16841"
-                                  }
-                                ]
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                              "version": "1.135.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.Policy",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.Role",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "FileAsset1": {
-                    "id": "FileAsset1",
-                    "path": "AyeshaPipeline/ayeshapipeline/Assets/FileAsset1",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshapipeline/Assets/FileAsset1/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::CodeBuild::Project",
-                          "aws:cdk:cloudformation:props": {
-                            "artifacts": {
-                              "type": "CODEPIPELINE"
-                            },
-                            "environment": {
-                              "type": "LINUX_CONTAINER",
-                              "image": "aws/codebuild/standard:5.0",
-                              "imagePullCredentialsType": "CODEBUILD",
-                              "privilegedMode": false,
-                              "computeType": "BUILD_GENERAL1_SMALL"
-                            },
-                            "serviceRole": {
-                              "Fn::GetAtt": [
-                                "ayeshapipelineAssetsFileRole0FF16841",
-                                "Arn"
-                              ]
-                            },
-                            "source": {
-                              "type": "CODEPIPELINE",
-                              "buildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-AyeshaPipeline-ayeshabetastage/AyeshaPipelineayeshabetastagesprint2projectinstanceCF6613F7.assets.json\\\" --verbose publish \\\"310b3109783230cefca06e1a39ef90d57d22fbdcc9632a44ca398e149269c8d5:315997497220-us-east-2\\\"\"\n      ]\n    }\n  }\n}"
-                            },
-                            "encryptionKey": "alias/aws/s3"
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-codebuild.CfnProject",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-codebuild.PipelineProject",
-                      "version": "1.135.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.135.0"
-                }
               }
             },
             "constructInfo": {
@@ -2463,8 +2704,42 @@
                           "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                           "aws:cdk:cloudformation:props": {
                             "code": {
-                              "s3Bucket": "cdk-ayesha-assets-315997497220-us-east-2",
-                              "s3Key": "310b3109783230cefca06e1a39ef90d57d22fbdcc9632a44ca398e149269c8d5.zip"
+                              "s3Bucket": {
+                                "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3BucketF76B0D73"
+                              },
+                              "s3Key": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Fn::Select": [
+                                        0,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3VersionKey963E581A"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Select": [
+                                        1,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3VersionKey963E581A"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                ]
+                              }
                             },
                             "role": {
                               "Fn::GetAtt": [
@@ -2510,6 +2785,50 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-lambda.Function",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "AssetParameters": {
+                    "id": "AssetParameters",
+                    "path": "AyeshaPipeline/ayeshabetastage/sprint2projectinstance/AssetParameters",
+                    "children": {
+                      "a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa": {
+                        "id": "a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa",
+                        "path": "AyeshaPipeline/ayeshabetastage/sprint2projectinstance/AssetParameters/a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa",
+                        "children": {
+                          "S3Bucket": {
+                            "id": "S3Bucket",
+                            "path": "AyeshaPipeline/ayeshabetastage/sprint2projectinstance/AssetParameters/a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa/S3Bucket",
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/core.CfnParameter",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "S3VersionKey": {
+                            "id": "S3VersionKey",
+                            "path": "AyeshaPipeline/ayeshabetastage/sprint2projectinstance/AssetParameters/a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa/S3VersionKey",
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/core.CfnParameter",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "ArtifactHash": {
+                            "id": "ArtifactHash",
+                            "path": "AyeshaPipeline/ayeshabetastage/sprint2projectinstance/AssetParameters/a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa/ArtifactHash",
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/core.CfnParameter",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Construct",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Construct",
                       "version": "1.135.0"
                     }
                   },
@@ -2560,8 +2879,42 @@
                           "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                           "aws:cdk:cloudformation:props": {
                             "code": {
-                              "s3Bucket": "cdk-ayesha-assets-315997497220-us-east-2",
-                              "s3Key": "310b3109783230cefca06e1a39ef90d57d22fbdcc9632a44ca398e149269c8d5.zip"
+                              "s3Bucket": {
+                                "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3BucketF76B0D73"
+                              },
+                              "s3Key": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Fn::Select": [
+                                        0,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3VersionKey963E581A"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Select": [
+                                        1,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3VersionKey963E581A"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                ]
+                              }
                             },
                             "role": {
                               "Fn::GetAtt": [
@@ -2975,7 +3328,7 @@
                             },
                             "functionVersion": {
                               "Fn::GetAtt": [
-                                "WebHealthLambdaCurrentVersion2CE84F095a5fd5f081e5fd0f97e2d0d37e78b891",
+                                "WebHealthLambdaCurrentVersion2CE84F097988234efab935cd58f5ef99665bf9db",
                                 "Version"
                               ]
                             },
@@ -3143,922 +3496,6 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "BootstrapVersion": {
-                    "id": "BootstrapVersion",
-                    "path": "AyeshaPipeline/ayeshabetastage/sprint2projectinstance/BootstrapVersion",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "CheckBootstrapVersion": {
-                    "id": "CheckBootstrapVersion",
-                    "path": "AyeshaPipeline/ayeshabetastage/sprint2projectinstance/CheckBootstrapVersion",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnRule",
-                      "version": "1.135.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Stack",
-                  "version": "1.135.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.Stage",
-              "version": "1.135.0"
-            }
-          },
-          "ayeshaprodstage": {
-            "id": "ayeshaprodstage",
-            "path": "AyeshaPipeline/ayeshaprodstage",
-            "children": {
-              "sprint2projectinstance": {
-                "id": "sprint2projectinstance",
-                "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance",
-                "children": {
-                  "lambda-role": {
-                    "id": "lambda-role",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/lambda-role",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/lambda-role/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
-                          "aws:cdk:cloudformation:props": {
-                            "assumeRolePolicyDocument": {
-                              "Statement": [
-                                {
-                                  "Action": "sts:AssumeRole",
-                                  "Effect": "Allow",
-                                  "Principal": {
-                                    "Service": "lambda.amazonaws.com"
-                                  }
-                                }
-                              ],
-                              "Version": "2012-10-17"
-                            },
-                            "managedPolicyArns": [
-                              {
-                                "Fn::Join": [
-                                  "",
-                                  [
-                                    "arn:",
-                                    {
-                                      "Ref": "AWS::Partition"
-                                    },
-                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-                                  ]
-                                ]
-                              },
-                              {
-                                "Fn::Join": [
-                                  "",
-                                  [
-                                    "arn:",
-                                    {
-                                      "Ref": "AWS::Partition"
-                                    },
-                                    ":iam::aws:policy/CloudWatchFullAccess"
-                                  ]
-                                ]
-                              },
-                              {
-                                "Fn::Join": [
-                                  "",
-                                  [
-                                    "arn:",
-                                    {
-                                      "Ref": "AWS::Partition"
-                                    },
-                                    ":iam::aws:policy/AmazonDynamoDBFullAccess"
-                                  ]
-                                ]
-                              },
-                              {
-                                "Fn::Join": [
-                                  "",
-                                  [
-                                    "arn:",
-                                    {
-                                      "Ref": "AWS::Partition"
-                                    },
-                                    ":iam::aws:policy/AWSLambdaInvocation-DynamoDB"
-                                  ]
-                                ]
-                              }
-                            ]
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.CfnRole",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "DefaultPolicy": {
-                        "id": "DefaultPolicy",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/lambda-role/DefaultPolicy",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/lambda-role/DefaultPolicy/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
-                              "aws:cdk:cloudformation:props": {
-                                "policyDocument": {
-                                  "Statement": [
-                                    {
-                                      "Action": "dynamodb:*",
-                                      "Effect": "Allow",
-                                      "Resource": [
-                                        {
-                                          "Fn::GetAtt": [
-                                            "DynamoTableB2B22E15",
-                                            "Arn"
-                                          ]
-                                        },
-                                        {
-                                          "Ref": "AWS::NoValue"
-                                        }
-                                      ]
-                                    }
-                                  ],
-                                  "Version": "2012-10-17"
-                                },
-                                "policyName": "lambdaroleDefaultPolicyB1623966",
-                                "roles": [
-                                  {
-                                    "Ref": "lambdaroleDFE21467"
-                                  }
-                                ]
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                              "version": "1.135.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.Policy",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.Role",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "WebHealthLambda": {
-                    "id": "WebHealthLambda",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambda",
-                    "children": {
-                      "Code": {
-                        "id": "Code",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambda/Code",
-                        "children": {
-                          "Stage": {
-                            "id": "Stage",
-                            "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambda/Code/Stage",
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/core.AssetStaging",
-                              "version": "1.135.0"
-                            }
-                          },
-                          "AssetBucket": {
-                            "id": "AssetBucket",
-                            "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambda/Code/AssetBucket",
-                            "children": {
-                              "Notifications": {
-                                "id": "Notifications",
-                                "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambda/Code/AssetBucket/Notifications",
-                                "constructInfo": {
-                                  "fqn": "@aws-cdk/core.Construct",
-                                  "version": "1.135.0"
-                                }
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-s3.BucketBase",
-                              "version": "1.135.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-s3-assets.Asset",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambda/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
-                          "aws:cdk:cloudformation:props": {
-                            "code": {
-                              "s3Bucket": "cdk-ayesha-assets-315997497220-us-east-2",
-                              "s3Key": "310b3109783230cefca06e1a39ef90d57d22fbdcc9632a44ca398e149269c8d5.zip"
-                            },
-                            "role": {
-                              "Fn::GetAtt": [
-                                "lambdaroleDFE21467",
-                                "Arn"
-                              ]
-                            },
-                            "handler": "webhealthlambda.lambda_handler",
-                            "runtime": "python3.6"
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-lambda.CfnFunction",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "CurrentVersion": {
-                        "id": "CurrentVersion",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambda/CurrentVersion",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambda/CurrentVersion/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::Lambda::Version",
-                              "aws:cdk:cloudformation:props": {
-                                "functionName": {
-                                  "Ref": "WebHealthLambdaB270CBD9"
-                                }
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-lambda.CfnVersion",
-                              "version": "1.135.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-lambda.Version",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-lambda.Function",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "Dynamolambda": {
-                    "id": "Dynamolambda",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda",
-                    "children": {
-                      "Code": {
-                        "id": "Code",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda/Code",
-                        "children": {
-                          "Stage": {
-                            "id": "Stage",
-                            "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda/Code/Stage",
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/core.AssetStaging",
-                              "version": "1.135.0"
-                            }
-                          },
-                          "AssetBucket": {
-                            "id": "AssetBucket",
-                            "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda/Code/AssetBucket",
-                            "children": {
-                              "Notifications": {
-                                "id": "Notifications",
-                                "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda/Code/AssetBucket/Notifications",
-                                "constructInfo": {
-                                  "fqn": "@aws-cdk/core.Construct",
-                                  "version": "1.135.0"
-                                }
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-s3.BucketBase",
-                              "version": "1.135.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-s3-assets.Asset",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
-                          "aws:cdk:cloudformation:props": {
-                            "code": {
-                              "s3Bucket": "cdk-ayesha-assets-315997497220-us-east-2",
-                              "s3Key": "310b3109783230cefca06e1a39ef90d57d22fbdcc9632a44ca398e149269c8d5.zip"
-                            },
-                            "role": {
-                              "Fn::GetAtt": [
-                                "lambdaroleDFE21467",
-                                "Arn"
-                              ]
-                            },
-                            "handler": "dynamo_lambda.lambda_handler",
-                            "runtime": "python3.6"
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-lambda.CfnFunction",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "AllowInvoke:AyeshaPipelineayeshaprodstagesprint2projectinstanceWebHealthTopicAE8EF20D": {
-                        "id": "AllowInvoke:AyeshaPipelineayeshaprodstagesprint2projectinstanceWebHealthTopicAE8EF20D",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda/AllowInvoke:AyeshaPipelineayeshaprodstagesprint2projectinstanceWebHealthTopicAE8EF20D",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
-                          "aws:cdk:cloudformation:props": {
-                            "action": "lambda:InvokeFunction",
-                            "functionName": {
-                              "Fn::GetAtt": [
-                                "Dynamolambda5AB7FD5B",
-                                "Arn"
-                              ]
-                            },
-                            "principal": "sns.amazonaws.com",
-                            "sourceArn": {
-                              "Ref": "WebHealthTopicE559FD56"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-lambda.CfnPermission",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "WebHealthTopic": {
-                        "id": "WebHealthTopic",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda/WebHealthTopic",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Dynamolambda/WebHealthTopic/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
-                              "aws:cdk:cloudformation:props": {
-                                "protocol": "lambda",
-                                "topicArn": {
-                                  "Ref": "WebHealthTopicE559FD56"
-                                },
-                                "endpoint": {
-                                  "Fn::GetAtt": [
-                                    "Dynamolambda5AB7FD5B",
-                                    "Arn"
-                                  ]
-                                }
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-sns.CfnSubscription",
-                              "version": "1.135.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-sns.Subscription",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-lambda.Function",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "WebHealth_Invokation": {
-                    "id": "WebHealth_Invokation",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealth_Invokation",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealth_Invokation/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::Events::Rule",
-                          "aws:cdk:cloudformation:props": {
-                            "description": "Periodic Lambda",
-                            "scheduleExpression": "rate(1 minute)",
-                            "state": "ENABLED",
-                            "targets": [
-                              {
-                                "id": "Target0",
-                                "arn": {
-                                  "Fn::GetAtt": [
-                                    "WebHealthLambdaB270CBD9",
-                                    "Arn"
-                                  ]
-                                }
-                              }
-                            ]
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-events.CfnRule",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "AllowEventRuleAyeshaPipelineayeshaprodstagesprint2projectinstanceWebHealthLambda2852ADA3": {
-                        "id": "AllowEventRuleAyeshaPipelineayeshaprodstagesprint2projectinstanceWebHealthLambda2852ADA3",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealth_Invokation/AllowEventRuleAyeshaPipelineayeshaprodstagesprint2projectinstanceWebHealthLambda2852ADA3",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
-                          "aws:cdk:cloudformation:props": {
-                            "action": "lambda:InvokeFunction",
-                            "functionName": {
-                              "Fn::GetAtt": [
-                                "WebHealthLambdaB270CBD9",
-                                "Arn"
-                              ]
-                            },
-                            "principal": "events.amazonaws.com",
-                            "sourceArn": {
-                              "Fn::GetAtt": [
-                                "WebHealthInvokation871F98AF",
-                                "Arn"
-                              ]
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-lambda.CfnPermission",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-events.Rule",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "DynamoTable": {
-                    "id": "DynamoTable",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/DynamoTable",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/DynamoTable/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
-                          "aws:cdk:cloudformation:props": {
-                            "keySchema": [
-                              {
-                                "attributeName": "id",
-                                "keyType": "HASH"
-                              },
-                              {
-                                "attributeName": "timestamp",
-                                "keyType": "RANGE"
-                              }
-                            ],
-                            "attributeDefinitions": [
-                              {
-                                "attributeName": "id",
-                                "attributeType": "S"
-                              },
-                              {
-                                "attributeName": "timestamp",
-                                "attributeType": "S"
-                              }
-                            ],
-                            "provisionedThroughput": {
-                              "readCapacityUnits": 5,
-                              "writeCapacityUnits": 5
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "ScalingRole": {
-                        "id": "ScalingRole",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/DynamoTable/ScalingRole",
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/core.Resource",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-dynamodb.Table",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "WebHealthTopic": {
-                    "id": "WebHealthTopic",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthTopic",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthTopic/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
-                          "aws:cdk:cloudformation:props": {}
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-sns.CfnTopic",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "ayesha.zakria.s@skipq.org": {
-                        "id": "ayesha.zakria.s@skipq.org",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthTopic/ayesha.zakria.s@skipq.org",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthTopic/ayesha.zakria.s@skipq.org/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
-                              "aws:cdk:cloudformation:props": {
-                                "protocol": "email",
-                                "topicArn": {
-                                  "Ref": "WebHealthTopicE559FD56"
-                                },
-                                "endpoint": "ayesha.zakria.s@skipq.org"
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-sns.CfnSubscription",
-                              "version": "1.135.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-sns.Subscription",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-sns.Topic",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "Availability_alarm": {
-                    "id": "Availability_alarm",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Availability_alarm",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Availability_alarm/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
-                          "aws:cdk:cloudformation:props": {
-                            "comparisonOperator": "LessThanThreshold",
-                            "evaluationPeriods": 1,
-                            "alarmActions": [
-                              {
-                                "Ref": "WebHealthTopicE559FD56"
-                              }
-                            ],
-                            "datapointsToAlarm": 1,
-                            "metrics": [
-                              {
-                                "metricStat": {
-                                  "metric": {
-                                    "metricName": "url_availability",
-                                    "namespace": "ayesha_skipq_webhealth",
-                                    "dimensions": [
-                                      {
-                                        "name": "URL",
-                                        "value": "www.skipq.org"
-                                      }
-                                    ]
-                                  },
-                                  "period": 60,
-                                  "stat": "Average"
-                                },
-                                "id": "m1",
-                                "label": "AvailabilityMetric",
-                                "returnData": true
-                              }
-                            ],
-                            "threshold": 1
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-cloudwatch.CfnAlarm",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-cloudwatch.Alarm",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "Latency_alarm": {
-                    "id": "Latency_alarm",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Latency_alarm",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/Latency_alarm/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
-                          "aws:cdk:cloudformation:props": {
-                            "comparisonOperator": "GreaterThanThreshold",
-                            "evaluationPeriods": 1,
-                            "alarmActions": [
-                              {
-                                "Ref": "WebHealthTopicE559FD56"
-                              }
-                            ],
-                            "datapointsToAlarm": 1,
-                            "metrics": [
-                              {
-                                "metricStat": {
-                                  "metric": {
-                                    "metricName": "url_latency",
-                                    "namespace": "ayesha_skipq_webhealth",
-                                    "dimensions": [
-                                      {
-                                        "name": "URL",
-                                        "value": "www.skipq.org"
-                                      }
-                                    ]
-                                  },
-                                  "period": 60,
-                                  "stat": "Average"
-                                },
-                                "id": "m1",
-                                "label": "LatencyMetric",
-                                "returnData": true
-                              }
-                            ],
-                            "threshold": 0.3
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-cloudwatch.CfnAlarm",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-cloudwatch.Alarm",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "RollbackAlarm": {
-                    "id": "RollbackAlarm",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/RollbackAlarm",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/RollbackAlarm/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
-                          "aws:cdk:cloudformation:props": {
-                            "comparisonOperator": "GreaterThanThreshold",
-                            "evaluationPeriods": 1,
-                            "alarmActions": [
-                              {
-                                "Ref": "WebHealthTopicE559FD56"
-                              }
-                            ],
-                            "datapointsToAlarm": 1,
-                            "dimensions": [
-                              {
-                                "name": "FunctionName",
-                                "value": {
-                                  "Ref": "WebHealthLambdaB270CBD9"
-                                }
-                              }
-                            ],
-                            "metricName": "Duration",
-                            "namespace": "AWS/Lambda",
-                            "period": 60,
-                            "statistic": "Average",
-                            "threshold": 2500
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-cloudwatch.CfnAlarm",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-cloudwatch.Alarm",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "WebHealthLambdaAliassprint2projectinstance": {
-                    "id": "WebHealthLambdaAliassprint2projectinstance",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambdaAliassprint2projectinstance",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambdaAliassprint2projectinstance/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::Lambda::Alias",
-                          "aws:cdk:cloudformation:props": {
-                            "functionName": {
-                              "Ref": "WebHealthLambdaB270CBD9"
-                            },
-                            "functionVersion": {
-                              "Fn::GetAtt": [
-                                "WebHealthLambdaCurrentVersion2CE84F095a5fd5f081e5fd0f97e2d0d37e78b891",
-                                "Version"
-                              ]
-                            },
-                            "name": "Lambda"
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-lambda.CfnAlias",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "ScalingRole": {
-                        "id": "ScalingRole",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/WebHealthLambdaAliassprint2projectinstance/ScalingRole",
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/core.Resource",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-lambda.Alias",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "AyeshaWebHealthLambda_DeploymentGroup": {
-                    "id": "AyeshaWebHealthLambda_DeploymentGroup",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/AyeshaWebHealthLambda_DeploymentGroup",
-                    "children": {
-                      "Application": {
-                        "id": "Application",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/AyeshaWebHealthLambda_DeploymentGroup/Application",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/AyeshaWebHealthLambda_DeploymentGroup/Application/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::CodeDeploy::Application",
-                              "aws:cdk:cloudformation:props": {
-                                "computePlatform": "Lambda"
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-codedeploy.CfnApplication",
-                              "version": "1.137.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-codedeploy.LambdaApplication",
-                          "version": "1.137.0"
-                        }
-                      },
-                      "ServiceRole": {
-                        "id": "ServiceRole",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/AyeshaWebHealthLambda_DeploymentGroup/ServiceRole",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/AyeshaWebHealthLambda_DeploymentGroup/ServiceRole/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
-                              "aws:cdk:cloudformation:props": {
-                                "assumeRolePolicyDocument": {
-                                  "Statement": [
-                                    {
-                                      "Action": "sts:AssumeRole",
-                                      "Effect": "Allow",
-                                      "Principal": {
-                                        "Service": "codedeploy.us-east-2.amazonaws.com"
-                                      }
-                                    }
-                                  ],
-                                  "Version": "2012-10-17"
-                                },
-                                "managedPolicyArns": [
-                                  {
-                                    "Fn::Join": [
-                                      "",
-                                      [
-                                        "arn:",
-                                        {
-                                          "Ref": "AWS::Partition"
-                                        },
-                                        ":iam::aws:policy/service-role/AWSCodeDeployRoleForLambdaLimited"
-                                      ]
-                                    ]
-                                  }
-                                ]
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.CfnRole",
-                              "version": "1.135.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.Role",
-                          "version": "1.135.0"
-                        }
-                      },
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/AyeshaWebHealthLambda_DeploymentGroup/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::CodeDeploy::DeploymentGroup",
-                          "aws:cdk:cloudformation:props": {
-                            "applicationName": {
-                              "Ref": "AyeshaWebHealthLambdaDeploymentGroupApplicationAABA1422"
-                            },
-                            "serviceRoleArn": {
-                              "Fn::GetAtt": [
-                                "AyeshaWebHealthLambdaDeploymentGroupServiceRole35E58FB6",
-                                "Arn"
-                              ]
-                            },
-                            "alarmConfiguration": {
-                              "alarms": [
-                                {
-                                  "name": {
-                                    "Ref": "RollbackAlarmB0789DF6"
-                                  }
-                                }
-                              ],
-                              "enabled": true
-                            },
-                            "autoRollbackConfiguration": {
-                              "enabled": true,
-                              "events": [
-                                "DEPLOYMENT_FAILURE",
-                                "DEPLOYMENT_STOP_ON_ALARM"
-                              ]
-                            },
-                            "deploymentConfigName": "CodeDeployDefault.LambdaLinear10PercentEvery1Minute",
-                            "deploymentStyle": {
-                              "deploymentType": "BLUE_GREEN",
-                              "deploymentOption": "WITH_TRAFFIC_CONTROL"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-codedeploy.CfnDeploymentGroup",
-                          "version": "1.137.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-codedeploy.LambdaDeploymentGroup",
-                      "version": "1.137.0"
-                    }
-                  },
-                  "CDKMetadata": {
-                    "id": "CDKMetadata",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/CDKMetadata",
-                    "children": {
-                      "Default": {
-                        "id": "Default",
-                        "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/CDKMetadata/Default",
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/core.CfnResource",
-                          "version": "1.135.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "BootstrapVersion": {
-                    "id": "BootstrapVersion",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/BootstrapVersion",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "CheckBootstrapVersion": {
-                    "id": "CheckBootstrapVersion",
-                    "path": "AyeshaPipeline/ayeshaprodstage/sprint2projectinstance/CheckBootstrapVersion",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnRule",
                       "version": "1.135.0"
                     }
                   }
@@ -4263,8 +3700,42 @@
                           "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                           "aws:cdk:cloudformation:props": {
                             "code": {
-                              "s3Bucket": "cdk-ayesha-assets-315997497220-us-east-2",
-                              "s3Key": "310b3109783230cefca06e1a39ef90d57d22fbdcc9632a44ca398e149269c8d5.zip"
+                              "s3Bucket": {
+                                "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3BucketF76B0D73"
+                              },
+                              "s3Key": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Fn::Select": [
+                                        0,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3VersionKey963E581A"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Select": [
+                                        1,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3VersionKey963E581A"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                ]
+                              }
                             },
                             "role": {
                               "Fn::GetAtt": [
@@ -4310,6 +3781,50 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-lambda.Function",
+                      "version": "1.135.0"
+                    }
+                  },
+                  "AssetParameters": {
+                    "id": "AssetParameters",
+                    "path": "AyeshaPipeline/Prod/sprint2projectinstance/AssetParameters",
+                    "children": {
+                      "a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa": {
+                        "id": "a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa",
+                        "path": "AyeshaPipeline/Prod/sprint2projectinstance/AssetParameters/a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa",
+                        "children": {
+                          "S3Bucket": {
+                            "id": "S3Bucket",
+                            "path": "AyeshaPipeline/Prod/sprint2projectinstance/AssetParameters/a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa/S3Bucket",
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/core.CfnParameter",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "S3VersionKey": {
+                            "id": "S3VersionKey",
+                            "path": "AyeshaPipeline/Prod/sprint2projectinstance/AssetParameters/a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa/S3VersionKey",
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/core.CfnParameter",
+                              "version": "1.135.0"
+                            }
+                          },
+                          "ArtifactHash": {
+                            "id": "ArtifactHash",
+                            "path": "AyeshaPipeline/Prod/sprint2projectinstance/AssetParameters/a5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aa/ArtifactHash",
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/core.CfnParameter",
+                              "version": "1.135.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Construct",
+                          "version": "1.135.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Construct",
                       "version": "1.135.0"
                     }
                   },
@@ -4360,8 +3875,42 @@
                           "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                           "aws:cdk:cloudformation:props": {
                             "code": {
-                              "s3Bucket": "cdk-ayesha-assets-315997497220-us-east-2",
-                              "s3Key": "310b3109783230cefca06e1a39ef90d57d22fbdcc9632a44ca398e149269c8d5.zip"
+                              "s3Bucket": {
+                                "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3BucketF76B0D73"
+                              },
+                              "s3Key": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Fn::Select": [
+                                        0,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3VersionKey963E581A"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Select": [
+                                        1,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParametersa5db2935ad4856d36ca0499864a9a8014ab84f8094052ebf212b6098ce9d25aaS3VersionKey963E581A"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                ]
+                              }
                             },
                             "role": {
                               "Fn::GetAtt": [
@@ -4775,7 +4324,7 @@
                             },
                             "functionVersion": {
                               "Fn::GetAtt": [
-                                "WebHealthLambdaCurrentVersion2CE84F095a5fd5f081e5fd0f97e2d0d37e78b891",
+                                "WebHealthLambdaCurrentVersion2CE84F097988234efab935cd58f5ef99665bf9db",
                                 "Version"
                               ]
                             },
@@ -4943,22 +4492,6 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "BootstrapVersion": {
-                    "id": "BootstrapVersion",
-                    "path": "AyeshaPipeline/Prod/sprint2projectinstance/BootstrapVersion",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnParameter",
-                      "version": "1.135.0"
-                    }
-                  },
-                  "CheckBootstrapVersion": {
-                    "id": "CheckBootstrapVersion",
-                    "path": "AyeshaPipeline/Prod/sprint2projectinstance/CheckBootstrapVersion",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.CfnRule",
                       "version": "1.135.0"
                     }
                   }
