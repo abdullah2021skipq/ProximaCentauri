@@ -98,7 +98,9 @@ class AdeeldynamoDbStack(cdk.Stack):
             WH_alias=lambda_.Alias(self, "AlaisForLambda", alias_name="WebHeathAlias",
             version=WH_lamda.current_version)
             #### Defining code deployment group
-            codedeploy.LambdaDeploymentGroup(self, "id",alias=WH_alias,
+            application = codedeploy.ServerApplication(self, "CodeDeployApplication",)
+            
+            codedeploy.LambdaDeploymentGroup(self, "id",application=application,alias=WH_alias,
             deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10PERCENT_EVERY_1MINUTE,
             alarms=[alarm_fail])
         except:
