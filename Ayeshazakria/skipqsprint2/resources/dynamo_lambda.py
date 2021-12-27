@@ -13,5 +13,5 @@ def lambda_handler(event,context):
     url = result['Trigger']['Dimensions'][1]['value']
     
     dynamodb = boto3.client('dynamodb')
-    dynamodb.put_item(TableName='SkipqProjectStack-DynamoTableB2B22E15-TLRSLGXJENL2', Item={'id':{'S':metric_name},'url':{'S':url},'region':{'S':region},'timestamp':{'S':time}})
+    dynamodb.put_item(TableName='ayeshabetastage-sprint2projectinstance-DynamoTableB2B22E15-1P0XLWSL2GYCK', Item={'id':{'S':metric_name},'url':{'S':url},'region':{'S':region},'timestamp':{'S':time}})
     

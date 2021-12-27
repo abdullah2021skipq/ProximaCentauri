@@ -99,6 +99,7 @@ class SprintTwoProjectStack(cdk.Stack):
         availability_alarm.add_alarm_action(actions_.SnsAction(topic))
         latency_alarm.add_alarm_action(actions_.SnsAction(topic))
         
+        # sprint2 work starts here
         rollback_metric=cloudwatch_.Metric(
         namespace='AWS/Lambda',
         metric_name='Duration',
