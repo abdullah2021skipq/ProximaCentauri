@@ -88,7 +88,7 @@ class AdeeldynamoDbStack(cdk.Stack):
          ##############################  Failure matrix creation ###############################
          
         duration_metric= cloudwatch_.Metric(namespace='AWS/Lambda', metric_name='Duration',
-        dimensions_map={'FunctionName': WH_lamda.function_name} ) 
+        dimensions_map={'FunctionName': WH_lamda.function_name},period=cdk.Duration.minutes(1) ) 
         
         alarm_fail=cloudwatch_.Alarm(self, 'AlarmFail', metric=duration_metric, 
         threshold=4500, comparison_operator= cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD, 
@@ -98,7 +98,9 @@ class AdeeldynamoDbStack(cdk.Stack):
             WH_alias=lambda_.Alias(self, "AlaisForLambda", alias_name="WebHeathAlias",
             version=WH_lamda.current_version)
             #### Defining code deployment group
-            codedeploy.LambdaDeploymentGroup(self, "id",alias=WH_alias, alarms=[alarm_fail])
+            codedeploy.LambdaDeploymentGroup(self, "id",alias=WH_alias,
+            deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10PERCENT_EVERY_1MINUTE,
+            alarms=[alarm_fail])
         except:
             pass
         
