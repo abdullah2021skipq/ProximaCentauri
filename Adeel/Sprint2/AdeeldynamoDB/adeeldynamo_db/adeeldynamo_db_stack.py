@@ -101,7 +101,6 @@ class AdeeldynamoDbStack(cdk.Stack):
         application = codedeploy.ServerApplication(self, "CodeDeployApplication",)
             
         codedeploy.LambdaDeploymentGroup(self, "id",application=application,alias=WH_alias,
-        deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10PERCENT_EVERY_1MINUTE,
         alarms=[alarm_fail])
         
         
