@@ -1,12 +1,14 @@
 from __future__ import print_function
 import json
 import boto3
+import os
 print('Loading function')
 
 def lambda_handler(event, context):
     '''handles lambda for SNS notification. Performs alarm log update in DynamoDB Table'''
     message = event['Records'][0]['Sns']
-    add_log(message, 'S2MonitorDB')
+    table_name=os.getenv('table_name')
+    add_log(message, table_name)
     return message
 
 
