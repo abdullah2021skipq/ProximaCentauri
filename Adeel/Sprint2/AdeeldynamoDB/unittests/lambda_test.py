@@ -7,5 +7,5 @@ def test_lambda():
     AdeeldynamoDbStack(app, 'Stack')
     temp = app.synth().get_stack_by_name('Stack').template
     lambda_function = [resource for resource in temp['Resources'].values() if resource['Type']=='AWS::IAM::Role']
-    assert len(lambda_function)==3
+    assert len(lambda_function)==2
     
