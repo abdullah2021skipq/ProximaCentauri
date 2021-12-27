@@ -89,11 +89,14 @@ class PcRepoAzbStack1(cdk.Stack):
                                         comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
                                         datapoints_to_alarm=1,
                                         evaluation_periods=1,
-                                        threshold=3000)         # 3000 ms = 3 sec
+                                        threshold=2000)         # 3000 ms = 3 sec
         
         alarm_roll.add_alarm_action(actions_.SnsAction(topic))
-        alias = lambda_.Alias(self, "LambdaAlias",alias_name="Lambda",version=hw_lambda.current_version)
-
+        try:
+            alias = lambda_.Alias(self, "LambdaAlias",alias_name="Lambda",version=hw_lambda.current_version)
+        except:
+            pass
+        
         codedeploy.LambdaDeploymentGroup(self, "WebHealth Lambda", alias=alias,
                                         deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
                                         alarms=[alarm_roll]
