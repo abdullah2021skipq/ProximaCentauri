@@ -144,7 +144,7 @@ class SprintTwoProjStack(cdk.Stack):
                                         comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
                                         datapoints_to_alarm=1,
                                         evaluation_periods=1,
-                                        threshold=9000) 
+                                        threshold=8200) 
         
         rollback_alarm.add_alarm_action(actions_.SnsAction(topic))
 
