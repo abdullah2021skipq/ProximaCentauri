@@ -140,9 +140,15 @@ class AdeeldynamoDbStack(cdk.Stack):
         role=role,
         timeout= cdk.Duration.minutes(5)
     )
+    
+     ################## Create table function ##############
+     
     def create_table(self,id,key):
         return db.Table(self,id,
         partition_key=key)
+        
+    ################## Create alais function ##############    
+        
     def create_alais(self,id,name,version):
         return lambda_.Alias(self , id , alias_name = name,
         version = version)
