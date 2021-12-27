@@ -30,7 +30,8 @@ class SprintTwoProjStack(cdk.Stack):
         #####################################################################################################################
         
         lambda_role = self.create_lambda_role()
-        WH_Lambda = self.create_lambda("SikandarS2WebHealthLambda", "./resources/", "WH_Lambda.lambda_handler", lambda_role)
+        WH_Lambda = self.create_lambda("SikandarS2WebHealthLambda", "./resources/", "WH_Lambda.lambda_handler", lambda_role,
+                                        cdk.Duration.seconds(20))
         lambda_schedule = events_.Schedule.rate(cdk.Duration.minutes(1))
         lambda_targets = targets_.LambdaFunction(handler=WH_Lambda)
         rule = events_.Rule(self, "S2webHealth_Invocation", description="Periodic Lambda", enabled=True, schedule=lambda_schedule, targets=[lambda_targets])
@@ -41,7 +42,7 @@ class SprintTwoProjStack(cdk.Stack):
 
         db_table = self.create_db_table(id = "SprintTwoTable", part_key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
         db_lambda_role = self.create_db_lambda_role()
-        DB_Lambda = self.create_lambda("SikandarS2DBLambda", "./resources/", "DB_Lambda.lambda_handler", db_lambda_role)
+        DB_Lambda = self.create_lambda("SikandarS2DBLambda", "./resources/", "DB_Lambda.lambda_handler", role=db_lambda_role)
         db_table.grant_full_access(DB_Lambda)
         DB_Lambda.add_environment('table_name', db_table.table_name)
         
@@ -184,14 +185,14 @@ class SprintTwoProjStack(cdk.Stack):
         return lambdaRole
         
         
-    def create_lambda(self, id, asset, handler, role):
+    def create_lambda(self, id, asset, handler, role, timeout = cdk.Duration.seconds(3)):
         ### Creates a lambda function in python3.6
         return lambda_.Function(self, 
         id,
         handler=handler,  # optional, defaults to 'handler'
         runtime=lambda_.Runtime.PYTHON_3_6,
         code=lambda_.Code.from_asset(asset),
-        role=role)
+        role=role, timeout=timeout)
     
     def create_db_table(self, id, part_key):
         return db.Table(self, 
