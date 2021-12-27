@@ -92,7 +92,7 @@ class AdeeldynamoDbStack(cdk.Stack):
         dimensions_map={'FunctionName': WH_lamda.function_name}) 
         
         alarm_fail=cloudwatch_.Alarm(self, 'AlarmFail', metric=duration_metric, 
-        threshold=5000, comparison_operator= cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD, 
+        threshold=3000, comparison_operator= cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD, 
         evaluation_periods=1)
         ##Defining alias for my dblambda
         
