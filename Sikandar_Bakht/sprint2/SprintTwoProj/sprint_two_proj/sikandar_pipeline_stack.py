@@ -36,7 +36,7 @@ class SikandarPipelineStack(cdk.Stack):
                                             
         Prod = SprintTwoProjStage(self, "Prod", env = {
                                             'account':'315997497220',
-                                            'region' : 'us-east-1'
+                                            'region' : 'us-east-2'
                                             })
 
         unit_test = pipelines.ShellStep("unit_test", commands=["cd ./Sikandar_Bakht/sprint2/SprintTwoProj",  

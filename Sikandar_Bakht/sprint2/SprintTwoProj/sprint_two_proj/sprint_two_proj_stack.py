@@ -39,11 +39,10 @@ class SprintTwoProjStack(cdk.Stack):
         ##                              Setting Up DynamoDB WebHealth Logging Table                                        ##
         #####################################################################################################################
 
-        db_table = self.create_db_table(id = "SprintOneTable", table_Name = "S2MonitorDB", part_key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
+        db_table = self.create_db_table(id = "SprintTwoTable", table_Name = "S2MonitorDB_"+construct_id, part_key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
         db_lambda_role = self.create_db_lambda_role()
-        print("something")
         DB_Lambda = self.create_lambda("SikandarS2DBLambda", "./resources/", "DB_Lambda.lambda_handler", db_lambda_role)
-        ##db_table.grant_full_access(DB_Lambda)
+        db_table.grant_full_access(DB_Lambda)
         
         #####################################################################################################################
         ##                      Setting Up SNS Notifications for Email and Lambda Triggering                               ##
@@ -100,7 +99,6 @@ class SprintTwoProjStack(cdk.Stack):
                                     cloudwatch_.Alarm(self, 
                                     id = f'Sikandar_Bakht_S2_{K[i]}_Availability_Alarm',
                                     alarm_description = f"Alarm to monitor availability of {K[i]}",
-                                    alarm_name = f'S2 {K[i]} Availability Alarm',
                                     metric = availability_metric[i],
                                     comparison_operator =cloudwatch_.ComparisonOperator.LESS_THAN_THRESHOLD,
                                     datapoints_to_alarm = 1,
@@ -112,7 +110,6 @@ class SprintTwoProjStack(cdk.Stack):
                                     cloudwatch_.Alarm(self, 
                                     id = f'Sikandar_Bakht_S2_{K[i]}_Latency_Alarm',
                                     alarm_description = f"Alarm to monitor latency of {K[i]}",
-                                    alarm_name = f'S2 {K[i]} Latency Alarm',
                                     metric = latency_metric[i],
                                     comparison_operator =cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
                                     datapoints_to_alarm = 1,
@@ -150,7 +147,7 @@ class SprintTwoProjStack(cdk.Stack):
 
         alias = lambda_.Alias(self, 
                              "S2WHLambdaAlias",
-                              alias_name="S2Lambda" + construct_id,
+                              alias_name="S2WHLambdaAlias_" + ''.join(random.choices(string.ascii_uppercase + string.digits, k=5)),
                               version=WH_Lambda.current_version)
 
         cdp.LambdaDeploymentGroup(self, "WH_LambdaDeploymentGroup",
