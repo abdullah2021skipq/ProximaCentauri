@@ -41,6 +41,7 @@ class SprintTwoProjStack(cdk.Stack):
 
         ##db_table = self.create_db_table(id = "SprintOneTable", table_Name = "S2MonitorDB", part_key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
         db_lambda_role = self.create_db_lambda_role()
+        print("something")
         DB_Lambda = self.create_lambda("SikandarS2DBLambda", "./resources/", "DB_Lambda.lambda_handler", db_lambda_role)
         ##db_table.grant_full_access(DB_Lambda)
         
@@ -51,6 +52,7 @@ class SprintTwoProjStack(cdk.Stack):
         topic = sns.Topic(self, "S2webHealthTopic")
         topic.add_subscription(subscriptions_.EmailSubscription(email_address = "sikandar.bakht.s@skipq.org"))
         topic.add_subscription(subscriptions_.LambdaSubscription(fn = DB_Lambda))
+        
         
         #####################################################################################################################
         ##                                 Retrieving Custom URLs from S3 Bucket                                           ##
