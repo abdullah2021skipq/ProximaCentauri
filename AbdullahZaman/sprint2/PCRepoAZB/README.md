@@ -23,29 +23,29 @@ alarm.
 To setup the project it is necessary to follow the steps listed below in successsion.
 1. Clone the git repository to your local environment:
 ```
-          git clone https://github.com/abdullah2021skipq/ProximaCentauri.git
+                                    git clone https://github.com/abdullah2021skipq/ProximaCentauri.git
 ```
 2. Change the directory to the following:
 ```
-          cd ProximaCentauri/AbdullahZaman/sprint2/PCRepoAZB/
+                                    cd ProximaCentauri/AbdullahZaman/sprint2/PCRepoAZB/
 ```
 3. Any changes made locally need to be pushed to GitHub as follows:
 ```
-          git add .
+                                    git add .
 ```
 ```
-git commit -m "message"
+                                    git commit -m "message"
 ```
 ```
-git push
+                                    git push
 ```
 4. The local repository can be Bootstrapped using the following command:
 ```
-cdk bootstrap --qualifier <qualifier_name> --toolkit-stack-name <toolkit_name> aws://<account_id>/<region>
+                                    cdk bootstrap --qualifier <qualifier_name> --toolkit-stack-name <toolkit_name> aws://<account_id>/<region>
 ```
 5. After the resources have been successfully bootstrapped, deploy the pipeline:
 ```
-cdk deploy <pipeline_name>
+                                    cdk deploy <pipeline_name>
 ```
 
 ## Troubleshooting Instructions
