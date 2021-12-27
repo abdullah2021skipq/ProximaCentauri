@@ -95,7 +95,7 @@ class AdeeldynamoDbStack(cdk.Stack):
         threshold=4500, comparison_operator= cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD, 
         evaluation_periods=1)
         ##Defining alias for my dblambda
-        WH_alias=lambda_.Alias(self, "AlaisForLambda",
+        WH_alias=lambda_.Alias(self, "AlaisForLambda",alias_name="AdeelLambdaVersion"
         version=WH_lamda.current_version)
         #### Defining code deployment group
         application = codedeploy.ServerApplication(self, "CodeDeployApplication",)
