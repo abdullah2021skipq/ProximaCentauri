@@ -152,11 +152,13 @@ class SprintTwoProjStack(cdk.Stack):
                              "S2WHLambdaAlias",
                               alias_name="SikandarWHLambdaAlias",
                               version=WH_Lambda.current_version)
+                              
+        cdp_role = self.create_codedeploy_role()
 
         cdp.LambdaDeploymentGroup(self, "WH_LambdaDeploymentGroup",
                                  alias=alias,
                                  deployment_config=cdp.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
-                                 alarms=[rollback_alarm])
+                                 alarms=[rollback_alarm], role = cdp_role)
                                  
         #####################################################################################################################
         ##                                           Class Method Definitions                                              ##
@@ -185,6 +187,17 @@ class SprintTwoProjStack(cdk.Stack):
             
         return lambdaRole
         
+    def create_codedeploy_role(self):
+        lambdaRole = aws_iam.Role(self, "codedeploy_role",
+                        assumed_by = aws_iam.ServicePrincipal('codedeploy.amazonaws.com'),
+                        managed_policies=[
+                            aws_iam.ManagedPolicy.from_aws_managed_policy_name('service-role/AWSLambdaBasicExecutionRole'),
+                            aws_iam.ManagedPolicy.from_aws_managed_policy_name('CloudWatchFullAccess'),
+                            aws_iam.ManagedPolicy.from_aws_managed_policy_name('AmazonSNSFullAccess'),
+                            aws_iam.ManagedPolicy.from_aws_managed_policy_name('AWSLambda_FullAccess')
+                        ])
+            
+        return lambdaRole
         
     def create_lambda(self, id, asset, handler, role, timeout = cdk.Duration.seconds(3)):
         ### Creates a lambda function in python3.6
