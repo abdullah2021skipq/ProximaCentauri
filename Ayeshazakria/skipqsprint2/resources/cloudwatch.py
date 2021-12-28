@@ -1,6 +1,5 @@
 import boto3
 import constant as constants
-
 class Cloudwatchputmetrics:
     def __init__(self):
         self.client= boto3.client("cloudwatch")
