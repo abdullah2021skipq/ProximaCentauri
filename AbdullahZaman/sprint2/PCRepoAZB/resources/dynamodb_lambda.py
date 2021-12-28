@@ -1,4 +1,4 @@
-import boto3
+import boto3,os
 #import json
 
 def lambda_handler(event, context):
@@ -12,4 +12,4 @@ def lambda_handler(event, context):
         'AlarmDetails': {'S': info1},
         'Timestamp' : {'S': info2}
             }
-    client_.put_item(TableName="AbdullahTable", Item=item)
+    client_.put_item(TableName=os.getenv('table_name'), Item=item)
