@@ -150,7 +150,7 @@ class SprintTwoProjStack(cdk.Stack):
 
         alias = lambda_.Alias(self, 
                              "S2WHLambdaAlias",
-                              alias_name="S2WHLambdaAlias_" + ''.join(random.choices(string.ascii_uppercase + string.digits, k=5)),
+                              alias_name="SikandarWHLambdaAlias",
                               version=WH_Lambda.current_version)
 
         cdp.LambdaDeploymentGroup(self, "WH_LambdaDeploymentGroup",
