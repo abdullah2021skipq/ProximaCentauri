@@ -13,6 +13,7 @@ from aws_cdk import (
 )
 from resources import constants as constants
 from resources import s3bucket
+import os
 
 # For consistency with other languages, `cdk` is the preferred import name for
 # the CDK's core module.  The following line also imports it as `core` for use
