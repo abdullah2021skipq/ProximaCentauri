@@ -92,13 +92,13 @@ class AdeeldynamoDbStack(cdk.Stack):
         dimensions_map={'FunctionName': WH_lamda.function_name}) 
         
         alarm_fail=cloudwatch_.Alarm(self, 'AlarmFail', metric=duration_metric, 
-        threshold=2000, comparison_operator= cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD, 
+        threshold=10000, comparison_operator= cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD, 
         evaluation_periods=1)
         ##Defining alias for my dblambda
         
         versions = WH_lamda.add_version("new_version")
         WH_alias=self.create_alais(id = "AlaisForLambda",name = "AdeelLambdaVersion",
-        version = versions)
+        version = WH_lamda.current_version)
         #### Defining code deployment group
         codedeploy.LambdaDeploymentGroup(self, "BlueGreenDeployment",alias=WH_alias,
         alarms=[alarm_fail])
