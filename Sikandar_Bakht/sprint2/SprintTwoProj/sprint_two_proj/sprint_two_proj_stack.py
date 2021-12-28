@@ -40,7 +40,7 @@ class SprintTwoProjStack(cdk.Stack):
         ##                              Setting Up DynamoDB WebHealth Logging Table                                        ##
         #####################################################################################################################
         
-        print("something different")
+        print("something again")
         db_table = self.create_db_table(id = "SprintTwoTable", part_key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
         db_lambda_role = self.create_db_lambda_role()
         DB_Lambda = self.create_lambda("SikandarS2DBLambda", "./resources/", "DB_Lambda.lambda_handler", role=db_lambda_role)
