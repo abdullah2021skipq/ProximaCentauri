@@ -37,7 +37,7 @@ class PipelinesStack(cdk.Stack):
          
          
         unit_test=pipelines.ShellStep('unit_test',
-          commands=["cd Ayeshazakria/skipqsprint2", "pip install -r requirements-dev.txt", "pytest unittests","pytest integrationtests"
+          commands=["cd Ayeshazakria/skipqsprint2", "pip install -r requirements.txt", "pytest unittests","pytest integrationtests"
               ]
            
         )
