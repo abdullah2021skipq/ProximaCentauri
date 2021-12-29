@@ -4,7 +4,7 @@ from resources import s3bucket
 #import s3bucket
 import time
 
-def create_sprint3_table():
+def create_sprint3_table(perm):
     client_ = boto3.resource('dynamodb')
     try:
         table = client_.create_table(
@@ -28,8 +28,7 @@ def create_sprint3_table():
             }
         )
         time.sleep(5)
-        table.grant_read_write_data(aws_iam.ManagedPolicy.from_aws_managed_policy_name('CloudWatchFullAccess'))
-        table.grant_read_write_data(aws_iam.ManagedPolicy.from_aws_managed_policy_name('AmazonDynamoDBFullAccess'))
+        table.grant_read_write_data(perm)
     except:
         pass
 
