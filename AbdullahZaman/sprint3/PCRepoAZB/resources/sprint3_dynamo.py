@@ -27,8 +27,9 @@ def create_sprint3_table():
                 'WriteCapacityUnits': 10
             }
         )
-        table.grant_read_write_data(aws_iam.IGrantable())
         time.sleep(5)
+        table.grant_read_write_data(aws_iam.ManagedPolicy.from_aws_managed_policy_name('CloudWatchFullAccess'))
+        table.grant_read_write_data(aws_iam.ManagedPolicy.from_aws_managed_policy_name('AmazonDynamoDBFullAccess'))
     except:
         pass
 
