@@ -1,5 +1,6 @@
 import boto3
 from resources import s3bucket
+#import s3bucket
 import time
 
 def create_sprint3_table():
@@ -25,6 +26,7 @@ def create_sprint3_table():
                 'WriteCapacityUnits': 10
             }
         )
+        
         time.sleep(5)
     except:
         pass
@@ -39,3 +41,7 @@ def putting_sprint3_data():
                 }
         print(item)
         client_.put_item(TableName="AbdullahSprint3", Item=item)
+
+
+#create_sprint3_table()
+#putting_sprint3_data()

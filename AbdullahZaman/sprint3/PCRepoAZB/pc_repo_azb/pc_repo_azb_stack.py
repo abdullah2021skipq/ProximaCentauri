@@ -41,7 +41,7 @@ class PcRepoAzbStack1(cdk.Stack):
         
         #******************** SPRINT 3 DYNAMO TABLE ****************************
         sprint3_dynamo.create_sprint3_table()
-        sprint3_dynamo.putting_sprint3_data()
+        #sprint3_dynamo.putting_sprint3_data()
         
         # We define the schedule, target and the rule for our lambda
         
