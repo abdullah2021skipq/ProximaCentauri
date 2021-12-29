@@ -135,8 +135,8 @@ class SprintTwoProjStack(cdk.Stack):
         #####################################################################################################################
         
         alias = lambda_.Alias(self, 
-                             "S2WHLambdaAlias_"+construct_id,
-                              alias_name="SikandarWHLambdaAlias_"+construct_id,
+                             "S2WHLambdaAlias_",
+                              alias_name="SikandarWHLambdaAlias",
                               version=WH_Lambda.current_version)
                               
         rollback_alarm=cloudwatch_.Alarm(self, id="Sikandar_Rollback_Alarm",
