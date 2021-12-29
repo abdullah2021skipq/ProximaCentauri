@@ -1,3 +1,4 @@
+from aws_cdk import aws_iam
 import boto3
 from resources import s3bucket
 #import s3bucket
@@ -26,7 +27,7 @@ def create_sprint3_table():
                 'WriteCapacityUnits': 10
             }
         )
-        
+        table.grant_read_write_data(iam.User)
         time.sleep(5)
     except:
         pass
