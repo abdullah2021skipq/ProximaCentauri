@@ -12,7 +12,7 @@ def lambda_handler(event, context):
     bucket_name = event['Records'][0]['s3']['bucket']['name']
     key = event['Records'][0]['s3']['object']['key']
     
-    Url_Monitor= bo(bucket_name,key).bucket_as_list()
+    Url_Monitor= bo('adeelskipq','urls.json').bucket_as_list()
     
     table_name = os.getenv('table_name')#getting table name
     
