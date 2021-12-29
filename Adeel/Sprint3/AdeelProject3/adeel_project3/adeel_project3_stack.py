@@ -96,7 +96,7 @@ class AdeelProject3Stack(cdk.Stack):
         evaluation_periods=1)
         ##Defining alias for my dblambda
         
-        versions = WH_lamda.add_version("new_version")
+        #versions = WH_lamda.add_version("new_version")
         WH_alias=self.create_alais(id = "AlaisForLambda",name = "AdeelLambdaVersion",
         version = WH_lamda.current_version)
         #### Defining code deployment group

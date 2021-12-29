@@ -18,5 +18,5 @@ class AdeelStage(cdk.Stage):
     def __init__(self, scope: cdk.Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
       
-        adeel_project3_stack = AdeelProject3Stack(self , 'adeelStack')
+        adeel_project3_stack = AdeelProject3Stack(self , 'AdeelStack')
         

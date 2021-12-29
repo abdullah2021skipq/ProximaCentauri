@@ -20,7 +20,7 @@ class PipelineStack(core.Stack):
         
         
         synth = pipelines.ShellStep('synth',input = source,
-        commands=["cd Adeel/Sprint3/AdeelProject3","pip install -r requirements.txt" , "npm install -g aws-cdk","cdk synth","cdk ls"],
+        commands=["cd Adeel/Sprint3/AdeelProject3","pip install -r requirements.txt" , "npm install -g aws-cdk","cdk synth"],
         primary_output_directory = "Adeel/Sprint2/AdeelProject3/cdk.out")
         
         ############################## Pipelines update ###############################
@@ -29,14 +29,14 @@ class PipelineStack(core.Stack):
         
          ############################## beta update ###############################
     
-        beta = AdeelStage(self, "Beta" , env= {
+        beta = AdeelStage(self, "BetaStage" , env= {
             'account':'315997497220',
             'region': 'us-east-2'
         })
         
          ############################# prod stage ###############################
         
-        prod = AdeelStage(self, "Prod" , env= {
+        prod = AdeelStage(self, "ProdStage" , env= {
             'account':'315997497220',
             'region': 'us-east-2'
         })
