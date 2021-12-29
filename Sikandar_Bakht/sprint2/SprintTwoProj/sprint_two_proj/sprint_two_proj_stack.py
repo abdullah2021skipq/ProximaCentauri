@@ -16,6 +16,7 @@ from resources.S3bucket import S3Bucket as sb
 import json 
 import random
 import string
+import datetime
 
 
 class SprintTwoProjStack(cdk.Stack):
@@ -139,11 +140,11 @@ class SprintTwoProjStack(cdk.Stack):
                               version=WH_Lambda.current_version)
                               
         rollback_alarm=cloudwatch_.Alarm(self, id="Sikandar_Rollback_Alarm",
-                                        metric=alias.metric_duration(period=cdk.Duration.minutes(1)),
+                                        metric=WH_Lambda.metric_duration(period=cdk.Duration.minutes(1)),
                                         comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
                                         datapoints_to_alarm=1,
                                         evaluation_periods=1,
-                                        threshold=8000) 
+                                        threshold=8200) 
         
         rollback_alarm.add_alarm_action(actions_.SnsAction(topic))
 
@@ -202,7 +203,8 @@ class SprintTwoProjStack(cdk.Stack):
         handler=handler,  # optional, defaults to 'handler'
         runtime=lambda_.Runtime.PYTHON_3_6,
         code=lambda_.Code.from_asset(asset),
-        role=role, timeout=timeout)
+        role=role, timeout=timeout,
+        description=str(datetime.datetime.now()) )
     
     def create_db_table(self, id, part_key):
         return db.Table(self, 
