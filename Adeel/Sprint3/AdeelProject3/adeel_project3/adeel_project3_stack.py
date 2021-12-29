@@ -139,7 +139,7 @@ class AdeelProject3Stack(cdk.Stack):
         handler=handler,
         runtime= lambda_.Runtime.PYTHON_3_6,
         role=role,
-        timeout= cdk.Duration.minutes(5)
+        timeout= cdk.Duration.minutes(10)
     )
     
      ################## Create table function ##############
