@@ -34,17 +34,11 @@ class SprintTwoProjStack(cdk.Stack):
         lambda_role = self.create_lambda_role()
         WH_Lambda = self.create_lambda("SikandarS2WebHealthLambda", "./resources/", "WH_Lambda.lambda_handler", lambda_role,
                                         cdk.Duration.seconds(20))
-                                        
-        alias = lambda_.Alias(self, 
-                            "S2WHLambdaAlias",
-                            alias_name="SikandarWHLambdaAlias",
-                            version=WH_Lambda.current_version)
                             
         lambda_schedule = events_.Schedule.rate(cdk.Duration.minutes(1))
         lambda_target = targets_.LambdaFunction(handler=WH_Lambda)
-        lambda_target_2 = targets_.LambdaFunction(handler=alias)
         rule = events_.Rule(self, "S2webHealth_Invocation", description="Periodic Lambda", enabled=True, schedule=lambda_schedule, 
-                            targets=[lambda_target , lambda_target_2])
+                            targets=[lambda_target])
         
         #####################################################################################################################
         ##                              Setting Up DynamoDB WebHealth Logging Table                                        ##
@@ -143,6 +137,10 @@ class SprintTwoProjStack(cdk.Stack):
         ##                                      Creating Rollback resources                                                ##
         #####################################################################################################################
         
+        alias = lambda_.Alias(self, 
+                            "S2WHLambdaAlias_"+construct_id,
+                            alias_name="SikandarWHLambdaAlias_"+construct_id,
+                            version=WH_Lambda.current_version)
         WH_Lambda.add_environment('alias_name', alias.alias_name)
     
         rollback_alarm=cloudwatch_.Alarm(self, id="Sikandar_Rollback_Alarm",
