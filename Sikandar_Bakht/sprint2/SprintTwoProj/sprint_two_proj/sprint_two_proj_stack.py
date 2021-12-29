@@ -206,8 +206,9 @@ class SprintTwoProjStack(cdk.Stack):
         handler=handler,  # optional, defaults to 'handler'
         runtime=lambda_.Runtime.PYTHON_3_6,
         code=lambda_.Code.from_asset(asset),
-        role=role, timeout=timeout,
-        description=str(datetime.datetime.now()) )
+        role=role, timeout=timeout
+        #description=str(datetime.datetime.now()) 
+        )
     
     def create_db_table(self, id, part_key):
         return db.Table(self, 
