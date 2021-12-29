@@ -1,5 +1,5 @@
 import boto3
-import s3bucket
+from resources import s3bucket
 import time
 
 def create_sprint3_table():
