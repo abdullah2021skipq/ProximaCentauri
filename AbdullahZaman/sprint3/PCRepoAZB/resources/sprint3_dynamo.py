@@ -4,7 +4,7 @@ from resources import s3bucket
 #import s3bucket
 import time
 
-def create_sprint3_table(perm):
+def create_sprint3_table():
     client_ = boto3.resource('dynamodb')
     try:
         table = client_.create_table(
@@ -28,7 +28,7 @@ def create_sprint3_table(perm):
             }
         )
         time.sleep(5)
-        table.grant_read_write_data(perm)
+        #table.grant_read_write_data()
     except:
         pass
 
