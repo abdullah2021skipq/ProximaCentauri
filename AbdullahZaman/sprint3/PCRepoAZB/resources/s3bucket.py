@@ -12,8 +12,7 @@ def store_file(buck):
         
 
 def read_file(buck, item):
-    name_url = []
-    s3 = boto3.client('s3').get_object(Bucket=buck, key=item)
+    s3 = boto3.client('s3').get_object(Bucket=buck, Key=item)
     obj = s3['Body']
     obj = json.loads(obj.read())        # .loads return a dictionary
     return list(obj.values())
