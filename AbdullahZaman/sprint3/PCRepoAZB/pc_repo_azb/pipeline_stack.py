@@ -18,32 +18,32 @@ class PipelineStack(core.Stack):
         
         synth = pipelines.ShellStep('synth', input=source,
                 commands = [
-                "cd AbdullahZaman/sprint2/PCRepoAZB", "pip install -r requirements.txt", "npm install -g aws-cdk", "cdk synth"],
-            primary_output_directory="AbdullahZaman/sprint2/PCRepoAZB/cdk.out"
+                "cd AbdullahZaman/sprint3/PCRepoAZB", "pip install -r requirements.txt", "npm install -g aws-cdk", "cdk synth"],
+            primary_output_directory="AbdullahZaman/sprint3/PCRepoAZB/cdk.out"
                 )
                 
         
         pipeline = pipelines.CodePipeline(self, 'Pipeline', synth=synth)
         
         
-        beta = InfraStage(self, "AbdullahZBeta", env={
+        beta = InfraStage(self, "AbdullahBetaSPRINT3", env={
         'account': '315997497220',
         'region': 'us-east-2'
         })
         
-        production = InfraStage(self, "AbdullahZProduction", env={
+        production = InfraStage(self, "AbdullahProductionSPRINT3", env={
         'account': '315997497220',
         'region': 'us-east-2'
         })
         
         unitTest = pipelines.CodeBuildStep(
             'unit_tests',input=source,
-            commands=["cd AbdullahZaman/sprint2/PCRepoAZB/","pip install -r requirements.txt", "npm install -g aws-cdk", "pytest unit_tests"]
+            commands=["cd AbdullahZaman/sprint3/PCRepoAZB/","pip install -r requirements.txt", "npm install -g aws-cdk", "pytest unit_tests"]
             )
             
         integrationTest = pipelines.CodeBuildStep(
             'integration_tests',input=source,
-            commands=["cd AbdullahZaman/sprint2/PCRepoAZB/","pip install -r requirements.txt", "npm install -g aws-cdk", "pytest integration_tests"]
+            commands=["cd AbdullahZaman/sprint3/PCRepoAZB/","pip install -r requirements.txt", "npm install -g aws-cdk", "pytest integration_tests"]
             )
         
         pipeline.add_stage(beta, pre=[unitTest] ,post=[integrationTest])
