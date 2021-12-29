@@ -8,7 +8,10 @@ def store_file(buck):
         'LocationConstraint': 'us-east-2'})
         s3.upload_file("resources/urls.json", buck ,"urlsList.json")
     except:
-        s3.upload_file("resources/urls.json", buck ,"urlsList.json")
+        try:
+            s3.upload_file("resources/urls.json", buck ,"urlsList.json")
+        except:
+            pass
         
 
 def read_file(buck, item):
