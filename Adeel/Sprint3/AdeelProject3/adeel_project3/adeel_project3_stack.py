@@ -10,7 +10,8 @@ from aws_cdk import (
     aws_sns_subscriptions as subscriptions_,
     aws_cloudwatch_actions as actions_,
     aws_dynamodb as db,
-    aws_codedeploy as codedeploy
+    aws_codedeploy as codedeploy,
+    aws_apigateway as apigateway
 )
 from constructs import Construct
 from resources1 import constants1 as constants
@@ -36,9 +37,23 @@ class AdeelProject3Stack(cdk.Stack):
         
          ############################## Creating Dynamo table and giving it Premission ###############################
          
+         # backend is of type Function
+        urls_table=self.create_table(id='Urls',
+        key=db.Attribute(name="Links", type=db.AttributeType.STRING))
+        db_lambda_role = self.create_db_lambda_role()
+        s3_db_lamda = self.create_lambda('thirdHellammbda',"./resources1/",'db_s3_lambda.lambda_handler',db_lambda_role)
+        urls_table.grant_full_access(s3_db_lamda)
+        s3_db_lamda.add_environment('table_name', urls_table.table_name)
+        
+        
+        #apigateway.LambdaRestApi(self, "myapi",
+        #handler=WH_lamda
+        #)
+        
+        
+         
         dynamo_table=self.create_table(id='BDtable',
         key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
-        db_lambda_role = self.create_db_lambda_role()
         db_lamda = self.create_lambda('secondHellammbda',"./resources1/",'dynamo_lambda.lambda_handler',db_lambda_role)
         dynamo_table.grant_full_access(db_lamda)
         db_lamda.add_environment('table_name', dynamo_table.table_name)
@@ -51,7 +66,7 @@ class AdeelProject3Stack(cdk.Stack):
         
          ############################## Alarms on cloud watch ###############################
         
-        Url_Monitor = bo().bucket_as_list()
+        Url_Monitor = bo('adeelskipq','urls.json').bucket_as_list()
         b=1
         for url in Url_Monitor:
             
@@ -96,13 +111,15 @@ class AdeelProject3Stack(cdk.Stack):
         evaluation_periods=1)
         ##Defining alias for my dblambda
         #versions = WH_lamda.add_version("new_version")
+        
+        ''''
         WH_alias=self.create_alais(id = "AlaisForLambda",name = "AdeelLambdaVersion",
         version = WH_lamda.current_version)
         #### Defining code deployment group
         codedeploy.LambdaDeploymentGroup(self, "BlueGreenDeployment",alias=WH_alias,
         deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
         alarms=[alarm_fail])
-        
+        '''
         ##############################  role for Cloud watch ###############################
         
     def create_lambda_role(self):

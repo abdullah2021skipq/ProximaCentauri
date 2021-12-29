@@ -10,7 +10,7 @@ def lambda_handler(events, context):
      ############################## Accessing S3 bucket links in list ###############################
     
     cw = cloudWatchPutMetric();
-    Url_Monitor= bo().bucket_as_list()
+    Url_Monitor= bo('adeelskipq','urls.json').bucket_as_list()
     print(Url_Monitor)
     
     
