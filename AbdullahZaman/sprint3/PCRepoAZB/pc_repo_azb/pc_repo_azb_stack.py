@@ -38,10 +38,6 @@ class PcRepoAzbStack1(cdk.Stack):
         db_lambda = self.create_lambda("DynamoLambda", "./resources", "dynamodb_lambda.lambda_handler", lambda_role)
         
         #******************** SPRINT 3 DYNAMO TABLE ****************************
-        sprint3_table = self.create_table("AbdullahSprint3", 'URL_ADDRESS')
-        sprint3_lambda = self.create_lambda("sprint3Lambda", "./resources", "sprint3_dynamo.lambda_handler", lambda_role)
-        #sprint3_table.grant_read_write_data(sprint3_lambda)
-        sprint3_lambda.add_environment('table_name',"AbdullahSprint3")
         
         # We define the schedule, target and the rule for our lambda
         
@@ -51,8 +47,8 @@ class PcRepoAzbStack1(cdk.Stack):
                             enabled=True, schedule=lambda_schedule, targets=[lambda_target])
         
         dynamo_table = self.create_table(os.getenv('table_name'), "AlarmDetails")
-        #dynamo_table.grant_read_write_data(db_lambda)
-        #db_lambda.add_environment('table_name',dynamo_table.table_name)
+        dynamo_table.grant_read_write_data(db_lambda)
+        db_lambda.add_environment('table_name',dynamo_table.table_name)
         
         topic = sns.Topic(self, "WebHealthTopic")
         topic.add_subscription(subscriptions_.EmailSubscription("abdullah.zaman.babar.s@skipq.org"))
@@ -109,7 +105,7 @@ class PcRepoAzbStack1(cdk.Stack):
         availability_alarm.add_alarm_action(actions_.SnsAction(topic))
         latency_alarm.add_alarm_action(actions_.SnsAction(topic))
         
-    """
+
     def create_lambda_role(self):
         lambdaRole = aws_iam.Role(self, "lambda-role",
              assumed_by=aws_iam.ServicePrincipal('lambda.amazonaws.com'),
