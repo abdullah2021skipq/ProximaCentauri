@@ -31,11 +31,6 @@ class PipelineStack(core.Stack):
         'region': 'us-east-2'
         })
         
-        gemma = InfraStage(self, "AbdullahZGemma", env={
-        'account': '315997497220',
-        'region': 'us-east-2'
-        })
-        
         production = InfraStage(self, "AbdullahZProduction", env={
         'account': '315997497220',
         'region': 'us-east-2'
@@ -51,7 +46,6 @@ class PipelineStack(core.Stack):
             commands=["cd AbdullahZaman/sprint2/PCRepoAZB/","pip install -r requirements.txt", "npm install -g aws-cdk", "pytest integration_tests"]
             )
         
-        pipeline.add_stage(beta, pre=[unitTest])
-        pipeline.add_stage(gemma, pre=[integrationTest])
-        pipeline.add_stage(production, pre=[pipelines.ManualApprovalStep("Approve Changes and deploy to Production")])
+        pipeline.add_stage(beta, pre=[unitTest] ,post=[integrationTest])
+        pipeline.add_stage(production)
         
