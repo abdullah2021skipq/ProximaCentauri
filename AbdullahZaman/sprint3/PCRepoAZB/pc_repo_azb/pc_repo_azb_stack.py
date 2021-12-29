@@ -40,7 +40,7 @@ class PcRepoAzbStack1(cdk.Stack):
         #******************** SPRINT 3 DYNAMO TABLE ****************************
         sprint3_table = self.create_table("AbdullahSprint3", 'URL_ADDRESS')
         sprint3_lambda = self.create_lambda("sprint3Lambda", "./resources", "sprint3_dynamo.lambda_handler", lambda_role)
-        sprint3_table.grant_read_write_data(sprint3_lambda)
+        #sprint3_table.grant_read_write_data(sprint3_lambda)
         sprint3_lambda.add_environment('table_name',"AbdullahSprint3")
         
         # We define the schedule, target and the rule for our lambda
