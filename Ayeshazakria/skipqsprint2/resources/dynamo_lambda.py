@@ -2,6 +2,7 @@ import datetime
 import urllib3
 import json
 import boto3
+import os
 def lambda_handler(event,context):
     message = event["Records"][0]["Sns"]['Message']
     result = json.loads(message)
@@ -10,5 +11,6 @@ def lambda_handler(event,context):
     region = "DUB"
     url = result['Trigger']['Dimensions'][0]['value']
     dynamodb = boto3.client('dynamodb')
-    dynamodb.put_item(TableName="ayesha_table", Item={'metric_name':{'S':metric_name},'url':{'S':url},'region':{'S':region},'timestamp':{'S':time}})
-    
+   # dynamodb.put_item(TableName="ayesha_table", Item={'metric_name':{'S':metric_name},'url':{'S':url},'region':{'S':region},'timestamp':{'S':time}})
+    tablename=os.getenv('table_name')
+    dynamodb.put_item(TableName=tablename, Item={'metric_name':{'S':metric_name},'url':{'S':url},'region':{'S':region},'timestamp':{'S':time}})

@@ -46,6 +46,7 @@ class SprintTwoProjectStack(cdk.Stack):
             print("Table Already Exists")
         
         dynamo_db.grant_full_access(dynamodb_lambda)
+        dynamodb_lambda.add_environment('table_name', dynamo_db.table_name)
         
         ###defining SNS service    
         topic = sns.Topic(self,"WebHealthTopic")
