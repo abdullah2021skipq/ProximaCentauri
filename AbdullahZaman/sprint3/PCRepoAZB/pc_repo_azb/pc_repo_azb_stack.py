@@ -51,7 +51,7 @@ class PcRepoAzbStack1(cdk.Stack):
                             enabled=True, schedule=lambda_schedule, targets=[lambda_target])
         
         dynamo_table = self.create_table(os.getenv('table_name'), "AlarmDetails")
-        dynamo_table.grant_read_write_data(db_lambda)
+        #dynamo_table.grant_read_write_data(db_lambda)
         db_lambda.add_environment('table_name',"AbdullahSprint3")
         
         topic = sns.Topic(self, "WebHealthTopic")
