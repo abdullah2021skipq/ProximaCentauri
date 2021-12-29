@@ -136,30 +136,28 @@ class SprintTwoProjStack(cdk.Stack):
         #####################################################################################################################
         
         
-        if os.getenv('alias_name', "false") == "false": 
-            alias = lambda_.Alias(self, 
-                                 "S2WHLambdaAlias_"+construct_id    ,
-                                  alias_name="SikandarWHLambdaAlias_"+construct_id,
-                                  version=WH_Lambda.current_version)
-            WH_Lambda.add_environment('alias_name', alias.alias_name)
+       
+        alias = lambda_.Alias(self, 
+                             "S2WHLambdaAlias",
+                              alias_name="SikandarWHLambdaAlias",
+                              version=WH_Lambda.current_version)
+        WH_Lambda.add_environment('alias_name', alias.alias_name)
+    
+        rollback_alarm=cloudwatch_.Alarm(self, id="Sikandar_Rollback_Alarm",
+                                        metric=WH_Lambda.metric_duration(period=cdk.Duration.minutes(1)),
+                                        comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
+                                        datapoints_to_alarm=1,
+                                        evaluation_periods=1,
+                                        threshold=8200) 
         
-            rollback_alarm=cloudwatch_.Alarm(self, id="Sikandar_Rollback_Alarm",
-                                            metric=WH_Lambda.metric_duration(period=cdk.Duration.minutes(1)),
-                                            comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
-                                            datapoints_to_alarm=1,
-                                            evaluation_periods=1,
-                                            threshold=8200) 
-            
-            rollback_alarm.add_alarm_action(actions_.SnsAction(topic))
-    
-            
-                                  
-            cdp_role = self.create_codedeploy_role()
-    
-            cdp.LambdaDeploymentGroup(self, "WH_LambdaDeploymentGroup",
-                                     alias=alias,
-                                     deployment_config=cdp.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
-                                     alarms=[rollback_alarm], role = cdp_role)
+        rollback_alarm.add_alarm_action(actions_.SnsAction(topic))
+
+        cdp_role = self.create_codedeploy_role()
+
+        cdp.LambdaDeploymentGroup(self, "WH_LambdaDeploymentGroup",
+                                 alias=alias,
+                                 deployment_config=cdp.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
+                                 alarms=[rollback_alarm], role = cdp_role)
      
                                  
         #####################################################################################################################
