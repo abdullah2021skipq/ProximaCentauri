@@ -30,12 +30,13 @@ class PipelineStack(core.Stack):
         'account': '315997497220',
         'region': 'us-east-2'
         })
-        
+     
+        """   
         production = InfraStage(self, "AbdullahProductionSPRINT3", env={
         'account': '315997497220',
         'region': 'us-east-2'
         })
-        
+        """
         unitTest = pipelines.CodeBuildStep(
             'unit_tests',input=source,
             commands=["cd AbdullahZaman/sprint3/PCRepoAZB/","pip install -r requirements.txt", "npm install -g aws-cdk", "pytest unit_tests"]
@@ -46,6 +47,6 @@ class PipelineStack(core.Stack):
             commands=["cd AbdullahZaman/sprint3/PCRepoAZB/","pip install -r requirements.txt", "npm install -g aws-cdk", "pytest integration_tests"]
             )
         
-        pipeline.add_stage(beta, pre=[unitTest] ,post=[integrationTest])
-        pipeline.add_stage(production)
+        pipeline.add_stage(beta)#, pre=[unitTest] ,post=[integrationTest])
+        #pipeline.add_stage(production)
         
