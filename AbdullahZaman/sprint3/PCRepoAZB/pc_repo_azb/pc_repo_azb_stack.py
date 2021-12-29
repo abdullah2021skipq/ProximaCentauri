@@ -52,7 +52,7 @@ class PcRepoAzbStack1(cdk.Stack):
         
         dynamo_table = self.create_table(os.getenv('table_name'), "AlarmDetails")
         #dynamo_table.grant_read_write_data(db_lambda)
-        db_lambda.add_environment('table_name',"AbdullahSprint3")
+        db_lambda.add_environment('table_name',dynamo_table.table_name)
         
         topic = sns.Topic(self, "WebHealthTopic")
         topic.add_subscription(subscriptions_.EmailSubscription("abdullah.zaman.babar.s@skipq.org"))
