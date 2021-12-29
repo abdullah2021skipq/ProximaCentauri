@@ -30,6 +30,7 @@ class PcRepoAzbStack1(cdk.Stack):
         # s3 bucket
         s3bucket.store_file("abdullahzamanbucket")
         URL_list = s3bucket.read_file("abdullahzamanbucket", "urlsList.json")
+        print(URL_list)
 
         
         # The code that defines your stack goes here
