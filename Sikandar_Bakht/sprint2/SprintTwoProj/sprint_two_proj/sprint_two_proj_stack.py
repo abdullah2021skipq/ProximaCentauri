@@ -133,14 +133,13 @@ class SprintTwoProjStack(cdk.Stack):
         ##                                      Creating Rollback resources                                                ##
         #####################################################################################################################
         
-        rollback_metric=cloudwatch_.Metric(namespace='AWS/Lambda',
-                                           metric_name='Duration',
-                                           dimensions_map={'FunctionName':WH_Lambda.function_name},
-                                           period= cdk.Duration.minutes(1))
-    
-        
+        alias = lambda_.Alias(self, 
+                             "S2WHLambdaAlias_"+construct_id,
+                              alias_name="SikandarWHLambdaAlias_"+construct_id,
+                              version=WH_Lambda.current_version)
+                              
         rollback_alarm=cloudwatch_.Alarm(self, id="Sikandar_Rollback_Alarm",
-                                        metric= rollback_metric,
+                                        metric=alias.metric_duration(period=cdk.Duration.minutes(1)),
                                         comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
                                         datapoints_to_alarm=1,
                                         evaluation_periods=1,
@@ -148,10 +147,7 @@ class SprintTwoProjStack(cdk.Stack):
         
         rollback_alarm.add_alarm_action(actions_.SnsAction(topic))
 
-        alias = lambda_.Alias(self, 
-                             "S2WHLambdaAlias_"+construct_id,
-                              alias_name="SikandarWHLambdaAlias_"+construct_id,
-                              version=WH_Lambda.current_version)
+        
                               
         cdp_role = self.create_codedeploy_role()
 
