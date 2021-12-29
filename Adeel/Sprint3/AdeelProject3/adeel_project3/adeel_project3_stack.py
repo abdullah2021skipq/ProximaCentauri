@@ -25,7 +25,7 @@ class AdeelProject3Stack(cdk.Stack):
         ############################## Define lambda role and lambda functions###############################
 
         lambda_role= self.create_lambda_role()
-        WH_lamda = self.create_lambda('FirstHellammbda',"./resources1/",'WH_lamda.lambda_handler',lambda_role)
+        WH_lamda = self.create_lambda('FirstHellammbda',"./resources1/",'WH_lambda.lambda_handler',lambda_role)
         
         
          ############################## Schedule and Role functions for lambda ############################### 
