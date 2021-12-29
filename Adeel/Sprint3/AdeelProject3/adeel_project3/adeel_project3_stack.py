@@ -95,7 +95,7 @@ class AdeelProject3Stack(cdk.Stack):
         threshold=10000, comparison_operator= cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD, 
         evaluation_periods=1)
         ##Defining alias for my dblambda
-        
+        ''''
         #versions = WH_lamda.add_version("new_version")
         WH_alias=self.create_alais(id = "AlaisForLambda",name = "AdeelLambdaVersion",
         version = WH_lamda.current_version)
@@ -103,7 +103,7 @@ class AdeelProject3Stack(cdk.Stack):
         codedeploy.LambdaDeploymentGroup(self, "BlueGreenDeployment",alias=WH_alias,
         deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
         alarms=[alarm_fail])
-        
+        '''
         
         ##############################  role for Cloud watch ###############################
         
