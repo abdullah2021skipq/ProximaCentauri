@@ -66,7 +66,7 @@ class AdeelProject3Stack(cdk.Stack):
         
          ############################## Alarms on cloud watch ###############################
         
-        Url_Monitor = bo('adeelskipq','urls.json').bucket_as_list()
+        Url_Monitor = bo(Bucket = 'adeelskipq',key = 'urls.json').bucket_as_list()
         b=1
         for url in Url_Monitor:
             
