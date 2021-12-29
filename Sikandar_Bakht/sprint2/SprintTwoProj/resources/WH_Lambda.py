@@ -6,7 +6,7 @@ from S3bucket import S3Bucket as sb
 
 def lambda_handler(event,context):
     '''handles period lambda, collects metric data and sends it to cloudwatch'''
-    print("this is version 1 of wh lambda")
+    print("this is version 2 of wh lambda")
     CW = CloudwatchPutMetric()
     URLS_MONITORED = sb('sikandarbakhtskipq').load('urls_dict.json')
     K=list(URLS_MONITORED['URLS'][0].keys())
