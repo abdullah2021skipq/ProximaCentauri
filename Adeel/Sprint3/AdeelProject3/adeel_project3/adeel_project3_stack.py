@@ -101,6 +101,7 @@ class AdeelProject3Stack(cdk.Stack):
         version = WH_lamda.current_version)
         #### Defining code deployment group
         codedeploy.LambdaDeploymentGroup(self, "BlueGreenDeployment",alias=WH_alias,
+        deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
         alarms=[alarm_fail])
         
         
