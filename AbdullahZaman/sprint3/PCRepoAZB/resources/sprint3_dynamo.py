@@ -27,7 +27,7 @@ def create_sprint3_table():
                 'WriteCapacityUnits': 10
             }
         )
-        table.grant_read_write_data(iam.User)
+        table.grant_read_write_data(aws_iam.IGrantable())
         time.sleep(5)
     except:
         pass
