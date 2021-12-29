@@ -8,4 +8,4 @@ class SprintTwoProjStage(cdk.Stage):
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
         
-        s2_stack = SprintTwoProjStack(self, 'SprintTwoStackInstance')
+        s2_stack = SprintTwoProjStack(self, 'SikandarS2Instance')
