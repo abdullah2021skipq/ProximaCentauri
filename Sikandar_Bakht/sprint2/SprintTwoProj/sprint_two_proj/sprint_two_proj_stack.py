@@ -144,7 +144,7 @@ class SprintTwoProjStack(cdk.Stack):
         WH_Lambda.add_environment('alias_name', alias.alias_name)
     
         rollback_alarm=cloudwatch_.Alarm(self, id="Sikandar_Rollback_Alarm",
-                                        metric=WH_Lambda.metric_duration(period=cdk.Duration.minutes(1)),
+                                        metric=alias.metric_duration(period=cdk.Duration.minutes(1)),
                                         comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
                                         datapoints_to_alarm=1,
                                         evaluation_periods=1,
