@@ -40,7 +40,7 @@ class PcRepoAzbStack1(cdk.Stack):
         db_lambda = self.create_lambda("DynamoLambda", "./resources", "dynamodb_lambda.lambda_handler", lambda_role)
         
         #******************** SPRINT 3 DYNAMO TABLE ****************************
-        sprint3_dynamo.create_sprint3_table(db_lambda)
+        sprint3_dynamo.create_sprint3_table(lambda_role)
         sprint3_dynamo.putting_sprint3_data()
         
         # We define the schedule, target and the rule for our lambda
