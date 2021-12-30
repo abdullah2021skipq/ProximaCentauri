@@ -7,8 +7,8 @@ from adeel_project3.adeel_stage import AdeelStage
 
 class PipelineStack(core.Stack):
 
-    def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
-        super().__init__(scope, id, **kwargs)
+    def __init__(self, scope: core.Construct, construct_id: str, **kwargs) -> None:
+        super().__init__(scope, construct_id, **kwargs)
         
         
         
@@ -79,4 +79,4 @@ class PipelineStack(core.Stack):
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSCodePipeline_FullAccess"),
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3FullAccess")
             ])
-        return role
+            return role
