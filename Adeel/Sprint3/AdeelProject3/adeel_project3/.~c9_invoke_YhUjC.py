@@ -55,8 +55,8 @@ class AdeelProject3Stack(cdk.Stack):
         ))
         
         urls_table.grant_full_access(s3_db_lamda)
-        s3_db_lamda.add_environment(key = 'table_name', value = constants.URLS_TABLE_NAME)
-        WH_lamda.add_environment(key = 'table_name', value = constants.URLS_TABLE_NAME)
+        s3_db_lamda.add_environment(key = 'table_name', value = constants1)
+        WH_lamda.add_environment('table_name', urls_table.table_name)
         
         #apigateway.LambdaRestApi(self, "myapi",
         #handler=WH_lamda
@@ -79,7 +79,7 @@ class AdeelProject3Stack(cdk.Stack):
          ############################## Alarms on cloud watch ###############################
         
         Url_Monitor = bo('adeelskipq','urls.json').bucket_as_list()
-        links = dynamo_RW.ReadFromTable(constants.URLS_TABLE_NAME)
+        links = dynamo_RW.ReadFromTable()
         b=1
         for url in links:
             

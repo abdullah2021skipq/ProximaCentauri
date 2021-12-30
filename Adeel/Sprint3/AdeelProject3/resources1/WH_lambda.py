@@ -16,16 +16,16 @@ def lambda_handler(events, context):
     Url_Monitor= bo('adeelskipq','urls.json').bucket_as_list()
     print(Url_Monitor)
     
-    links = dynamo_RW.ReadFromTable(os.getenv('table_name'))
+    links = dynamo_RW.ReadFromTable(os.getenv(key ='table_name'))
     print(links)
     
     
      ############################## Availabiity matrix ###############################
     
     values = dict()
-    four_url_values  = []
+    url_values  = []
     a = 1
-    for url in Url_Monitor:
+    for url in links:
         avail = get_availability(url)
         dimensions=[
         {'Name': 'URL', 'Value': url}
@@ -44,8 +44,8 @@ def lambda_handler(events, context):
         a+=1
     
         values.update({"avaiability":avail, "Latency":latency})
-        four_url_values.append(values)
-    return four_url_values
+        url_values.append(values)
+    return url_values
     
      ############################## Availability function ###############################
     

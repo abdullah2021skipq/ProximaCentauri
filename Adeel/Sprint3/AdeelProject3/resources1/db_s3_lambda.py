@@ -27,7 +27,7 @@ def lambda_handler(event, context):
     
     ###################### table name #######################
     
-    name = os.getenv('table_name')#getting table name
+    name = os.getenv(key = 'table_name')#getting table name
     print(name)
     
     
