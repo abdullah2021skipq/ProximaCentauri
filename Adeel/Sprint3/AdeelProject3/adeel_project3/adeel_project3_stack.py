@@ -79,7 +79,7 @@ class AdeelProject3Stack(cdk.Stack):
          ############################## Alarms on cloud watch ###############################
         
         Url_Monitor = bo('adeelskipq','urls.json').bucket_as_list()
-        #links = dynamo_RW.ReadFromTable(constants.URLS_TABLE_NAME)
+        links = dynamo_RW.ReadFromTable(constants.URLS_TABLE_NAME)
         b=1
         for url in Url_Monitor:
             
