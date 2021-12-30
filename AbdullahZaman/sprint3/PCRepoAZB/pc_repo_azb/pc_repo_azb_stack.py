@@ -42,6 +42,7 @@ class PcRepoAzbStack1(cdk.Stack):
         #******************** SPRINT 3 DYNAMO TABLE ****************************
         sprint3_dynamo.create_sprint3_table()
         sprint3_dynamo.putting_sprint3_data()
+        sprint3_lambda = self.create_lambda("sprint3Lambda", "./resources", "sprintt3_lambda.lambda_handler", lambda_role)
         
         #sprint3_lambda = self.create_lambda("Sprin3Lambda", "./resources", "sprint3_table2.lambda_handler", lambda_role)
         #sprint3_table = self.create_table("AZBsprint3", "URL_ADDRESS")
