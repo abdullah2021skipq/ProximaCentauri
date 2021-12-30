@@ -38,9 +38,9 @@ class AdeelProject3Stack(cdk.Stack):
         lambda_target = targets_.LambdaFunction(handler = WH_lamda)
         our_rule = event_.Rule(self, id = "MonitorWebHealthMAtrix",enabled = True, schedule= lambda_schedule,targets = [lambda_target] )
         
-         ############################## Creating Dynamo table and giving it Premission ###############################
          
-        # backend is of type Function
+         ################################## creating table for urls to read from###########
+        
         urls_table=self.create_table(id='Urls',
         key=db.Attribute(name="Links", type=db.AttributeType.STRING))
         db_lambda_role = self.create_db_lambda_role()
@@ -48,27 +48,55 @@ class AdeelProject3Stack(cdk.Stack):
                       "./resources1/",'db_s3_lambda.lambda_handler',db_lambda_role)
         
         
+        ##################################### Creating invoke source for lambda file ############
+        
         bucket = s3.Bucket(self, "BucketForURLs")
         s3_db_lamda.add_event_source(sources_.S3EventSource(bucket,
         events=[s3.EventType.OBJECT_CREATED],
         filters=[s3.NotificationKeyFilter(suffix=".json")]
         ))
         
+        ########## Givivng urls table full access and passing its name to different lambdas #######
+        
         urls_table.grant_full_access(s3_db_lamda)
         s3_db_lamda.add_environment(key = 'table_name', value = constants.URLS_TABLE_NAME)
         WH_lamda.add_environment(key = 'table_name', value = constants.URLS_TABLE_NAME)
         
-        #apigateway.LambdaRestApi(self, "myapi",
-        #handler=WH_lamda
-        #)
+        
+        ############# Crreating Api gate way lambda and passing table name to it ############
         
         
+        api_lamda = self.create_lambda('ApiHellammbda',
+                      "./resources1/",'api_lambda.lambda_handler',db_lambda_role)
+        api_lamda.add_environment(key = 'table_name', value = constants.URLS_TABLE_NAME)
+        
+        
+        ################################# creating API gateway ###################
+        
+        
+        api_lamda.grant_invoke( aws_iam.ServicePrincipal("apigateway.amazonaws.com"))
+        urls_table.grant_read_write_data(api_lamda) 
+        
+        #Create API gateway
+        api = apigateway.LambdaRestApi(self, "Adeel_API_gateway",
+        handler= api_lamda
+        )
+        
+        items = api.root.add_resource("items")
+        items.add_method("GET") # GET /items
+        items.add_method("PUT") #  Allowed methods: ANY,OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD POST /items
+        items.add_method("DELETE")
+        
+        
+        ############################## Creating Dynamo table and giving it Premission ###############################
+         
          
         dynamo_table=self.create_table(id='BDtable',
         key=db.Attribute(name="Timestamp", type=db.AttributeType.STRING))
         db_lamda = self.create_lambda('secondHellammbda',"./resources1/",'dynamo_lambda.lambda_handler',db_lambda_role)
         dynamo_table.grant_full_access(db_lamda)
         db_lamda.add_environment('table_name', dynamo_table.table_name)
+        
         
          ############################## Subscriptions ###############################
         
