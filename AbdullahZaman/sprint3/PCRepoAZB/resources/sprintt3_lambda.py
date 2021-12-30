@@ -26,8 +26,7 @@ def lambda_handler(event, context):
     if httpMethod == getMethod and path == healthPath:
         response = buildResponse(200)
     
-    return response
-"""    elif httpMethod == getMethod and path == urlPath:
+    elif httpMethod == getMethod and path == urlPath:
         response = getItem(event['queryStringParameters']['URL_ADDRESS'])
     elif httpMethod == getMethod and path == urlsPath:
         response = getItems()
@@ -40,7 +39,9 @@ def lambda_handler(event, context):
         requestBody = json.loads(event['body'])
         response = deleteItem(requestBody['URL_ADDRESS'])
     else:
-        response = buildResponse(404, 'Not Found')  """
+        response = buildResponse(404, 'Not Found')
+    
+    return response
 
 
 def getItem(URL_ADDRESS):
