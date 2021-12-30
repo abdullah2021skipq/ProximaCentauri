@@ -1,9 +1,12 @@
 
-import datetime
+import datetime, os
 import urllib3
 import constants1 as constants
 from cloudwatchm import cloudWatchPutMetric
 from bucket import Bucket as bo   
+import db_ReadWrite_handler as dynamo_RW
+
+
 
 def lambda_handler(events, context):
     
@@ -12,6 +15,9 @@ def lambda_handler(events, context):
     cw = cloudWatchPutMetric();
     Url_Monitor= bo('adeelskipq','urls.json').bucket_as_list()
     print(Url_Monitor)
+    
+    links = dynamo_RW.ReadFromTable(os.getenv('table_name'))
+    print(links)
     
     
      ############################## Availabiity matrix ###############################

@@ -44,7 +44,7 @@ class AdeelProject3Stack(cdk.Stack):
         s3_db_lamda = self.create_lambda('thirdHellammbda',"./resources1/",'db_s3_lambda.lambda_handler',db_lambda_role)
         urls_table.grant_full_access(s3_db_lamda)
         s3_db_lamda.add_environment('table_name', urls_table.table_name)
-        
+        WH_lamda.add_environment('table_name', urls_table.table_name)
         
         #apigateway.LambdaRestApi(self, "myapi",
         #handler=WH_lamda
