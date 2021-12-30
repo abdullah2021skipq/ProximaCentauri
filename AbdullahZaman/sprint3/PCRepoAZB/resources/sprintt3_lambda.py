@@ -1,7 +1,7 @@
 import boto3
 import json
 import logging
-from resources import custom_encoder
+from custom_encoder import CustomEncoder
 
 
 
@@ -135,5 +135,5 @@ def buildResponse(statusCode, body=None):
         }
     }
     if body is not None:
-        response['body'] = json.dumps(body, cls=custom_encoder.CustomEncoder)
+        response['body'] = json.dumps(body, cls=CustomEncoder)
     return response
