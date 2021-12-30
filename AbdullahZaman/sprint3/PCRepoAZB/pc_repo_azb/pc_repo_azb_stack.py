@@ -43,7 +43,7 @@ class PcRepoAzbStack1(cdk.Stack):
         sprint3_lambda = self.create_lambda("Sprin3Lambda", "./resources", "sprint3_table2.lambda_handler", lambda_role)
         sprint3_table = self.create_table("AZBsprint3", "URL_ADDRESS")
         sprint3_table.grant_read_write_data(sprint3_lambda)
-        sprint3_lambda.add_environment('tableName',sprint3_table.table_name)
+        #sprint3_lambda.add_environment('tableName',sprint3_table.table_name)
         #sprint3_dynamo.create_sprint3_table()
         #sprint3_dynamo.putting_sprint3_data()
         
