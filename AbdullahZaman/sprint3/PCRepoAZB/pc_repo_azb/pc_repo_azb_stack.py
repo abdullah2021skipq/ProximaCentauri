@@ -9,7 +9,8 @@ from aws_cdk import (
     aws_sns_subscriptions as subscriptions_,
     aws_cloudwatch_actions as actions_,
     aws_dynamodb as db,
-    aws_codedeploy as codedeploy
+    aws_codedeploy as codedeploy,
+    aws_apigateway as gateway
 )
 from resources import constants as constants
 from resources import s3bucket
@@ -43,11 +44,17 @@ class PcRepoAzbStack1(cdk.Stack):
         sprint3_dynamo.create_sprint3_table()
         sprint3_dynamo.putting_sprint3_data()
         sprint3_lambda = self.create_lambda("sprint3Lambda", "./resources", "sprintt3_lambda.lambda_handler", lambda_role)
-        
-        #sprint3_lambda = self.create_lambda("Sprin3Lambda", "./resources", "sprint3_table2.lambda_handler", lambda_role)
-        #sprint3_table = self.create_table("AZBsprint3", "URL_ADDRESS")
-        #sprint3_table.grant_read_write_data(sprint3_lambda)
-        #sprint3_lambda.add_environment('tableName',sprint3_table.table_name)
+        # Making an api gateway
+        api = self.create_gateway('AzbApi',sprint3_lambda)
+        api_resource1 = api.root.add_resource("health")
+        api_resource1.add_method("GET") # GET /health
+        api_resource2 = api.root.add_resource("url")
+        api_resource2.add_method("GET")
+        api_resource2.add_method("POST")
+        api_resource2.add_method("DELETE")
+        api_resource2.add_method("PATCH")
+        api_resource3 = api.root.add_resource("urls")
+        api_resource3.add_method("GET")
         
         # We define the schedule, target and the rule for our lambda
         
@@ -125,6 +132,10 @@ class PcRepoAzbStack1(cdk.Stack):
                 aws_iam.ManagedPolicy.from_aws_managed_policy_name('IAMFullAccess'),
                 aws_iam.ManagedPolicy.from_aws_managed_policy_name('AmazonS3FullAccess'),
                 aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSLambdaInvocation-DynamoDB"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonAPIGatewayAdministrator"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonAPIGatewayInvokeFullAccess"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonAPIGatewayPushToCloudWatchLogs"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("APIGatewayServiceRolePolicy"),
                 aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonDynamoDBFullAccess")
                 
                 ])
@@ -162,5 +173,9 @@ class PcRepoAzbStack1(cdk.Stack):
                                 code = lambda_.Code.asset(asset),
                                 role=role,
     			                    )
-    			                    
+    
+    def create_gateway(self, name, handler):
+        return gateway.LambdaRestApi(self, id=name, handler=handler,
+                                    proxy=False
+        )
     			         

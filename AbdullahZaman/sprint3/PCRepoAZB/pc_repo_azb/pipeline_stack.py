@@ -78,8 +78,12 @@ class PipelineStack(core.Stack):
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AwsCloudFormationFullAccess"),
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess"),
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSCodePipeline_FullAccess"),
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonAPIGatewayAdministrator"),
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonAPIGatewayInvokeFullAccess"),
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonAPIGatewayPushToCloudWatchLogs"),
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name("APIGatewayServiceRolePolicy"),
             #aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSLambdaInvocation-DynamoDB"),
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3FullAccess")
             ])
-        return role 
+        return role
         
