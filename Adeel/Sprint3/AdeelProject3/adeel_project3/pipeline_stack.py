@@ -64,13 +64,13 @@ class PipelineStack(core.Stack):
         
         
         def createrole(self):
-        role=aws_iam.Role(self,"pipeline-role",
-        assumed_by=aws_iam.CompositePrincipal(
+            role=aws_iam.Role(self,"pipeline-role",
+            assumed_by=aws_iam.CompositePrincipal(
             aws_iam.ServicePrincipal("lambda.amazonaws.com"),
             aws_iam.ServicePrincipal("sns.amazonaws.com"),
             aws_iam.ServicePrincipal('codebuild.amazonaws.com')
             ),
-        managed_policies=[
+            managed_policies=[
             aws_iam.ManagedPolicy.from_aws_managed_policy_name('service-role/AWSLambdaBasicExecutionRole'),
             aws_iam.ManagedPolicy.from_aws_managed_policy_name('CloudWatchFullAccess'),
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonDynamoDBFullAccess"),
