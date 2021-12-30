@@ -2,12 +2,15 @@
 from aws_cdk import core
 from aws_cdk import aws_codepipeline_actions as cpactions
 from aws_cdk import pipelines
+from aws_cdk import aws_iam
 from adeel_project3.adeel_stage import AdeelStage
 
 class PipelineStack(core.Stack):
 
     def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
+        
+        
         
         ############################## Pipelines Source ###############################
     
@@ -19,9 +22,12 @@ class PipelineStack(core.Stack):
         ############################## Pipelines built ###############################
         
         
-        synth = pipelines.ShellStep('synth',input = source,
+        pipelineroles = self.createrole()
+        
+        synth = pipelines.CodeBuildStep('synth',input = source,
         commands=["cd Adeel/Sprint3/AdeelProject3","pip install -r requirements.txt" , "npm install -g aws-cdk","cdk synth"],
-        primary_output_directory = "Adeel/Sprint3/AdeelProject3/cdk.out")
+        primary_output_directory = "Adeel/Sprint3/AdeelProject3/cdk.out",
+        role = pipelineroles)
         
         ############################## Pipelines update ###############################
         
@@ -53,3 +59,24 @@ class PipelineStack(core.Stack):
     
         pipeline.add_stage(prod ,
         pre = [pipelines.ManualApprovalStep("PromoteToProd")])
+        
+        
+        
+        
+        def createrole(self):
+        role=aws_iam.Role(self,"pipeline-role",
+        assumed_by=aws_iam.CompositePrincipal(
+            aws_iam.ServicePrincipal("lambda.amazonaws.com"),
+            aws_iam.ServicePrincipal("sns.amazonaws.com"),
+            aws_iam.ServicePrincipal('codebuild.amazonaws.com')
+            ),
+        managed_policies=[
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name('service-role/AWSLambdaBasicExecutionRole'),
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name('CloudWatchFullAccess'),
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonDynamoDBFullAccess"),
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AwsCloudFormationFullAccess"),
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess"),
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSCodePipeline_FullAccess"),
+            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3FullAccess")
+            ])
+        return role
