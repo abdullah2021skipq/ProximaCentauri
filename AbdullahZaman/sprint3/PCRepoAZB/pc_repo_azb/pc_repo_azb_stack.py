@@ -123,6 +123,9 @@ class PcRepoAzbStack1(cdk.Stack):
                 aws_iam.ManagedPolicy.from_aws_managed_policy_name('CloudWatchFullAccess'),
                 aws_iam.ManagedPolicy.from_aws_managed_policy_name('IAMFullAccess'),
                 aws_iam.ManagedPolicy.from_aws_managed_policy_name('AmazonS3FullAccess'),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSLambdaInvocation-DynamoDB"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonDynamoDBFullAccess")
+                
                 ])
         return lambdaRole
     """    
