@@ -4,7 +4,6 @@ import logging
 from custom_encoder import CustomEncoder
 
 
-
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
