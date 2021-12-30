@@ -31,7 +31,7 @@ def lambda_handler(event, context):
     elif httpMethod == getMethod and path == urlsPath:
         response = getItems()
     elif httpMethod == postMethod and path == urlPath:
-        response == saveItem(json.loads(event['body']))
+        response = saveItem(json.loads(event['body']))
     elif httpMethod == patchMethod and path == urlPath:
         requestBody = json.loads(event['body'])
         response = modifyItem(requestBody['URL_ADDRESS'],requestBody['updateKey'], requestBody['updateValue'])
