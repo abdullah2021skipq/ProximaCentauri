@@ -78,7 +78,7 @@ class PipelineStack(core.Stack):
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AwsCloudFormationFullAccess"),
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess"),
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSCodePipeline_FullAccess"),
-            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSLambdaInvocation-DynamoDB"),
+            #aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSLambdaInvocation-DynamoDB"),
             aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3FullAccess")
             ])
         return role 
