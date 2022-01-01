@@ -1,25 +1,33 @@
-Clone
+# Sprint 2
 
-First clone all the files from git hub repository using this command.
+**project tasks**
+* Creating a pipeline for the Sprint1
+* addingdifferent stage of deployment in pipeline
+* Adding unit tests in these stages
+* Adding manual choices for the user
 
->>>git clone https://github.com/adeel2021skipq/ProximaCentauri.git
+## Clone
 
-Go to project directory
+**First clone all the files from git hub repository using this command.**
 
->>>cd ProximaCentauri/Adeel/Sprint2/adeeldynamoDB
+> git clone https://github.com/adeel2021skipq/ProximaCentauri.git
 
-Virtual environment
+**Go to project directory**
 
-Go to virtual environment using command
+> cd ProximaCentauri/Adeel/Sprint2/adeeldynamoDB
 
->>>source .venv/bin/activate
+## Virtual environment
 
-Bootstrap
+**Go to virtual environment using command**
 
-Bootstrap the code using that command
+> source .venv/bin/activate
 
->>>cdk bootstrap aws://315997497220/us-east-2 --qualifier adeel123 --toolkit-stack-name adtoolkit
+## Bootstrap
 
-Deploy
+**Bootstrap the code using that command**
 
->>>cdk deploy AdeelPipelineStack3
+> cdk bootstrap aws://315997497220/us-east-2 --qualifier adeel123 --toolkit-stack-name adtoolkit
+
+## Deploy
+
+> cdk deploy AdeelPipelineStack3
