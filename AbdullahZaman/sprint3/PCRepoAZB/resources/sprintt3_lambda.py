@@ -95,7 +95,7 @@ def modifyItem(URL_ADDRESS, updateValue):
                         },
                         #UpdateExpression='set %s = :value' % updateKey,
                         AttributeUpdates={
-                                ':value':updateValue
+                                ':value': {"S" :updateValue}
                         },
                         #ReturnValues='UPDATED_NEW'
         )
