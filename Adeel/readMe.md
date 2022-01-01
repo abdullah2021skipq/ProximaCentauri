@@ -1,35 +1,36 @@
-#Sprint 1
+# Sprint 1
 
 **Project tasks**
-*First create a greeting Lambda
-*Add Latency and Availability functions to lambda
-*Setting Alarms on these values in cloud watch
-*create a dynamo table and store values there
-*Upload a S3 bucket and set alarms for multiple urls
 
-##Setting up the environment
+* First create a greeting Lambda
+* Add Latency and Availability functions to lambda
+* Setting Alarms on these values in cloud watch
+* create a dynamo table and store values there
+* Upload a S3 bucket and set alarms for multiple urls
+
+## Setting up the environment
 
 **First check if your python version is up to date using**
 
->python --version
+> python --version
 
 **If not command**
 
->vim /bin/bashrc
+> vim /bin/bashrc
 
 **Go into write by pressing i.Add a path for python3**
 
-Alias python=’/usr/bin/python3’
+> Alias python=’/usr/bin/python3’
 
 **Press esc**
 
 **Enter**
 
->:w!
+> :w!
 
 **To save and than**
 
->:q!
+> :q!
 
 **To exit**
 
@@ -37,9 +38,9 @@ Alias python=’/usr/bin/python3’
 
 **Check aws version if its not updated than update it.**
 
->curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+> curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 
->unzip awscliv2.zip
+> unzip awscliv2.zip
 
 **Than go to related directory**
 
@@ -47,32 +48,32 @@ Alias python=’/usr/bin/python3’
 
 **Go to virtual environment**
 
->source .venv/bin/activate
+> source .venv/bin/activate
 
-##Installing Required Libraries
+## Installing Required Libraries
 
-After that npm  install cdk
+**After that npm  install cdk**
 
->npm install -g aws-cdk
+> npm install -g aws-cdk
 
->nvm install v16.3.0 && nvm use 16.3.0 && nvm alias default v16.3.0
+> nvm install v16.3.0 && nvm use 16.3.0 && nvm alias default v16.3.0
 
->npm install -g aws-cdk
+> npm install -g aws-cdk
 
->export PATH=$PATH:$(npm get prefix)/bin
+> export PATH=$PATH:$(npm get prefix)/bin
 
->python -m pip install aws-cdk.aws-s3 aws-cdk.aws-lambda
+> python -m pip install aws-cdk.aws-s3 aws-cdk.aws-lambda
 
-Install requirements
+**Install requirements**
 
->python3 -m pip install -r requirements.txt
+> python3 -m pip install -r requirements.txt
 
-##Deployment
+## Deployment
 
 **After this synth the file**
 
->cdk synth
+> cdk synth
 
 **Than deploy**
 
->cdk deploy
+> cdk deploy
