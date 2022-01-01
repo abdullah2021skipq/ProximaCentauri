@@ -89,20 +89,17 @@ def saveItem(requestBody):
 
 def modifyItem(URL_ADDRESS, updateValue):
     try:
-        response = table.update_item(
-                        Key={
+        table.put_item(Item=updateValue)
+        response = table.delete_item(
+                    Key={
                         'URL_ADDRESS': URL_ADDRESS
-                        },
-                        #UpdateExpression='set %s = :value' % updateKey,
-                        AttributeUpdates={
-                                ':value': {"S" :updateValue}
-                        },
-                        #ReturnValues='UPDATED_NEW'
+                    },
+                    ReturnValues='ALL_OLD'
         )
         body = {
-            'Operation': 'UPDATE',
+            'Operation': 'DELETE',
             'Message': 'SUCCESS',
-            'UpdatedAttributes': response
+            'deletedItem': response
         }
         return buildResponse(200, body)
     except:
