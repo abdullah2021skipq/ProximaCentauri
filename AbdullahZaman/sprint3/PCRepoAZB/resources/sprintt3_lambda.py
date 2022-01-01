@@ -34,7 +34,7 @@ def lambda_handler(event, context):
         response = saveItem(json.loads(event['body']))
     elif httpMethod == patchMethod and path == urlPath:
         requestBody = json.loads(event['body'])
-        response = modifyItem(requestBody['URL_ADDRESS'],requestBody['updateKey'], requestBody['updateValue'])
+        response = modifyItem(requestBody['URL_ADDRESS'],requestBody['updateValue'])
     elif httpMethod == deleteMethod and path == urlPath:
         requestBody = json.loads(event['body'])
         response = deleteItem(requestBody['URL_ADDRESS'])
@@ -87,17 +87,17 @@ def saveItem(requestBody):
     except:
         logger.exception('Sprint3 saveItem() Exception')
 
-def modifyItem(URL_ADDRESS, updateKey, updateValue):
+def modifyItem(URL_ADDRESS, updateValue):
     try:
         response = table.update_item(
                         Key={
                         'URL_ADDRESS': URL_ADDRESS
                         },
-                        UpdateExpression='set %s = :value' % updateKey,
-                        ExpressionAttributeValues={
+                        #UpdateExpression='set %s = :value' % updateKey,
+                        AttributeUpdates={
                                 ':value':updateValue
                         },
-                        ReturnValues='UPDATED_NEW'
+                        #ReturnValues='UPDATED_NEW'
         )
         body = {
             'Operation': 'UPDATE',
