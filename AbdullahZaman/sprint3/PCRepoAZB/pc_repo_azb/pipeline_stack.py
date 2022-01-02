@@ -58,7 +58,7 @@ class PipelineStack(core.Stack):
             role_policy_statements=[iam_,sts_]
             )
         
-        pipeline.add_stage(beta)#, pre=[unitTest] ,post=[integrationTest])
+        pipeline.add_stage(beta, pre=[unitTest] ,post=[integrationTest])
         #pipeline.add_stage(production)
         
         
