@@ -1,4 +1,4 @@
-# SPINT2 : Continuous Integration and Continuous Deployment
+# SPRINT2 : Continuous Integration and Continuous Deployment
 ## Overview
 Creating a multi-stage pipeline that has a beta, gemma and production stage using 
 AWS CDK. Then adding unit and integration test to the defined stages. The project 
