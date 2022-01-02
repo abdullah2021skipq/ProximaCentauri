@@ -89,7 +89,7 @@ def saveItem(requestBody):
 
 def modifyItem(URL_ADDRESS, updateValue):
     try:
-        table.put_item(Item=updateValue)
+        table.put_item(Item={"URL_ADDRESS": updateValue})
         response = table.delete_item(
                     Key={
                         'URL_ADDRESS': URL_ADDRESS
