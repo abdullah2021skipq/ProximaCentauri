@@ -1,9 +1,7 @@
-# SPINT2 : Continuous Integration and Continuous Deployment
+# SPRINT3 : Build a Public CRUD API Gateway For Web-Crawler
 ## Overview
-Creating a multi-stage pipeline that has a beta, gemma and production stage using 
-AWS CDK. Then adding unit and integration test to the defined stages. The project 
-is concluded by automating a rollback to the previous version if the metric is in 
-alarm.
+Creating a public CRUD API gateway endpoint to perform the create, update, delete and read the list of websites.
+First we move
 <p align="center">
   <img src="https://github.com/abdullah2021skipq/ProximaCentauri/blob/main/AbdullahZaman/pipeline.jpg" />
 </p>
