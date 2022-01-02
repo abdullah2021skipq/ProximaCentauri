@@ -78,9 +78,9 @@ class SprintThreeProjStack(cdk.Stack):
         ##                                          Create Table for holding values                                        ##
         #####################################################################################################################
         
-        api_table = db.Table(self, id = "SprintThreeAPI_Table", table_name="SprintThreeAPI_Table",
+        api_table = db.Table(self, id = "SprintThreeAPI_Table",
                             billing_mode=db.BillingMode.PAY_PER_REQUEST, 
-                            partition_key=db.Attribute(name="Name", type=db.AttributeType.STRING))
+                            partition_key=db.Attribute(name="URL", type=db.AttributeType.STRING))
                             
         api_table.grant_full_access(API_Lambda)
         API_Lambda.add_environment('api_table_name', api_table.table_name)
