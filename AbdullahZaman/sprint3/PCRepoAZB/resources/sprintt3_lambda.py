@@ -25,7 +25,6 @@ def lambda_handler(event, context):
     path = event['path']
     if httpMethod == getMethod and path == healthPath:
         response = buildResponse(200)
-    
     elif httpMethod == getMethod and path == urlPath:
         response = getItem(event['queryStringParameters']['URL_ADDRESS'])
     elif httpMethod == getMethod and path == urlsPath:
