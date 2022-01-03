@@ -1,9 +1,11 @@
 # SPRINT3 : Build a Public CRUD API Gateway For Web-Crawler
 ## Overview
-Creating a public CRUD API gateway endpoint to perform the create, update, delete and read the list of websites.
-First we move
+Creating a public CRUD API gateway endpoint to perform the create, update, delete and read the list of websites. To achieve this task: 
+1. First we move the json file containing the predefined URLs from the S3 bucket to a DynamoDB database. 
+2. Then we implement the CRUD REST commands on the DynamoDB entries.
+3. After that we extend the tests in each stage to cover the CRUD operations.
 <p align="center">
-  <img src="https://github.com/abdullah2021skipq/ProximaCentauri/blob/main/AbdullahZaman/pipeline.jpg" />
+  <img src="https://github.com/abdullah2021skipq/ProximaCentauri/blob/main/AbdullahZaman/image.png" />
 </p>
 
 ## AWS Services Used
