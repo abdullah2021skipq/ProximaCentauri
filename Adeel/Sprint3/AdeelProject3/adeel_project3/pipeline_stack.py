@@ -51,14 +51,14 @@ class PipelineStack(core.Stack):
  
         unit_test = pipelines.CodeBuildStep('unit_test',
         commands=["cd Adeel/Sprint3/AdeelProject3","pip install -r requirements.txt" ,
-        "pytest unittests"])
+        "pytest unittests"],role = pipelineroles)
         
         
         ############################## integ test ###############################
         
         intg_test = pipelines.CodeBuildStep('integ_test',
         commands=["cd Adeel/Sprint3/AdeelProject3","pip install -r requirements.txt" ,
-        "pytest integtests"])
+        "pytest integtests"],role = pipelineroles)
 
          ############################## adding stages ###############################
         
