@@ -48,14 +48,21 @@ class PipelineStack(core.Stack):
         })
         
          ############################## unit test ###############################
-        '''' 
-        unit_test = pipelines.ShellStep('unit_test',
+ 
+        unit_test = pipelines.CodeBuildStep('unit_test',
         commands=["cd Adeel/Sprint3/AdeelProject3","pip install -r requirements.txt" ,
-        "pytest unittests","pytest integtests"])
-        '''
+        "pytest unittests"])
+        
+        
+        ############################## integ test ###############################
+        
+        intg_test = pipelines.CodeBuildStep('integ_test',
+        commands=["cd Adeel/Sprint3/AdeelProject3","pip install -r requirements.txt" ,
+        "pytest integtests"])
+
          ############################## adding stages ###############################
         
-        pipeline.add_stage(beta) #pre = [unit_test])
+        pipeline.add_stage(beta , pre = [unit_test] , post = [intg_test])
     
         pipeline.add_stage(prod ,
         pre = [pipelines.ManualApprovalStep("PromoteToProd")])
