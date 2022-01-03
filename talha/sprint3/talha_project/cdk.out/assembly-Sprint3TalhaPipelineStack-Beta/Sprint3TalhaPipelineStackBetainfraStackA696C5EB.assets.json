@@ -1,0 +1,34 @@
+{
+  "version": "15.0.0",
+  "files": {
+    "4bc7e8e50557600b5df30a26e168edcce445c0a79c446ae476ed76528b429f0b": {
+      "source": {
+        "path": "../asset.4bc7e8e50557600b5df30a26e168edcce445c0a79c446ae476ed76528b429f0b",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "315997497220-us-east-2": {
+          "bucketName": "cdk-mtalhas-assets-315997497220-us-east-2",
+          "objectKey": "4bc7e8e50557600b5df30a26e168edcce445c0a79c446ae476ed76528b429f0b.zip",
+          "region": "us-east-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::315997497220:role/cdk-mtalhas-file-publishing-role-315997497220-us-east-2"
+        }
+      }
+    },
+    "fbec63dce41331858b0a5067d8382bf90808c75026d260c4ec8db7fbd1cbd596": {
+      "source": {
+        "path": "Sprint3TalhaPipelineStackBetainfraStackA696C5EB.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "315997497220-us-east-2": {
+          "bucketName": "cdk-mtalhas-assets-315997497220-us-east-2",
+          "objectKey": "fbec63dce41331858b0a5067d8382bf90808c75026d260c4ec8db7fbd1cbd596.json",
+          "region": "us-east-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::315997497220:role/cdk-mtalhas-file-publishing-role-315997497220-us-east-2"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
