@@ -33,7 +33,7 @@ To get this repo up and running follow these steps:
 
 3. (Optional) Bootstrap the environment by running the following command.
 
-     `cdk bootstrap --qualifier "sikandars3" --toolkit-stack-name "sikandartoolkit" --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess 315997497220/us-east-2`
+		`cdk bootstrap --qualifier "sikandars3" --toolkit-stack-name "sikandartoolkit" --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess 3		15997497220/us-east-2`
   
     The `qualifier` and `toolkit-stack-name` are variable parameters, you can change them to whatever you like. If you change qualifier name, change the same in `cdk.json` file
     in the project directory as well.
