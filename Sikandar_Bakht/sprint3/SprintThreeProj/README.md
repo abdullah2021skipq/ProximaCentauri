@@ -1,5 +1,5 @@
 
-# Sprint3: Updating URLs of Health Monitor webcrawler via CRUD operations using REST API
+# Sprint 3: Updating URLs of Health Monitor webcrawler via CRUD operations using REST API
 ## Table of Contents
 
 1. [Project Description](#Project-Description)
@@ -11,7 +11,7 @@
 
 Creating a RESTful API implementing CRUD methods of GET, POST, PUT and DELETE to retrieve URLs from S3 bucket and also adding more urls based on request sent via endpoint request URL. Successfully implemented the API while incorporating the functions from previous sprint.
 
-## Services Covered
+## AWS Services Used
 
 1. AWS Lambda
 2. AWS DynamoDB
