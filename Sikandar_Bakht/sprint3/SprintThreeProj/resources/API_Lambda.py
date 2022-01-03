@@ -185,7 +185,6 @@ def update_url(table_name, url_name, url_to_update, updated_url_name, updated_ur
         except botocore.exceptions.ClientError as e:
         
             if e.response['Error']['Code'] == 'ConditionalCheckFailedException':
-                
-                msg = f'URL: {updated_url} already exists'
+                msg = f'URL: {updated_url} already exists S'
             
     return construct_response(msg)
