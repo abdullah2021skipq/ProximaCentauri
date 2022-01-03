@@ -5,7 +5,7 @@
 1. [Project Summary](#Project Description)
 2. [AWS Services Used](#SAWS Services Used)
 3. [Installation Guide](#Instructions)
-5. [Author](#Author)
+4. [Author](#Author)
 
 ## Project Description
 
@@ -25,22 +25,22 @@ To get this repo up and running follow these steps:
 
 1. cd to your desired folder and run this command in terminal
 	
-	    `git clone https://github.com/Sikandar-Bakht/ProximaCentauri.git`
+	    git clone https://github.com/Sikandar-Bakht/ProximaCentauri.git
 
 2. cd to the project directory using this command:
 
-	   `cd ./ProximaCentauri/Sikandar_Bakht/sprint3/SprintThreeProj`
+	   cd ./ProximaCentauri/Sikandar_Bakht/sprint3/SprintThreeProj
 
 3. (Optional) Bootstrap the environment by running the following command.
 
-		`cdk bootstrap --qualifier "sikandars3" --toolkit-stack-name "sikandartoolkit" --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess 315997497220/us-east-2`
+		cdk bootstrap --qualifier "sikandars3" --toolkit-stack-name "sikandartoolkit" --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess 315997497220/us-east-2
   
     The `qualifier` and `toolkit-stack-name` are variable parameters, you can change them to whatever you like. If you change qualifier name, change the same in `cdk.json` file
     in the project directory as well.
 
 4. In the `./SprintThreeProj` directory, run the following command in terminal:
     
-       `cdk deploy sikandarpipeline`
+       cdk deploy sikandarpipeline
        
 5. Manually approve the prod stage in CodePipeline
        
