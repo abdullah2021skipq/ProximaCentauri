@@ -11,16 +11,17 @@ Creating a public CRUD API gateway endpoint to perform the create, update, delet
 ## AWS Services Used
 1. AWS Pipelines
 2. AWS Codepipeline Actions
-3. AWS events
-4. AWS events target
-5. AWS Lambda
-6. AWS SNS
-7. AWS Cloudwatch
-8. AWS Dynamodb
-9. S3 buckets
+3. AWS API Gateway
+4. AWS events
+5. AWS events target
+6. AWS Lambda
+7. AWS SNS
+8. AWS Cloudwatch
+9. AWS Dynamodb
+10. S3 buckets
 
 ## Project Setup
-To setup the project it is necessary to follow the steps listed below in successsion.
+To setup this project it is required to follow these steps listed below in successsion.
 1. Clone the git repository to your local environment:
 ```
 git clone https://github.com/abdullah2021skipq/ProximaCentauri.git
@@ -47,7 +48,7 @@ cdk bootstrap --qualifier <qualifier_name> --toolkit-stack-name <toolkit_name> a
 ```
 cdk deploy <pipeline_name>
 ```
-
+6. The API can be tested from the console using the AWS API Gateway service.
 ## Troubleshooting Instructions:
 Pull the code to the local repository if any changes are made to the remote repository using:
 ```
