@@ -2,8 +2,8 @@
 # Sprint3: Updating URLs of Health Monitor webcrawler via CRUD operations using REST API
 ## Table of Contents
 
-1. [Project Summary](#Project Description)
-2. [AWS Services Used](#SAWS Services Used)
+1. [Project Desc](#Project-Description)
+2. [AWS-Services-Used](#AWS Services Used)
 3. [Installation Guide](#Instructions)
 4. [Author](#Author)
 
