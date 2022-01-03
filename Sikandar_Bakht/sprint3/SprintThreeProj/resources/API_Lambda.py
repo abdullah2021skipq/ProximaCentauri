@@ -39,8 +39,6 @@ def lambda_handler(event, context):
         
         url_to_update = event['queryStringParameters']['url']
         url_name = event['queryStringParameters']['url_name']
-        #updated_url_name = 'cocacola'
-        #updated_url = 'www.cocacola.com'
         
         body = json.loads(event['body'])
         updated_url_name = body['updated_url_name']
@@ -159,7 +157,7 @@ def update_url(table_name, url_name, url_to_update, updated_url_name, updated_ur
     try:
         table.delete_item (Key = {'URL': url_to_update,
                               },
-                        ConditionExpression=Attr('URL').eq(url_to_update)
+                        ConditionExpression=(Attr('URL').eq(url_to_update) & Attr('URL').ne(updated_url))
                         )
         
     except botocore.exceptions.ClientError as e:
