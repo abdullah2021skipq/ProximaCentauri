@@ -157,7 +157,7 @@ def update_url(table_name, url_name, url_to_update, updated_url_name, updated_ur
     try:
         table.delete_item (Key = {'URL': url_to_update,
                               },
-                        ConditionExpression=(Attr('URL').eq(url_to_update) & Attr('URL').ne(updated_url))
+                        ConditionExpression=Attr('URL').eq(url_to_update)
                         )
         
     except botocore.exceptions.ClientError as e:
@@ -167,7 +167,7 @@ def update_url(table_name, url_name, url_to_update, updated_url_name, updated_ur
             msg = f'URL: {url_to_update} does not exist'
     
     if msg != f'URL: {url_to_update} does not exist':
-        try:
+        
             table.put_item (Item = {'URL': updated_url,
                                     'Name' : updated_url_name
                                   },
@@ -181,11 +181,5 @@ def update_url(table_name, url_name, url_to_update, updated_url_name, updated_ur
                 URL Name: {updated_url_name}
                 URL: {updated_url}
             '''               
-            
-        except botocore.exceptions.ClientError as e:
-        
-            if e.response['Error']['Code'] == 'ConditionalCheckFailedException':
-                
-                msg = f'URL: {updated_url} already exists'
             
     return construct_response(msg)
