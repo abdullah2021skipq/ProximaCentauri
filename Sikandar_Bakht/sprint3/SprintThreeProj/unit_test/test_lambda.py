@@ -21,7 +21,7 @@ def test_table():
     
 def test_iam_roles():
     roles=[resource for resource in template['Resources'].values() if resource['Type']== 'AWS::IAM::Role']
-    assert len(roles)==3
+    assert len(roles)==4
     
 
 def test_cloudwatch_alarms():
