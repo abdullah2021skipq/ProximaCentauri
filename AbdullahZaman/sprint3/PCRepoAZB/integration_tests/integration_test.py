@@ -1,7 +1,18 @@
 import requests
 import pytest
+import os
+import json
 
-url = "https://uy6nl52jga.execute-api.us-east-2.amazonaws.com/prod"
+# Finding the unique ID of API Gateway 
+apis = json.load(os.popen('aws apigateway get-rest-apis'))  # popen runs the cli commands
+apis = apis["items"]
+for dic in apis:
+    if dic["name"] == "AzbApi":
+        api_ID = dic["id"]
+        break
+
+# Creating the URL of the API
+url = "https://"+api_ID+".execute-api.us-east-2.amazonaws.com/prod"
 item = {"URL_ADDRESS": "www.test123.com"}
 item1 = {
 		"URL_ADDRESS": "www.test123.com",

@@ -72,7 +72,6 @@ class PcRepoAzbStack1(cdk.Stack):
         topic.add_subscription(subscriptions_.LambdaSubscription(fn=db_lambda))
         
         
-        #subscriptions_.EmailSubscription("abdullah.zaman.babar.s@skipq.org")
         
         dimension = {"URL" : constants.URL_TO_MONITOR}
         availability_metric = cloudwatch_.Metric(namespace=constants.URL_MONITOR_NAMESPACE,
@@ -140,25 +139,7 @@ class PcRepoAzbStack1(cdk.Stack):
                 
                 ])
         return lambdaRole
-    """    
-        # Create_lambda_role is commented
-    def create_lambda_role(self):
-        lambdaRole=aws_iam.Role(self,"lambda-role",
-        assumed_by=aws_iam.CompositePrincipal(
-            aws_iam.ServicePrincipal("lambda.amazonaws.com"),
-            aws_iam.ServicePrincipal("sns.amazonaws.com")
-            ),
-        managed_policies=[
-            aws_iam.ManagedPolicy.from_aws_managed_policy_name('service-role/AWSLambdaBasicExecutionRole'),
-            aws_iam.ManagedPolicy.from_aws_managed_policy_name('CloudWatchFullAccess'),
-            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonDynamoDBFullAccess"),
-            aws_iam.ManagedPolicy.from_aws_managed_policy_name('IAMFullAccess'),
-            aws_iam.ManagedPolicy.from_aws_managed_policy_name('AmazonS3FullAccess'),
-            aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSNSFullAccess")
-            ])
-        return lambdaRole
-        # Create_lambda_role is commented"""
-    
+
     def create_table(self, t_name, par_key):
         try:
             return db.Table(self, id="Table", table_name=t_name,
