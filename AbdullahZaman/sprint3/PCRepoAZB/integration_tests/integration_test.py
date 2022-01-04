@@ -1,7 +1,7 @@
 import requests
 import pytest
 
-url = "https://axu3piv7b8.execute-api.us-east-2.amazonaws.com/prod"
+url = "https://uy6nl52jga.execute-api.us-east-2.amazonaws.com/prod"
 item = {"URL_ADDRESS": "www.test123.com"}
 item1 = {
 		"URL_ADDRESS": "www.test123.com",
