@@ -22,7 +22,7 @@ class PipelineStack(core.Stack):
         ############################## Pipelines built ###############################
         
         
-        pipelineroles = self.createrole()
+        pipelineroles = self.createrole() # role for pipeline
         
         synth = pipelines.CodeBuildStep('synth',input = source,
         commands=["cd Adeel/Sprint3/AdeelProject3","pip install -r requirements.txt" , "npm install -g aws-cdk","cdk synth"],
@@ -68,7 +68,7 @@ class PipelineStack(core.Stack):
         pre = [pipelines.ManualApprovalStep("PromoteToProd")])
         
         
-        
+        ############################## creating role ###############################
         
     def createrole(self):
         role=aws_iam.Role(self,"pipeline-role",

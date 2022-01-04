@@ -3,6 +3,10 @@ from resources1 import constants1 as constants
 import resources1.db_ReadWrite_handler as dynamo_RW
 
 client = boto3.client('dynamodb')
+
+
+############################## Testing for put method ###############################
+
 def test_ineg_put():
     case = False
     api_put = requests.put('http://2h8y18tiv9.execute-api.us-east-2.amazonaws.com/prod/',data = 'www.test.com')
@@ -11,6 +15,11 @@ def test_ineg_put():
         case = True
     assert case
     
+    
+    
+############################## testing for delete method ###############################
+
+    
 def test_ineg_delete():
     case1 = False
     api_delete = requests.delete('http://2h8y18tiv9.execute-api.us-east-2.amazonaws.com/prod/',data = 'www.test.com')
@@ -18,6 +27,10 @@ def test_ineg_delete():
     if 'www.test.com' not in links:
         case1 = True
     assert case1
+    
+    
+    
+    ############################## testing for get method ###############################
 
 ''''
 def test_ineg_get():
