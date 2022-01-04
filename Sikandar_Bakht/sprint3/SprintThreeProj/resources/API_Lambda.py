@@ -55,7 +55,7 @@ def lambda_handler(event, context):
     else:
         print(event)
         response = {
-                    "statusCode":200,
+                    "statusCode":300,
                     "body": "request failed"
                     }
    
@@ -69,7 +69,21 @@ def construct_response(msg):
                }
     return response
 
+
 def bucket_to_table(bucket_name, object_key, table_name):
+    '''
+    
+    RESPONSE OF LOADING URLS FROM BUCKET
+    
+    inputs:
+    bucket_name (str): Name of S3 bucket_to_table
+    object_key (str): Name of object file in S3 bucket_to_table
+    table_name (str): name of table
+    
+    returns: 
+    (dict) contains status code and a message
+    
+    '''
     
     URLS = sb(bucket_name).load(object_key)
     K=list(URLS['URLS'][0].keys())
@@ -85,8 +99,21 @@ def bucket_to_table(bucket_name, object_key, table_name):
     msg = f"{len(K)} urls added/updated"
     return construct_response(msg)
 
-    
+
+
 def fetch_url(table_name, url):
+    '''
+    
+    RESPONSE OF READING URLS FROM TABLE
+    
+    inputs:
+    url (str): url specified by key
+    table_name (str): name of table
+    
+    returns: 
+    (dict) contains status code and a message
+    
+    '''
     
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table(table_name)
@@ -99,8 +126,22 @@ def fetch_url(table_name, url):
         msg = "Specified URL name does not exist"
     
     return construct_response(msg)
-    
+
+
 def add_url(table_name, url_name, new_url):
+    '''
+    
+    RESPONSE OF ADDING URLS TO TABLE
+    
+    inputs:
+    url_name (str): Name given to a url. 
+    new_url (str): New url to be added to the table
+    table_name (str): name of table
+    
+    returns: 
+    (dict) contains status code and a message
+    
+    '''
     
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table(table_name)
@@ -123,9 +164,23 @@ def add_url(table_name, url_name, new_url):
             msg = f'URL: {new_url} already exists'
             
     return construct_response(msg)
+
     
 def delete_url(table_name, url_name, url_del):
     
+    '''
+    
+    RESPONSE OF UPDATING URLS IN TABLE
+    
+    inputs:
+    url_name (str): Name given to a url.
+    url_del (str): Url to delete from table
+    table_name (str): name of table
+    
+    returns: 
+    (dict) contains status code and a message
+    
+    '''    
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table(table_name)
     
@@ -150,6 +205,22 @@ def delete_url(table_name, url_name, url_del):
     
 def update_url(table_name, url_name, url_to_update, updated_url_name, updated_url):
     
+    '''
+    
+    RESPONSE OF ADDING URLS TO TABLE
+    
+    inputs:
+    url_name (str): Name given to a url. Defaults to 'Unknown'
+    url_to_update (str): Url that needs to be updated
+    updated_url_name (str): Name given to an updated url. Defaults to 'Unknown'
+    updated_url (str): Url that is updated to
+    table_name (str): name of table
+    
+    returns: 
+    (dict) contains status code and a message
+    
+    '''
+
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table(table_name)
     msg = ''

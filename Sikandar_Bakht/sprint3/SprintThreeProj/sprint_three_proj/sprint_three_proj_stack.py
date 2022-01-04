@@ -172,11 +172,12 @@ class SprintThreeProjStack(cdk.Stack):
         #####################################################################################################################
         ##                                      Creating Rollback resources                                                ##
         #####################################################################################################################
-        '''
+        
         alias = lambda_.Alias(self, 
-                            "S2WHLambdaAlias_"+construct_id,
-                            alias_name="SikandarWHLambdaAlias_"+construct_id,
+                            "S2WHLambdaAlias",
+                            alias_name="SikandarWHLambdaAlias",
                             version=WH_Lambda.current_version)
+                            
         WH_Lambda.add_environment('alias_name', alias.alias_name)
     
         rollback_alarm=cloudwatch_.Alarm(self, id="Sikandar_Rollback_Alarm",
@@ -187,15 +188,14 @@ class SprintThreeProjStack(cdk.Stack):
                                         threshold=8200) 
         
         rollback_alarm.add_alarm_action(actions_.SnsAction(topic))
-
+        '''
         cdp_role = self.create_codedeploy_role()
 
         cdp.LambdaDeploymentGroup(self, "WH_LambdaDeploymentGroup",
                                  alias=alias,
                                  deployment_config=cdp.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
                                  alarms=[rollback_alarm], role = cdp_role)
-     
-        '''                         
+        '''
         #####################################################################################################################
         ##                                           Class Method Definitions                                              ##
         #####################################################################################################################
@@ -251,7 +251,7 @@ class SprintThreeProjStack(cdk.Stack):
         ### Creates a lambda function in python3.6
         return lambda_.Function(self, 
         id,
-        handler=handler,  # optional, defaults to 'handler'
+        handler=handler,
         runtime=lambda_.Runtime.PYTHON_3_6,
         code=lambda_.Code.from_asset(asset),
         role=role, timeout=timeout
