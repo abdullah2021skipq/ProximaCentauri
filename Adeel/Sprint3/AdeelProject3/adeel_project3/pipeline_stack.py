@@ -22,7 +22,7 @@ class PipelineStack(core.Stack):
         ############################## Pipelines built ###############################
         
         
-        pipelineroles = self.createrole()
+        pipelineroles = self.createrole() # role for pipeline
         
         synth = pipelines.CodeBuildStep('synth',input = source,
         commands=["cd Adeel/Sprint3/AdeelProject3","pip install -r requirements.txt" , "npm install -g aws-cdk","cdk synth"],
@@ -48,20 +48,27 @@ class PipelineStack(core.Stack):
         })
         
          ############################## unit test ###############################
-        '''' 
-        unit_test = pipelines.ShellStep('unit_test',
+ 
+        unit_test = pipelines.CodeBuildStep('unit_test',
         commands=["cd Adeel/Sprint3/AdeelProject3","pip install -r requirements.txt" ,
-        "pytest unittests","pytest integtests"])
-        '''
+        "pytest unittests"],role = pipelineroles)
+        
+        
+        ############################## integ test ###############################
+        
+        intg_test = pipelines.CodeBuildStep('integ_test',
+        commands=["cd Adeel/Sprint3/AdeelProject3","pip install -r requirements.txt" ,
+        "pytest integtests"],role = pipelineroles)
+
          ############################## adding stages ###############################
         
-        pipeline.add_stage(beta) #pre = [unit_test])
+        pipeline.add_stage(beta , pre = [unit_test] , post = [intg_test])
     
         pipeline.add_stage(prod ,
         pre = [pipelines.ManualApprovalStep("PromoteToProd")])
         
         
-        
+        ############################## creating role ###############################
         
     def createrole(self):
         role=aws_iam.Role(self,"pipeline-role",
