@@ -11,7 +11,7 @@ for dic in apis:
         api_ID = dic["id"]
         break
 
-# Creating the URL of the API
+# Creating the URL of the API Gateway
 url = "https://"+api_ID+".execute-api.us-east-2.amazonaws.com/prod"
 item = {"URL_ADDRESS": "www.test123.com"}
 item1 = {
