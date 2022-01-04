@@ -19,9 +19,10 @@ def test_table():
     tables=[resource for resource in template['Resources'].values() if resource['Type']== 'AWS::DynamoDB::Table']
     assert len(tables)==2
     
-def test_S3_bucket():
-    buckets=[resource for resource in template['Resources'].values() if resource['Type']== 'AWS::S3::Bucket']
-    assert len(buckets)==1
+def test_iam_roles():
+    roles=[resource for resource in template['Resources'].values() if resource['Type']== 'AWS::IAM::Role']
+    assert len(roles)==3
+    
 
 def test_cloudwatch_alarms():
     alarms=[resource for resource in template['Resources'].values() if resource['Type']== 'AWS::CloudWatch::Alarm']

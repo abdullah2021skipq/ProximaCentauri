@@ -264,12 +264,3 @@ class SprintThreeProjStack(cdk.Stack):
         billing_mode=db.BillingMode.PAY_PER_REQUEST, 
         partition_key=part_key )
  
-    def update_table(self, table_name, url_dict):
-        
-        K=list(url_dict['URLS'][0].keys())
-        dynamodb = boto3.resource('dynamodb')
-        table = dynamodb.Table(table_name)
-        for url_name in K:
-            table.put_item(Item = {'Name': url_name, 
-                                    'URL': url_dict['URLS'][0][url_name],
-                                  })
