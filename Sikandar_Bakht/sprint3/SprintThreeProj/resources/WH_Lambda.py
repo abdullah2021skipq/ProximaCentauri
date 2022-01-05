@@ -7,6 +7,8 @@ from S3bucket import S3Bucket as sb
 def lambda_handler(event,context):
     '''handles period lambda, collects metric data and sends it to cloudwatch'''
     print("this is version 3 of wh lambda")
+    
+    
     CW = CloudwatchPutMetric()
     URLS_MONITORED = sb('sikandarbakhtskipq').load('urls_dict.json')
     K=list(URLS_MONITORED['URLS'][0].keys())
@@ -20,10 +22,10 @@ def lambda_handler(event,context):
         ]
     
         avail = get_availibility(URLS_MONITORED['URLS'][0][K[i]])
-        CW.put_data(constants.URL_MONITOR_NAMESPACE, "S2" + constants.URL_MONITOR_NAME_AVAILABILITY, dimensions, avail)
+        CW.put_data(constants.URL_MONITOR_NAMESPACE, "S3" + constants.URL_MONITOR_NAME_AVAILABILITY, dimensions, avail)
     
         latency = get_latency(URLS_MONITORED['URLS'][0][K[i]])
-        CW.put_data(constants.URL_MONITOR_NAMESPACE, "S2" + constants.URL_MONITOR_NAME_LATENCY, dimensions, latency)
+        CW.put_data(constants.URL_MONITOR_NAMESPACE, "S3" + constants.URL_MONITOR_NAME_LATENCY, dimensions, latency)
     
         val_dict={
             "availability": avail,
