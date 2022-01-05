@@ -4,7 +4,7 @@ from aws_cdk import (
     aws_iam ,
     pipelines
     )
-from sprint2.sprint2_stage import Sprint2Stage
+from sprint3.sprint3_stage import Sprint3Stage
 
 class PipelineStack(core.Stack):
     def __init__(self,scope:core.Construct,id:str,**kwargs):
@@ -30,16 +30,14 @@ class PipelineStack(core.Stack):
         pipeline=pipelines.CodePipeline(self,"ShanawarPipeline",pipeline_name="ShanawarAliPipeline",synth=synth)
 
         ############# STEP3: TEST ###############      
-        beta= Sprint2Stage(self,"ShanawarBeta3",
+        beta= Sprint3Stage(self,"ShanawarBeta3",
         env={"account":"315997497220","region":"us-east-2"})
         
-        prod= Sprint2Stage(self,"ShanawarProd3",
+        prod= Sprint3Stage(self,"ShanawarProd3",
         env={"account":"315997497220","region":"us-east-2"})
         
-        """
-        gamma= Sprint2Stage(self,"ShanawarGamma3",
-        env={"account":"315997497220","region":"us-east-2"})
-        
+
+       # gamma= Sprint3Stage(self,"ShanawarGamma3",env={"account":"315997497220","region":"us-east-2"})
 
         unit_test = pipelines.CodeBuildStep(
             'unit_tests',input=source,
@@ -47,7 +45,7 @@ class PipelineStack(core.Stack):
             role=pipelineroles,
             role_policy_statements=[iamPolicy,stsPolicy]
             )
-            
+        """
         integration_test = pipelines.CodeBuildStep(
             'integration_tests',input=source,
             commands=["cd shanawar/sprint3","pip install -r requirements.txt", "npm install -g aws-cdk", "pytest integration_tests"],
@@ -55,10 +53,9 @@ class PipelineStack(core.Stack):
             role_policy_statements=[iamPolicy,stsPolicy]
             )
         """
-        pipeline.add_stage(beta)#, pre=[unit_test],post=[pipelines.ManualApprovalStep("Post-Beta Check")])
-  #      pipeline.add_stage(gamma, pre=[integration_test],post=[pipelines.ManualApprovalStep("Post-Gamma Check")]) 
+        pipeline.add_stage(beta, pre=[unit_test])
     ################# STEP4: PROD ###################    
-        pipeline.add_stage(prod)
+        pipeline.add_stage(prod,pre=[pipelines.ManualApprovalStep("Go to Production")])
         
 ###########################################################################
     def createrole(self):

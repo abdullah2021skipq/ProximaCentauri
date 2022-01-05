@@ -19,7 +19,7 @@ from resources.bucket import Bucket as s
 import resources.read as read
 import os,boto3
 
-class Sprint2Stack(cdk.Stack):
+class Sprint3Stack(cdk.Stack):
 
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
@@ -31,8 +31,7 @@ class Sprint2Stack(cdk.Stack):
         DBLambda = self.create_lambda("DynamoDBLambda","./resources","dynamodb_lambda.lambda_handler",lambda_role) 
         
         
-        ###  S3 Bucket class ### 
-       # bucket = s3.Bucket(self, "shanawarbucket")
+
         ### Class Object ###
        # s3_bucket.create('shanawarbucket')
         s('shanawarbucket','urls.json').store_urls('shanawarbucket')
@@ -48,51 +47,45 @@ class Sprint2Stack(cdk.Stack):
         dbtable.grant_read_write_data(DBLambda)
         DBLambda.add_environment('table_name',dbtable.table_name)
         
-        
-        ################################## TABLE FOR URLS ###########################################
-        
-        urls_table=dynamodb_.Table(self,id='ShanawarUrls',
-        partition_key=dynamodb_.Attribute(name="Links", type=dynamodb_.AttributeType.STRING))
-        ####  S3 to DynamoDB Writer Lambda ######
-        #s3dynamolambda = self.create_lambda('s3todynamo',"./resources",'s3_dynamo_lambda.lambda_handler',lambda_role)
-        apilambda = self.create_lambda('api',"./resources",'api_lambda.lambda_handler',lambda_role)
-        
-
-        #bucket = s3.Bucket(self, "ShanawarBucketForURLs")
-        #s3dynamolambda.add_event_source(sources_.S3EventSource(bucket,events=[s3.EventType.OBJECT_CREATED]))
-        ########## FULL ACCESS TO URLS AND CREATING ENVIRONMENT VARIABLE FOR S3DYNAMO AND WebHealth LAMBDA #########
-        
-        #urls_table.grant_read_write_data(s3dynamolambda)
-        urls_table.grant_read_write_data(WebHealthLambda)
-        #s3dynamolambda.add_environment(key = 'table_name', value =urls_table.table_name )
-        WebHealthLambda.add_environment(key = 'table_name', value = urls_table.table_name)
-        
-        #########################   API #################################
-        myapi=apigateway.LambdaRestApi(self,"SHANAWAR_ALI_API"+ construct_id,handler=apilambda)
-        apilambda.add_environment(key = 'table_name', value = urls_table.table_name)
-        
-        ################################# creating API gateway ###################
-        
-        
-        apilambda.grant_invoke( aws_iam.ServicePrincipal("apigateway.amazonaws.com"))
-        urls_table.grant_read_write_data(apilambda) 
-                
-        items = myapi.root.add_resource("items")
-        items.add_method("GET") # GET /items
-        items.add_method("PUT") #  Allowed methods: ANY,OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD POST /items
-        items.add_method("DELETE")
-
-        ##############################################################################################
-        
         newtopic =sns.Topic(self,"SNS Topic For Web Health by Shanawar")
         # EMAIL SUBSCRIPTION
         newtopic.add_subscription(subscriptions_.EmailSubscription('shanawar.ali.chouhdry.s@skipq.org'))
         # DYNAMODB SUBSCRIPTION
         newtopic.add_subscription(subscriptions_.LambdaSubscription(DBLambda))
         
-         
-        #URLS = read.ReadFromTable(urls_table.table_name)
-        client = boto3.client('dynamodb')
+        
+        ##################################     SPRINT 3   ###########################################
+        ################################## TABLE FOR URLS ###########################################
+        
+        urls_table=dynamodb_.Table(self,id='ShanawarUrls',
+        partition_key=dynamodb_.Attribute(name="Links", type=dynamodb_.AttributeType.STRING))
+        apilambda = self.create_lambda('api',"./resources",'api_lambda.lambda_handler',lambda_role)
+
+        ########## FULL ACCESS TO URLS AND CREATING ENVIRONMENT VARIABLE FOR S3DYNAMO AND WebHealth LAMBDA #########
+        
+        urls_table.grant_read_write_data(WebHealthLambda)
+        WebHealthLambda.add_environment(key = 'table_name', value = urls_table.table_name)
+        
+        #########################   API #################################
+        myapi=apigateway.LambdaRestApi(self,"SHANAWAR_ALI_API",handler=apilambda)
+        apilambda.add_environment(key = 'table_name', value = urls_table.table_name)
+        
+        ######################### creating API gateway ###################
+        apilambda.grant_invoke( aws_iam.ServicePrincipal("apigateway.amazonaws.com"))
+        urls_table.grant_read_write_data(apilambda) 
+                
+        items = myapi.root.add_resource("items")
+     #    Allowed methods: ANY,OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD POST /items
+     
+       # CRUD OPERATIONS
+        items.add_method("PUT") # CREATE: ADD URL TO TABLE
+        items.add_method("GET") # READ: GET ALL URLS FROM TABLE
+        items.add_method("POST") # UPDATE: UPDATE URL IN TABLE
+        items.add_method("DELETE") # DELETE: DELETE URL FROM TABLE
+       
+        ##############################################################################################
+        
+      
         for url in URLS:
              ############################## Availability metrics and alarm for availability ###############################
             #client.put_item(TableName = ,Item={'Links':{'S': url}})
@@ -129,44 +122,12 @@ class Sprint2Stack(cdk.Stack):
             availability_alarm.add_alarm_action(actions_.SnsAction(newtopic))
             latency_alarm.add_alarm_action(actions_.SnsAction(newtopic))
 
-        """ 
-     # AVAILABILITY ALARM    
-        dimenesion= {'URL':constants.URL_to_Monitor} 
-        availability_metric = cloudwatch_.Metric(
-        namespace=constants.URL_Monitor_Namespace,
-        metric_name=constants.URL_Monitor_Name_Availability,
-        dimensions_map=dimenesion,
-        period= cdk.Duration.minutes(1))
-        
-        availability_alarm= cloudwatch_.Alarm(self,
-        id="AvailabilityAlarm",
-        metric= availability_metric,
-        comparison_operator=cloudwatch_.ComparisonOperator.LESS_THAN_THRESHOLD,
-        datapoints_to_alarm=1,
-        evaluation_periods=1,
-        threshold=1)
-        
-     # LATENCY ALARM     
-        dimenesion= {'URL':constants.URL_to_Monitor}
-        Latency_metric = cloudwatch_.Metric(
-        namespace=constants.URL_Monitor_Namespace,
-        metric_name=constants.URL_Monitor_Name_Latency,
-        dimensions_map=dimenesion,
-        period= cdk.Duration.minutes(1))
-        
-        latency_alarm= cloudwatch_.Alarm(self,
-        id="LatencyAlarm",
-        metric= Latency_metric,
-        comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
-        datapoints_to_alarm=1,
-        evaluation_periods=1,
-        threshold=0.25)
-        """
-     
+
+
 #############################################################
         ############ SPRINT 2 CODE ADDITION #######
         # DEFININING ROLLBACK METRIC
-        """
+
         rollback_metric=cloudwatch_.Metric(
         namespace='AWS/Lambda',
         metric_name='Duration',
@@ -180,11 +141,11 @@ class Sprint2Stack(cdk.Stack):
         comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
         datapoints_to_alarm=1,
         evaluation_periods=1,
-        threshold=800) # THRESHOLD IS IN MILLISECONDS
+        threshold=2500) # THRESHOLD IS IN MILLISECONDS
         
         rollback_alarm.add_alarm_action(actions_.SnsAction(newtopic))
         alias = lambda_.Alias(self, "Shanawar_WebHealthLambdaAlias"+construct_id,alias_name= 'Shanawar'+construct_id,version=WebHealthLambda.current_version)#)
-        """
+
         """
         Parameters
         scope (Construct) –
@@ -202,13 +163,13 @@ class Sprint2Stack(cdk.Stack):
         """
         # Linear: Traffic is shifted in equal increments with an equal number of minutes between each increment. 
         # linear options specify the percentage of traffic that's shifted in each increment and the number of minutes between each increment.
-        """
+
         codedeploy.LambdaDeploymentGroup(self, "Shanawar_WebHealthLambda_DeploymentGroup",
         alias=alias,
         deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,   
         alarms=[rollback_alarm]
         )
-        """
+
 ############################################################
  ############ LAMBDA ROLE ##############################       
     
