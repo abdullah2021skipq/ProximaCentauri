@@ -18,3 +18,4 @@ aws-cdk.aws_codedeploy==1.135.0
 aws-cdk.aws_apigateway==1.135.0
 pytest
 boto3
+requests

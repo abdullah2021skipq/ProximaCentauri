@@ -55,7 +55,8 @@ class Sprint3IrfanStack(cdk.Stack):
         #table_name=url_table['"TableDescription']['TableName']
 ####    adding s3bucket event to trigger url_labda       ##########################################################################
         bucket = s3.Bucket(self, "urls3bucket")
-        url_lambda.add_event_source(sources.S3EventSource(bucket,events=[s3.EventType.OBJECT_CREATED],filters=[s3.NotificationKeyFilter(suffix=".json")]))
+        url_lambda.add_event_source(sources.S3EventSource(bucket,
+                          events=[s3.EventType.OBJECT_CREATED],filters=[s3.NotificationKeyFilter(suffix=".json")]))
 
 ####### Adding API GateWay ##########################################################################################################
         apigateway_lambda=self.create_lambda('ApiGateWayLambda', './resources','apigateway_lambda.lambda_handler' ,db_lambda_role)
@@ -72,7 +73,6 @@ class Sprint3IrfanStack(cdk.Stack):
         items.add_method("DELETE") # PUT items
         items.add_method("POST")  #update items
     
-
         
 ##############  reading URL from URL DynamoDB table  ##############################################        
         #

@@ -3,5 +3,4 @@ URL_Aailibilty = "URL_Aailibilty"
 URL_Latency = "URL_Latency"
 threshold = [0.31,0.25,0.25,0.20]
 bucket = "irfanskipq"
-file_name = "URL.json"
-
+file_name = "URLS.json"

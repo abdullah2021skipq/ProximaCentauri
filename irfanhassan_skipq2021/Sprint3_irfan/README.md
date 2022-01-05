@@ -8,7 +8,7 @@
 
 
 ## Project Description
-According to user requirements, As a web admin I created a public CRUD API Gateway for web crawler to create/read/update/delete teh target list containing the list of website/webpages to crawl.  
+According to user requirements, As a web admin I created a public CRUD API Gateway for web crawler to create/read/update/delete the target list containing the list of website/webpages to crawl.  
 
 ## Technologies 
 Project is created with follwoing AWS services

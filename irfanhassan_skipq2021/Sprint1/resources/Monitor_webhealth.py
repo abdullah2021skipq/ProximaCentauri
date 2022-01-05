@@ -7,7 +7,7 @@ from s3bucket_read import s3bucket_read as bucket
 def lambda_handler(event,context):
     value = dict()
     cloudwatch = CloudWatch_PutMetric();
-    list_url=bucket(constant_.bucket,constant_.file_name).bucket_as_list()
+    list_url=bucket().bucket_as_list()
     for url in list_url:
         avail = availabilty_value(url)
         Dimensions=[{'Name': 'URL', 'Value': url}]
