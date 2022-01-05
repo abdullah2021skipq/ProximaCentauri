@@ -4,6 +4,7 @@ import constants as constants
 from cloudwatch_putMetric import CloudWatchPutMetric
 import s3bucket
 import sprint3_dynamo
+from pc_repo_azb import pc_repo_azb_stack
 
 def lambda_handler(events, context):
 	
@@ -12,7 +13,7 @@ def lambda_handler(events, context):
 	values = dict()
 	cw = CloudWatchPutMetric() # It puts avail and latency metrics on cloud watch Line 19. imported from cloudwatch_putMetric.py
 	
-	for Url in dynamo_sprint3_Url_list:
+	for Url in pc_repo_azb_stack.db_lambda_sprint3:
 		avail = get_availability(Url)	# Line 31
 		dimensions = [
 			{"Name": "URL", "Value": Url}

@@ -42,7 +42,7 @@ class PcRepoAzbStack1(cdk.Stack):
         hw_lambda = self.create_lambda("FirstHWLambda", "./resources", "webhealth_lambda.lambda_handler", lambda_role)
         # Stores the messageID and timestamp in the database
         db_lambda = self.create_lambda("DynamoLambda", "./resources", "dynamodb_lambda.lambda_handler", lambda_role)
-        
+        db_lambda_sprint3= self.create_lambda("DynamoLambdasprint3", "./resources", "sprint3_dynamodb_lambda.lambda_handler", lambda_role)
         #******************** SPRINT 3 DYNAMO TABLE ****************************
         sprint3_dynamo.create_sprint3_table()   # Creating a new table to store urls from bucket
         sprint3_dynamo.putting_sprint3_data()   # Storing the urls from bucket to the table
@@ -84,7 +84,7 @@ class PcRepoAzbStack1(cdk.Stack):
         topic.add_subscription(subscriptions_.LambdaSubscription(fn=db_lambda))
         
         
-        for Url in dynamo_sprint3_url_list:
+        for Url in db_lambda_sprint3:
         
             dimension = {"URL" : Url}
             # This availability metric is used to generate alarm
