@@ -32,13 +32,13 @@ class PcRepoAzbStack1(cdk.Stack):
         ###### Storing the Json file from current environment in the bucket###########
         s3bucket.store_file("abdullahzamanbucket")
         # It reads Urls from bucket and gives a list of urls
-        URL_list = s3bucket.read_file("abdullahzamanbucket", "urlsList.json")   # Used in line 86 
+        URL_list = s3bucket.read_file("abdullahzamanbucket", "urlsList.json")   # Used in line 87 if we want to read from bucket 
         print(URL_list)
 
         
         ############# WEB HEALTH and DynamoDB Lambdas ##############
-        lambda_role = self.create_lambda_role()     # To allow cloudwatch and lambda access Line 145. Line 42,44
-        # Web health lambda return a dictionary of avilability and latency values. Line 67
+        lambda_role = self.create_lambda_role()     # To allow cloudwatch and lambda access Line 146. Line 42,44
+        # Web health lambda return a dictionary of avilability and latency values. Line 68
         hw_lambda = self.create_lambda("FirstHWLambda", "./resources", "webhealth_lambda.lambda_handler", lambda_role)
         # Stores the messageID and timestamp in the database
         db_lambda = self.create_lambda("DynamoLambda", "./resources", "dynamodb_lambda.lambda_handler", lambda_role)
@@ -46,6 +46,7 @@ class PcRepoAzbStack1(cdk.Stack):
         #******************** SPRINT 3 DYNAMO TABLE ****************************
         sprint3_dynamo.create_sprint3_table()   # Creating a new table to store urls from bucket
         sprint3_dynamo.putting_sprint3_data()   # Storing the urls from bucket to the table
+        dynamo_sprint3_url_list = sprint3_dynamo.getting_sprint3_dynamo_data()
         sprint3_lambda = self.create_lambda("sprint3Lambda", "./resources", "sprintt3_lambda.lambda_handler", lambda_role)
         # Making an api gateway
         api = self.create_gateway('AzbApi',sprint3_lambda)
@@ -62,9 +63,9 @@ class PcRepoAzbStack1(cdk.Stack):
         ############### We define the schedule, target and the rule for our lambda ################
         
         # Schedule: determines when EventBridge runs the rule
-        lambda_schedule = events_.Schedule.rate(cdk.Duration.minutes(1)) # Parameter used in Rule. Line 70
+        lambda_schedule = events_.Schedule.rate(cdk.Duration.minutes(1)) # Parameter used in Rule. Line 71
         # Target: is the recipient of Web health lambda event
-        lambda_target = targets_.LambdaFunction(handler=hw_lambda)       # Parameter used in Rule. Line 70
+        lambda_target = targets_.LambdaFunction(handler=hw_lambda)       # Parameter used in Rule. Line 71
         # Rule: specifies which targets will get our event. variable not used.
         rule = events_.Rule(self, "WebHealth_Invocation", description = "Periodic Lambda", 
                             enabled=True, schedule=lambda_schedule, targets=[lambda_target])
@@ -72,18 +73,18 @@ class PcRepoAzbStack1(cdk.Stack):
         
         
         # Creates a table for store alarms
-        dynamo_table = self.create_table(os.getenv('table_name'), "AlarmDetails")   # Line: 75, 76
+        dynamo_table = self.create_table(os.getenv('table_name'), "AlarmDetails")   # Line: 76, 77
         dynamo_table.grant_read_write_data(db_lambda)
         db_lambda.add_environment('table_name',dynamo_table.table_name) # To give seperate names to tables
         
         # Topic: is a logical access point that acts as a communication channel
-        topic = sns.Topic(self, "WebHealthTopic")   # We add alarm action on this topic. Line 116, 117, 132
+        topic = sns.Topic(self, "WebHealthTopic")   # We add alarm action on this topic. Line 117, 118, 133
         # It sends alarm to the email and dynamodb.
         topic.add_subscription(subscriptions_.EmailSubscription("abdullah.zaman.babar.s@skipq.org"))
         topic.add_subscription(subscriptions_.LambdaSubscription(fn=db_lambda))
         
         
-        for Url in URL_list:
+        for Url in dynamo_sprint3_url_list:
         
             dimension = {"URL" : Url}
             # This availability metric is used to generate alarm
@@ -91,7 +92,7 @@ class PcRepoAzbStack1(cdk.Stack):
                                                 metric_name=constants.URL_MONITOR_NAME_Availability+"_"+Url, 
                                                 dimensions_map=dimension, 
                                                 period=cdk.Duration.minutes(1), label="Availability Metric")
-            # We add alarm action on latency_alarm. Line 116
+            # We add alarm action on latency_alarm. Line 117
             availability_alarm = cloudwatch_.Alarm(self, id="AvailabilityAlarm"+"_"+Url,
                                             metric=availability_metric,
                                             comparison_operator=cloudwatch_.ComparisonOperator.LESS_THAN_THRESHOLD,
@@ -105,7 +106,7 @@ class PcRepoAzbStack1(cdk.Stack):
                                                 dimensions_map=dimension, 
                                                 period=cdk.Duration.minutes(1), label="Latency Metric")
             
-            # We add alarm action on latency_alarm. Line 117
+            # We add alarm action on latency_alarm. Line 118
             latency_alarm = cloudwatch_.Alarm(self, id="LatencyAlarm"+"_"+Url,
                                             metric=latency_metric,
                                             comparison_operator=cloudwatch_.ComparisonOperator.GREATER_THAN_THRESHOLD,
@@ -118,7 +119,7 @@ class PcRepoAzbStack1(cdk.Stack):
     
        
         ############ ROLLBACK to the previous version if an alarm is raised ##################
-        metric_roll = cloudwatch_.Metric(namespace='AWS/Lambda', metric_name='Duration',    # Line 126
+        metric_roll = cloudwatch_.Metric(namespace='AWS/Lambda', metric_name='Duration',    # Line 127
                                         dimensions_map={'FunctionName':hw_lambda.function_name},
                                         period= cdk.Duration.minutes(1))
     
@@ -129,7 +130,7 @@ class PcRepoAzbStack1(cdk.Stack):
                                         evaluation_periods=1,
                                         threshold=2000)         # 3000 ms = 3 sec
         
-        alarm_roll.add_alarm_action(actions_.SnsAction(topic))  # Line 140
+        alarm_roll.add_alarm_action(actions_.SnsAction(topic))  # Line 141
        
         # Alias: is a particular version of a Web health Lambda function. 
         alias = lambda_.Alias(self, "LambdaAlias",alias_name="Lambda",version=hw_lambda.current_version) # Line 138
