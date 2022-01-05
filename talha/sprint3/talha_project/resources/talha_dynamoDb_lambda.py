@@ -16,3 +16,4 @@ def lambda_handler(events, context):
     table_name= os.environ['table_name'] #constants.TABLE_NAME
     db.dynamo_data(table_name,parsed_message, createdDate)
 #constants.TABLE_NAME, 
+#The end

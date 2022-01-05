@@ -34,3 +34,4 @@ def lambda_handler(events, context):
   
  datares={"Response" : msg, "httpMethod": events['httpMethod'], "body": events['body'] }
  return {'statusCode':200 , 'body':json.dumps(datares)}
+############ The end

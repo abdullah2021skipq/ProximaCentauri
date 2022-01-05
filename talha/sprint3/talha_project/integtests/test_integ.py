@@ -6,13 +6,21 @@ from resources import puturlDB as putdb
 BetaURLtable="Beta-infraStack-URLTable1792207E-1E3WEGLZJ0NFU"
 db=putdb.dynamoTablePutURLData()
 
-def test_realtime():
+def test_realtimeput():
     start =datetime.datetime.now()
     api_put_res=requests.put('https://4jd8g9kea3.execute-api.us-east-2.amazonaws.com/prod/', data="dummy.com")
     end=datetime.datetime.now()
     dif=end-start
     latency=round(dif.microseconds * 0.000001,6)
-    assert latency<5
+    assert latency<0.5 #should be less than 500ms
+
+def test_realtimedel():
+    start =datetime.datetime.now()
+    api_put_res=requests.delete('https://4jd8g9kea3.execute-api.us-east-2.amazonaws.com/prod/', data="dummy.com")
+    end=datetime.datetime.now()
+    dif=end-start
+    latency=round(dif.microseconds * 0.000001,6)
+    assert latency<0.5 #should be less than 500ms
      
      
 def test_integ():
@@ -28,3 +36,4 @@ def test_integ():
 
 #assert 2==2
 # API invoke link: https://4jd8g9kea3.execute-api.us-east-2.amazonaws.com/prod/
+#The end

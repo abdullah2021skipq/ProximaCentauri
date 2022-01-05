@@ -13,3 +13,5 @@ def lambda_handler(event,context):
     tablename = os.getenv('table_name')#getting table name
     for url in list_url:
         client.put_item(TableName= tablename,Item={'URL':{'S' : url}}) 
+
+#The end
