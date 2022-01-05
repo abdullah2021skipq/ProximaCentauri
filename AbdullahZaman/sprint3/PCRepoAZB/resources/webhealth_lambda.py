@@ -8,17 +8,17 @@ def lambda_handler(events, context):
 	
 	URL_list = s3bucket.read_file("abdullahzamanbucket", "urlsList.json")
 	values = dict()
-	cw = CloudWatchPutMetric()
+	cw = CloudWatchPutMetric() # It puts avail and latency metrics on cloud watch Line 19. imported from cloudwatch_putMetric.py
 	
 	for Url in URL_list:
-		avail = get_availability(Url)
+		avail = get_availability(Url)	# Line 31
 		dimensions = [
 			{"Name": "URL", "Value": Url}
 			]
-		
+		# Calls the put_data method from cloudwatch_putMetric.py Line 10
 		cw.put_data(constants.URL_MONITOR_NAMESPACE,constants.URL_MONITOR_NAME_Availability+"_"+Url, dimensions, avail)
 		
-		latency = get_latency(Url)
+		latency = get_latency(Url)		# Line 39
 		dimensions = [
 			{"Name": "URL", "Value": Url}
 			]
@@ -26,7 +26,7 @@ def lambda_handler(events, context):
 		cw.put_data(constants.URL_MONITOR_NAMESPACE,constants.URL_MONITOR_NAME_Latency+"_"+Url, dimensions, latency)
 		
 		values.update({"availability":avail,"Latency":latency})
-	return values
+	return values	# Returns dictionary with avail and latency values. Line 42 in stack
 
 def get_availability(Url):
 	http = urllib3.PoolManager()
@@ -36,7 +36,7 @@ def get_availability(Url):
 	else:
 		return 0.0
 
-def get_latency(Url):
+def get_latency(Url):		# Measures latency by difference of response time
 	http = urllib3.PoolManager()
 	start = datetime.datetime.now()
 	response = http.request("GET", Url)

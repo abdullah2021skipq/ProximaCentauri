@@ -4,8 +4,8 @@ import logging
 from custom_encoder import CustomEncoder
 
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+logger = logging.getLogger()    #It logs messages that we want to see
+logger.setLevel(logging.INFO)   # Sets the threshold for this logger. Logs a message with level INFO on the root logger
 
 dynamodbTableName = 'AbdullahSprint3'
 dynamodb = boto3.resource('dynamodb')

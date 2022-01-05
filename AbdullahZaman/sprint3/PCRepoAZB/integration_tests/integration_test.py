@@ -3,7 +3,7 @@ import pytest
 import os
 import json
 
-# Finding the unique ID of API Gateway 
+# Finding the unique ID of API Gateway. The API ID changes everytime the pipeline is deployed.
 apis = json.load(os.popen('aws apigateway get-rest-apis'))  # popen runs the cli commands
 apis = apis["items"]
 for dic in apis:
