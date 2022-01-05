@@ -82,8 +82,8 @@ class PcRepoAzbStack1(cdk.Stack):
         # It sends alarm to the email and dynamodb.
         topic.add_subscription(subscriptions_.EmailSubscription("abdullah.zaman.babar.s@skipq.org"))
         topic.add_subscription(subscriptions_.LambdaSubscription(fn=db_lambda))
-        
-        
+        print("type db_lambda_sprint3: ", type(db_lambda_sprint3))
+        print("db_lambda_sprint3: ", db_lambda_sprint3)
         for Url in db_lambda_sprint3:
         
             dimension = {"URL" : Url}
