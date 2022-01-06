@@ -20,7 +20,7 @@ from resources1 import constants1 as constants
 from resources1.bucket import Bucket as bo  
 import resources1.db_ReadWrite_handler as dynamo_RW
 
-class AdeelProject3Stack(cdk.Stack):
+class AdeelProject4Stack(cdk.Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
@@ -107,9 +107,9 @@ class AdeelProject3Stack(cdk.Stack):
          ############################## Alarms on cloud watch ###############################
         
         Url_Monitor = bo('adeelskipq','urls.json').bucket_as_list()
-        links = dynamo_RW.ReadFromTable(constants.URLS_TABLE_NAME)
+       # links = dynamo_RW.ReadFromTable(constants.URLS_TABLE_NAME)
         b=1
-        for url in links:
+        for url in Url_Monitor:
             
              ############################## Availability matrix and alarm for availability ###############################
             

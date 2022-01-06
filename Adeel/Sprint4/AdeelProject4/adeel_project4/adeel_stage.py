@@ -11,7 +11,7 @@ from aws_cdk import (
     aws_cloudwatch_actions as actions_,
     aws_dynamodb as db
 )
-from adeel_project.adeel_project4_stack import AdeelProject4Stack
+from adeel_project4.adeel_project4_stack import AdeelProject4Stack
   
 class AdeelStage(cdk.Stage):
 
