@@ -42,11 +42,11 @@ class PcRepoAzbStack1(cdk.Stack):
         hw_lambda = self.create_lambda("FirstHWLambda", "./resources", "webhealth_lambda.lambda_handler", lambda_role)
         # Stores the messageID and timestamp in the database
         db_lambda = self.create_lambda("DynamoLambda", "./resources", "dynamodb_lambda.lambda_handler", lambda_role)
-        db_lambda_sprint3= self.create_lambda("DynamoLambdasprint3", "./resources", "sprint3_dynamodb_lambda.lambda_handler", lambda_role)
+        
         #******************** SPRINT 3 DYNAMO TABLE ****************************
         sprint3_dynamo.create_sprint3_table()   # Creating a new table to store urls from bucket
         sprint3_dynamo.putting_sprint3_data()   # Storing the urls from bucket to the table
-        dynamo_sprint3_url_list = sprint3_dynamo.getting_sprint3_dynamo_data()
+        dynamo_sprint3_url_list = sprint3_dynamo.getting_sprint3_dynamo_data() # Line 87
         sprint3_lambda = self.create_lambda("sprint3Lambda", "./resources", "sprintt3_lambda.lambda_handler", lambda_role)
         # Making an api gateway
         api = self.create_gateway('AzbApi',sprint3_lambda)
@@ -82,9 +82,9 @@ class PcRepoAzbStack1(cdk.Stack):
         # It sends alarm to the email and dynamodb.
         topic.add_subscription(subscriptions_.EmailSubscription("abdullah.zaman.babar.s@skipq.org"))
         topic.add_subscription(subscriptions_.LambdaSubscription(fn=db_lambda))
-        print("hw_lambda: ", rule)
-        print("db_lambda_sprint3: ", targets_.LambdaFunction(handler=db_lambda_sprint3))
-        for Url in db_lambda_sprint3:
+        
+        
+        for Url in dynamo_sprint3_url_list:
         
             dimension = {"URL" : Url}
             # This availability metric is used to generate alarm
