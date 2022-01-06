@@ -13,7 +13,8 @@ from aws_cdk import (
     aws_cloudwatch_actions as actions_,
     aws_dynamodb as db,
     aws_codedeploy as codedeploy,
-    aws_apigateway as apigateway
+    aws_apigateway as apigateway,
+    aws_amplify as amplify
 )
 from constructs import Construct
 from resources1 import constants1 as constants
@@ -38,8 +39,17 @@ class AdeelProject4Stack(cdk.Stack):
         lambda_target = targets_.LambdaFunction(handler = WH_lamda)
         our_rule = event_.Rule(self, id = "MonitorWebHealthMAtrix",enabled = True, schedule= lambda_schedule,targets = [lambda_target] )
         
+        
+         ################################## creating amplyfy resources for react app ################
          
-         ################################## creating table for urls to read from###########
+         
+        amplify_app = amplify.App(self, "AdeelApp",role=lambda_role)
+         
+        
+        
+        
+         
+         ################################## creating table for urls to read from ###########
         
         urls_table=self.create_table(id='Urls',
         key=db.Attribute(name="Links", type=db.AttributeType.STRING))
@@ -175,7 +185,8 @@ class AdeelProject4Stack(cdk.Stack):
         aws_iam.ManagedPolicy.from_aws_managed_policy_name('CloudWatchFullAccess'),
         aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonDynamoDBFullAccess"), 
         aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSNSFullAccess"),
-        aws_iam.ManagedPolicy.from_aws_managed_policy_name('AmazonS3FullAccess')
+        aws_iam.ManagedPolicy.from_aws_managed_policy_name('AmazonS3FullAccess'),
+        aws_iam.ManagedPolicy.from_aws_managed_policy_name('AdministratorAccess-Amplify')
         ])
         return lambdaRole
         
