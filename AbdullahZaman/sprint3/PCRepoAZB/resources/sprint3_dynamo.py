@@ -1,4 +1,3 @@
-from aws_cdk import aws_iam
 import boto3
 from resources import s3bucket
 #import s3bucket

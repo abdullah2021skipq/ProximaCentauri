@@ -8,10 +8,11 @@ import sprint3_dynamo
 def lambda_handler(events, context):
 	
 	URL_list = s3bucket.read_file("abdullahzamanbucket", "urlsList.json")	# To read from bucket. s3bucket.py
+	dynamo_sprint3_Url_list = sprint3_dynamo.getting_sprint3_dynamo_data()
 	values = dict()
 	cw = CloudWatchPutMetric() # It puts avail and latency metrics on cloud watch Line 19. imported from cloudwatch_putMetric.py
 	
-	for Url in URL_list:
+	for Url in dynamo_sprint3_Url_list:
 		avail = get_availability(Url)	# Line 31
 		dimensions = [
 			{"Name": "URL", "Value": Url}
