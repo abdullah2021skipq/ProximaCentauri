@@ -9,7 +9,7 @@ client = boto3.client('dynamodb')
 
 def test_ineg_put():
     case = False
-    api_put = requests.put('http://2h8y18tiv9.execute-api.us-east-2.amazonaws.com/prod/',data = 'www.test.com')
+    api_put = requests.put('http://o3c5vdy44a.execute-api.us-east-2.amazonaws.com/prod/',data = 'www.test.com')
     links = dynamo_RW.ReadFromTable(constants.URLS_TABLE_NAME)
     if 'www.test.com' in links:
         case = True
@@ -22,7 +22,7 @@ def test_ineg_put():
     
 def test_ineg_delete():
     case1 = False
-    api_delete = requests.delete('http://2h8y18tiv9.execute-api.us-east-2.amazonaws.com/prod/',data = 'www.test.com')
+    api_delete = requests.delete('http://o3c5vdy44a.execute-api.us-east-2.amazonaws.com/prod/',data = 'www.test.com')
     links = dynamo_RW.ReadFromTable(constants.URLS_TABLE_NAME)
     if 'www.test.com' not in links:
         case1 = True
