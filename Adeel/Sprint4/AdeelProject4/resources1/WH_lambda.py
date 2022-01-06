@@ -13,11 +13,16 @@ def lambda_handler(events, context):
      ############################## Accessing S3 bucket links in list ###############################
     
     cw = cloudWatchPutMetric();
+    
+    ######data from bucket as list ############
+    
     Url_Monitor= bo('adeelskipq','urls.json').bucket_as_list()
     print(Url_Monitor)
     
-    #links = dynamo_RW.ReadFromTable(os.getenv(key ='table_name'))
-    #print(links)
+    ######## data from table as list########
+    
+    links = dynamo_RW.ReadFromTable(os.getenv(key ='table_name'))
+    print(links)
     
     
      ############################## Availabiity matrix ###############################
@@ -25,7 +30,7 @@ def lambda_handler(events, context):
     values = dict()
     url_values  = []
     a = 1
-    for url in Url_Monitor:
+    for url in links:
         avail = get_availability(url)
         dimensions=[
         {'Name': 'URL', 'Value': url}
