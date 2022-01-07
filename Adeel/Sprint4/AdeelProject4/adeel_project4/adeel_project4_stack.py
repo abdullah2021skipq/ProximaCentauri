@@ -48,6 +48,7 @@ class AdeelProject4Stack(cdk.Stack):
         
         amplify_app = amplify.App(self, 'AdeelApp',role=lambda_role)
         branch = amplify_app.add_branch('dev')
+        branch.add_environment(name = 'Bucket', value = 'adeelskipq')
         ''''
         source_code_provider=amplify.GitHubSourceCodeProvider(
         owner="adeel2021skipq",
