@@ -14,7 +14,8 @@ from aws_cdk import (
     aws_dynamodb as db,
     aws_codedeploy as codedeploy,
     aws_apigateway as apigateway,
-    aws_amplify as amplify
+    aws_amplify as amplify,
+    aws_s3_assets as s3_assets
 )
 from constructs import Construct
 from resources1 import constants1 as constants
@@ -42,13 +43,21 @@ class AdeelProject4Stack(cdk.Stack):
         
          ################################## creating amplyfy resources for react app ################
          
-         
-        amplify_app = amplify.App(self, "AdeelApp",role=lambda_role)
+        api_asset = s3_assets.Asset(self, "AppBuiltAsset",
+        path="/home/ec2-user/environment/ProximaCentauri/Adeel/Sprint4/build.zip")
+        
+        amplify_app = amplify.App(self, 'AdeelApp',role=lambda_role)
+        branch = amplify_app.add_branch('dev')
+        ''''
+        source_code_provider=amplify.GitHubSourceCodeProvider(
+        owner="adeel2021skipq",
+        repository="adeel2021skipq/ProximaCentauri",
+        oauth_token=cdk.SecretValue.secrets_manager("Adeel/github/token1")),
+        '''
+        
          
         
         
-        
-         
          ################################## creating table for urls to read from ###########
         
         urls_table=self.create_table(id='Urls',

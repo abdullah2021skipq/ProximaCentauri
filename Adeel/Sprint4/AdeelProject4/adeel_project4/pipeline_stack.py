@@ -48,7 +48,7 @@ class PipelineStack(core.Stack):
         })
         
          ############################## unit test ###############################
- 
+        ''''
         unit_test = pipelines.CodeBuildStep('unit_test',
         commands=["cd Adeel/Sprint4/AdeelProject4","pip install -r requirements.txt" ,
         "pytest unittests"],role = pipelineroles)
@@ -59,10 +59,10 @@ class PipelineStack(core.Stack):
         intg_test = pipelines.CodeBuildStep('integ_test',
         commands=["cd Adeel/Sprint4/AdeelProject4","pip install -r requirements.txt" ,
         "pytest integtests"],role = pipelineroles)
-
+        '''
          ############################## adding stages ###############################
         
-        pipeline.add_stage(beta , pre = [unit_test] , post = [intg_test])
+        pipeline.add_stage(beta)# pre = [unit_test] , post = [intg_test])
     
         pipeline.add_stage(prod ,
         pre = [pipelines.ManualApprovalStep("PromoteToProd")])
