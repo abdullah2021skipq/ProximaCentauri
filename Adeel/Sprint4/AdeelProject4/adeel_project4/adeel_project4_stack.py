@@ -44,7 +44,7 @@ class AdeelProject4Stack(cdk.Stack):
          ################################## creating amplyfy resources for react app ################
          
         api_asset = s3_assets.Asset(self, "AppBuiltAsset",
-        path="/home/ec2-user/environment/ProximaCentauri/Adeel/Sprint4/build.zip")
+        path="build.zip")
         
         amplify_app = amplify.App(self, 'AdeelApp',role=lambda_role)
         branch = amplify_app.add_branch('dev')
