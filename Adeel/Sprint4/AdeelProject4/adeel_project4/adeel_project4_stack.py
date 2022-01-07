@@ -44,13 +44,14 @@ class AdeelProject4Stack(cdk.Stack):
          ################################## creating amplyfy resources for react app ################
          
         api_asset = s3_assets.Asset(self, "AppBuiltAsset",
-        path='build.zip')
+        path='/ProximaCentauri/Adeel/Sprint4/AdeelProject4/build.zip')
         
         amplify_app = amplify.App(self, 'AdeelApp',role=lambda_role)
         branch = amplify_app.add_branch('dev')
         branch.add_environment(name = 'Bucket', value = 'adeelskipq')
         ''''
-        source_code_provider=amplify.GitHubSourceCodeProvider(
+        source_code_provider=amplif
+        y.GitHubSourceCodeProvider(
         owner="adeel2021skipq",
         repository="adeel2021skipq/ProximaCentauri",
         oauth_token=cdk.SecretValue.secrets_manager("Adeel/github/token1")),
