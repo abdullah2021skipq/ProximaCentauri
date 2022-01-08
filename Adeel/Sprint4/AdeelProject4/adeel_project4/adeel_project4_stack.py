@@ -102,7 +102,6 @@ class AdeelProject4Stack(cdk.Stack):
         #Create API gateway
         api = apigateway.LambdaRestApi(self, "Adeel_API_gateway",
         handler= api_lamda,
-        proxy=False
         )
         
         items = api.root.add_resource("items")
