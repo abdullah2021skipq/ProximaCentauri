@@ -48,8 +48,8 @@ class AdeelProject4Stack(cdk.Stack):
         api_asset.grant_read(lambda_role)
         
         amplify_app = amplify.App(self, 'AdeelApp',role=lambda_role)
-        branch = amplify_app.add_branch('dev',asset = api_asset)
-        branch.add_environment(name = 'Bucket', value = 'adeelskipq')
+        branch = amplify_app.add_branch('dev')
+        
         ''''
         source_code_provider=amplif
         y.GitHubSourceCodeProvider(
@@ -101,7 +101,11 @@ class AdeelProject4Stack(cdk.Stack):
         
         #Create API gateway
         api = apigateway.LambdaRestApi(self, "Adeel_API_gateway",
-        handler= api_lamda
+        handler= api_lamda,
+        default_cors_preflight_options=apigateway.CorsOptions(
+        allow_origins=apigateway.Cors.ALL_ORIGINS,
+        allow_methods=apigateway.Cors.ALL_METHODS
+        )
         )
         
         items = api.root.add_resource("items")
