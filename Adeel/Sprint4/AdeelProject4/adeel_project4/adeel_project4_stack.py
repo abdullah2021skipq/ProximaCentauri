@@ -45,9 +45,10 @@ class AdeelProject4Stack(cdk.Stack):
          
         api_asset = s3_assets.Asset(self, "AppBuiltAsset",
         path='build.zip')
+        api_asset.grant_read(lambda_role)
         
         amplify_app = amplify.App(self, 'AdeelApp',role=lambda_role)
-        branch = amplify_app.add_branch('dev')
+        branch = amplify_app.add_branch('dev',asset = api_asset)
         branch.add_environment(name = 'Bucket', value = 'adeelskipq')
         ''''
         source_code_provider=amplif
