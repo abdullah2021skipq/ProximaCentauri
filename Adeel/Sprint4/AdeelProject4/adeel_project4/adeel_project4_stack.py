@@ -102,10 +102,7 @@ class AdeelProject4Stack(cdk.Stack):
         #Create API gateway
         api = apigateway.LambdaRestApi(self, "Adeel_API_gateway",
         handler= api_lamda,
-        default_cors_preflight_options=apigateway.CorsOptions(
-        allow_origins=apigateway.Cors.ALL_ORIGINS,
-        allow_methods=apigateway.Cors.ALL_METHODS
-        )
+        proxy=False
         )
         
         items = api.root.add_resource("items")
