@@ -47,11 +47,11 @@
 
 **Bootstrap the code using that command**
 
-> cdk bootstrap aws://315997497220/us-east-2 --qualifier adeel123 --toolkit-stack-name adtoolkit
+> cdk bootstrap aws://3159974972.20/us-east-2 --qualifier adeel123 --toolkit-stack-name adtoolkit
 
 ## Deploy
 
 > cdk deploy AdeelPipelineStack3
 
 # App
-**After deloyment is coplete go to AWS apmlify and onpen the URL assigned to the app. Open the URL signUp using email and enjoy**
+**After deloyment is complete go to AWS apmlify and open the URL assigned to the app. SignUp using email and enjoy.**
