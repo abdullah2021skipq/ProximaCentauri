@@ -66,9 +66,7 @@ def getItems():
             response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
             result.extend(response['Item'])
         
-        body = {
-             'urls': result
-        }
+        body = result
         return buildResponse(200, body)
     
     except:
