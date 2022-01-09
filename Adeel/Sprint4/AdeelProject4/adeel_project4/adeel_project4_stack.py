@@ -15,7 +15,8 @@ from aws_cdk import (
     aws_codedeploy as codedeploy,
     aws_apigateway as apigateway,
     aws_amplify as amplify,
-    aws_s3_assets as s3_assets
+    aws_s3_assets as s3_assets,
+    aws_cognito as cognito
 )
 from constructs import Construct
 from resources1 import constants1 as constants
@@ -58,7 +59,15 @@ class AdeelProject4Stack(cdk.Stack):
         oauth_token=cdk.SecretValue.secrets_manager("Adeel/github/token1")),
         '''
         
-         
+        ''''
+        cognito.UserPool(self, "myuserpool",
+        self_sign_up_enabled=True,
+        user_verification=cognito.UserVerificationConfig(
+        email_subject="Verify your email for our awesome app!",
+        email_body="Thanks for signing up to our awesome app! Your verification code is {####}",
+        email_style=cognito.VerificationEmailStyle.CODE
+        ))
+        '''
         
         
          ################################## creating table for urls to read from ###########
@@ -102,6 +111,7 @@ class AdeelProject4Stack(cdk.Stack):
         #Create API gateway
         api = apigateway.LambdaRestApi(self, "Adeel_API_gateway",
         handler= api_lamda,
+        proxy = False
         )
         
         items = api.root.add_resource("items")
