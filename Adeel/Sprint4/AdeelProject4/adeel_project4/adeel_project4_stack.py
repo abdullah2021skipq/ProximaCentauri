@@ -50,7 +50,7 @@ class AdeelProject4Stack(cdk.Stack):
         
         by_name = s3.Bucket.from_bucket_name(self, "BucketByName", "adeelskipq")
         
-        amplify_app = amplify.App(self, 'AdeelApp',role=lambda_role)
+        amplify_app = amplify.App(self, 'AdeelAppforApi',role=lambda_role)
         #branch = amplify_app.add_branch('dev',asset = api_asset)
         
         ''''
