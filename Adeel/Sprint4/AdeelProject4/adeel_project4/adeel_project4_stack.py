@@ -45,11 +45,13 @@ class AdeelProject4Stack(cdk.Stack):
          ################################## creating amplyfy resources for react app ################
          
         api_asset = s3_assets.Asset(self, "AppBuiltAsset",
-        path='build.zip')
+        path='./build.zip')
         api_asset.grant_read(lambda_role)
         
+        by_name = s3.Bucket.from_bucket_name(self, "BucketByName", "adeelskipq")
+        
         amplify_app = amplify.App(self, 'AdeelApp',role=lambda_role)
-        branch = amplify_app.add_branch('dev')
+        #branch = amplify_app.add_branch('dev',asset = api_asset)
         
         ''''
         source_code_provider=amplif
