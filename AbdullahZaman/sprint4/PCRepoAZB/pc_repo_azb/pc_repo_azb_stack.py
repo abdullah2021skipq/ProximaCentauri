@@ -11,7 +11,8 @@ from aws_cdk import (
     aws_dynamodb as db,
     aws_codedeploy as codedeploy,
     aws_apigateway as gateway,
-    aws_amplify as amplify
+    aws_amplify as amplify,
+    aws_codebuild as codebuild
 )
 from resources import constants as constants
 from resources import s3bucket
@@ -64,10 +65,10 @@ class PcRepoAzbStack1(cdk.Stack):
         
         ########### SPRINT 4 ##################
         
-        amplify_app = amplify.App(self, "AZBAPP",
+        amplify_app = amplify.App(self, "AZBAPP1",
         source_code_provider=amplify.GitHubSourceCodeProvider(
-            owner="Abdullah",
-            repository="abdullah2021skipq/reactapp",
+            owner="abdullah2021skipq",
+            repository="abdullah2021skipq/react",
             oauth_token=cdk.SecretValue.secrets_manager("Abdullah_token")
         )
     )
