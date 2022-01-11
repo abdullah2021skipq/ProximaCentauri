@@ -65,13 +65,33 @@ class PcRepoAzbStack1(cdk.Stack):
         
         ########### SPRINT 4 ##################
         
-        amplify_app = amplify.App(self, "AZBAPP1",
+        amplify_app = amplify.App(self, "AzbApp",
         source_code_provider=amplify.GitHubSourceCodeProvider(
             owner="abdullah2021skipq",
-            repository="abdullah2021skipq/react",
+            repository="react",
             oauth_token=cdk.SecretValue.secrets_manager("Abdullah_token")
-        )
-    )
+        ),
+        build_spec=codebuild.BuildSpec.from_object_to_yaml({ # Alternatively add a `amplify.yml` to the repo
+            "version": "1.0",
+            "frontend": {
+                "phases": {
+                    "pre_build": {
+                        "commands": ["npm install"
+                        ]
+                    },
+                    "build": {
+                        "commands": ["npm run build"
+                        ]
+                    }
+                },
+                "artifacts": {
+                    "base_directory": "build",
+                    "files": "**/*"
+                }
+            }}))
+            
+        amplify_app.add_branch("main")
+    
         
         ############### We define the schedule, target and the rule for our lambda ################
         
