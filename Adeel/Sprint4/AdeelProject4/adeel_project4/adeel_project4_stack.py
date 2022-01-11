@@ -44,22 +44,20 @@ class AdeelProject4Stack(cdk.Stack):
         
          ################################## creating amplyfy resources for react app ################
          
-        api_asset = s3_assets.Asset(self, "AppBuiltAsset",
-        path='./build.zip')
-        api_asset.grant_read(lambda_role)
+        #api_asset = s3_assets.Asset(self, "AppBuiltAsset",
+        #path='./build.zip')
+        #api_asset.grant_read(lambda_role)
         
-        by_name = s3.Bucket.from_bucket_name(self, "BucketByName", "adeelskipq")
+        #by_name = s3.Bucket.from_bucket_name(self, "BucketByName", "adeelskipq")
         
-        amplify_app = amplify.App(self, 'AdeelAppforApi',role=lambda_role)
-        #branch = amplify_app.add_branch('dev',asset = api_asset)
         
-        ''''
-        source_code_provider=amplif
-        y.GitHubSourceCodeProvider(
+        amplify_app = amplify.App(self, 'AdeelAppforApigithub',role=lambda_role,
+        source_code_provider=amplify.GitHubSourceCodeProvider(
         owner="adeel2021skipq",
-        repository="adeel2021skipq/ProximaCentauri",
-        oauth_token=cdk.SecretValue.secrets_manager("Adeel/github/token1")),
-        '''
+        repository="adeel2021skipq/DevOps",
+        oauth_token=cdk.SecretValue.secrets_manager("Adeel/github/token1")))
+        
+        #branch = amplify_app.add_branch('dev',asset = api_asset)
         
         ''''
         cognito.UserPool(self, "myuserpool",
