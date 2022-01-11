@@ -51,7 +51,7 @@ class AdeelProject4Stack(cdk.Stack):
         #by_name = s3.Bucket.from_bucket_name(self, "BucketByName", "adeelskipq")
         
         
-        amplify_app = amplify.App(self, 'AdeelAppforApigithub',role=lambda_role,
+        amplify_app = amplify.App(self, 'AdeelAppforApigithub',
         source_code_provider=amplify.GitHubSourceCodeProvider(
         owner="adeel2021skipq",
         repository="adeelapiapp",
