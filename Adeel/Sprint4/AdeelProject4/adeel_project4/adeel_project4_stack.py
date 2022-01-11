@@ -54,10 +54,10 @@ class AdeelProject4Stack(cdk.Stack):
         amplify_app = amplify.App(self, 'AdeelAppforApigithub',role=lambda_role,
         source_code_provider=amplify.GitHubSourceCodeProvider(
         owner="adeel2021skipq",
-        repository="adeel2021skipq/DevOps",
+        repository="adeelapiapp",
         oauth_token=cdk.SecretValue.secrets_manager("Adeel/github/token1")))
         
-        #branch = amplify_app.add_branch('dev',asset = api_asset)
+        branch = amplify_app.add_branch('main')
         
         ''''
         cognito.UserPool(self, "myuserpool",
