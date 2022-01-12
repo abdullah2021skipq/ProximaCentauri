@@ -3,7 +3,7 @@ import os
 
 from aws_cdk import core 
 
-from sprint3_irfan.irfan_pipeline_stack import IrfanPipelineStack
+from sprint4_irfan.irfan_pipeline_stack import IrfanPipelineStack
 
 
 app = core.App()
