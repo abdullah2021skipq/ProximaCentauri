@@ -1,0 +1,334 @@
+{
+  "version": "15.0.0",
+  "artifacts": {
+    "waheedsprintbetawaheedstack5FBEE6E9.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "waheedsprintbetawaheedstack5FBEE6E9.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/waheed11/version"
+      }
+    },
+    "waheedsprintbetawaheedstack5FBEE6E9": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://315997497220/us-east-2",
+      "properties": {
+        "templateFile": "waheedsprintbetawaheedstack5FBEE6E9.template.json",
+        "validateOnSynth": true,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::315997497220:role/cdk-waheed11-deploy-role-315997497220-us-east-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::315997497220:role/cdk-waheed11-cfn-exec-role-315997497220-us-east-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-waheed11-assets-315997497220-us-east-2/19bd93b32a1ea06baf24c5bb2c58d417496727b2d20a22dbb07c2602c31e08a4.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/waheed11/version",
+        "additionalDependencies": [
+          "waheedsprintbetawaheedstack5FBEE6E9.assets"
+        ],
+        "stackName": "beta-waheedstack"
+      },
+      "dependencies": [
+        "waheedsprintbetawaheedstack5FBEE6E9.assets"
+      ],
+      "metadata": {
+        "/waheedsprint/beta/waheedstack/lambda-role-db/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "lambdaroledb8F96FA37",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "/tmp/tmph33tjown/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmph33tjown/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmph33tjown/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "lambda8B5974B5",
+            "trace": [
+              "new Function (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-lambda/lib/function.js:145:26)",
+              "/tmp/tmph33tjown/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmph33tjown/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmph33tjown/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/lambda/CurrentVersion/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "lambdaCurrentVersionD18FDC35f73c4acf99201f7b1701a12e5dbc83fe",
+            "trace": [
+              "new Version (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-lambda/lib/lambda-version.js:47:25)",
+              "Function.get currentVersion [as currentVersion] (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-lambda/lib/function.js:261:32)",
+              "/tmp/tmph33tjown/lib/program.js:8219:150",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "/tmp/tmph33tjown/lib/program.js:8219:118",
+              "Kernel._ensureSync (/tmp/tmph33tjown/lib/program.js:8841:28)",
+              "Kernel.get (/tmp/tmph33tjown/lib/program.js:8219:36)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/webHealth_invoke/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "webHealthinvoke169F041D",
+            "trace": [
+              "new Rule (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-events/lib/rule.js:37:26)",
+              "/tmp/tmph33tjown/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmph33tjown/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmph33tjown/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/webHealth_invoke/AllowEventRulewaheedsprintbetawaheedstacklambdaF3957B6C": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "webHealthinvokeAllowEventRulewaheedsprintbetawaheedstacklambdaF3957B6CCBB72961",
+            "trace": [
+              "Function.addPermission (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:44:9)",
+              "Object.addLambdaPermission (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-events-targets/lib/util.js:63:17)",
+              "LambdaFunction.bind (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-events-targets/lib/lambda.js:29:16)",
+              "Rule.addTarget (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-events/lib/rule.js:91:36)",
+              "new Rule (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-events/lib/rule.js:54:18)",
+              "/tmp/tmph33tjown/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmph33tjown/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmph33tjown/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/pipelinealarm/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "pipelinealarmA8CF1656",
+            "trace": [
+              "new Alarm (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-cloudwatch/lib/alarm.js:76:23)",
+              "/tmp/tmph33tjown/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmph33tjown/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmph33tjown/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/AvailabilityAlarm/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AvailabilityAlarmE6EBAA96",
+            "trace": [
+              "new Alarm (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-cloudwatch/lib/alarm.js:76:23)",
+              "/tmp/tmph33tjown/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmph33tjown/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmph33tjown/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/LatencyAlarm/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LatencyAlarm5394FC57",
+            "trace": [
+              "new Alarm (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-cloudwatch/lib/alarm.js:76:23)",
+              "/tmp/tmph33tjown/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmph33tjown/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmph33tjown/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/LambdaAlias/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaAlias9C15A666",
+            "trace": [
+              "new Alias (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-lambda/lib/alias.js:40:23)",
+              "/tmp/tmph33tjown/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmph33tjown/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmph33tjown/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/webhealthmonitor/Application/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "webhealthmonitorApplication873C1585",
+            "trace": [
+              "new LambdaApplication (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-codedeploy/lib/lambda/application.js:25:26)",
+              "new LambdaDeploymentGroup (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-codedeploy/lib/lambda/deployment-group.js:27:49)",
+              "/tmp/tmph33tjown/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmph33tjown/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmph33tjown/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/webhealthmonitor/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "webhealthmonitorServiceRole71B2D993",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "new LambdaDeploymentGroup (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-codedeploy/lib/lambda/deployment-group.js:29:35)",
+              "/tmp/tmph33tjown/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmph33tjown/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmph33tjown/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/webhealthmonitor/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "webhealthmonitorECA55305",
+            "trace": [
+              "new LambdaDeploymentGroup (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/aws-codedeploy/lib/lambda/deployment-group.js:34:26)",
+              "/tmp/tmph33tjown/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "Kernel._create (/tmp/tmph33tjown/lib/program.js:8432:34)",
+              "Kernel.create (/tmp/tmph33tjown/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:22:30)",
+              "/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:139:9",
+              "visit (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "injectMetadataResources (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
+              "Object.synthesize (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "Stage.synth (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "Object.pipelineSynth (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/private/construct-internals.js:25:18)",
+              "Function.fromStage (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/blueprint/stage-deployment.js:40:48)",
+              "Wave.addStage (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/blueprint/wave.js:43:56)",
+              "CodePipeline.addStage (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:60:46)",
+              "/tmp/tmph33tjown/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "/tmp/tmph33tjown/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmph33tjown/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmph33tjown/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion",
+            "trace": [
+              "addBootstrapVersionRule (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/stack-synthesizers/default-synthesizer.js:449:19)",
+              "DefaultStackSynthesizer.synthesize (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/stack-synthesizers/default-synthesizer.js:212:13)",
+              "/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:155:35",
+              "visit (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "synthesizeTree (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:148:5)",
+              "Object.synthesize (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:33:5)",
+              "Stage.synth (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "Object.pipelineSynth (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/private/construct-internals.js:25:18)",
+              "Function.fromStage (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/blueprint/stage-deployment.js:40:48)",
+              "Wave.addStage (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/blueprint/wave.js:43:56)",
+              "CodePipeline.addStage (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:60:46)",
+              "/tmp/tmph33tjown/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "/tmp/tmph33tjown/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmph33tjown/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmph33tjown/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/waheedsprint/beta/waheedstack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion",
+            "trace": [
+              "addBootstrapVersionRule (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/stack-synthesizers/default-synthesizer.js:457:5)",
+              "DefaultStackSynthesizer.synthesize (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/stack-synthesizers/default-synthesizer.js:212:13)",
+              "/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:155:35",
+              "visit (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "synthesizeTree (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:148:5)",
+              "Object.synthesize (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/private/synthesis.js:33:5)",
+              "Stage.synth (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "Object.pipelineSynth (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/private/construct-internals.js:25:18)",
+              "Function.fromStage (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/blueprint/stage-deployment.js:40:48)",
+              "Wave.addStage (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/blueprint/wave.js:43:56)",
+              "CodePipeline.addStage (/tmp/jsii-kernel-hYws2v/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:60:46)",
+              "/tmp/tmph33tjown/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmph33tjown/lib/program.js:8860:24)",
+              "/tmp/tmph33tjown/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmph33tjown/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmph33tjown/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmph33tjown/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmph33tjown/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmph33tjown/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ]
+      },
+      "displayName": "waheedsprint/beta/waheedstack"
+    }
+  }
+}

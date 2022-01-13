@@ -1,0 +1,20 @@
+{
+  "version": "15.0.0",
+  "files": {
+    "6ad9922f3867aef048d04370cf97cac5cb4d3fe77065f9a8cdbc63134a920202": {
+      "source": {
+        "path": "AyeshaPipeline.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "315997497220-us-east-2": {
+          "bucketName": "cdk-ayesha-assets-315997497220-us-east-2",
+          "objectKey": "6ad9922f3867aef048d04370cf97cac5cb4d3fe77065f9a8cdbc63134a920202.json",
+          "region": "us-east-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::315997497220:role/cdk-ayesha-file-publishing-role-315997497220-us-east-2"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

@@ -1,0 +1,1012 @@
+{
+  "version": "15.0.0",
+  "artifacts": {
+    "assembly-TalhaPipelineStack-Beta": {
+      "type": "cdk:cloud-assembly",
+      "properties": {
+        "directoryName": "assembly-TalhaPipelineStack-Beta",
+        "displayName": "TalhaPipelineStack/Beta"
+      }
+    },
+    "assembly-TalhaPipelineStack-Prod": {
+      "type": "cdk:cloud-assembly",
+      "properties": {
+        "directoryName": "assembly-TalhaPipelineStack-Prod",
+        "displayName": "TalhaPipelineStack/Prod"
+      }
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "TalhaPipelineStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "TalhaPipelineStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/talha/version"
+      }
+    },
+    "TalhaPipelineStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://315997497220/us-east-2",
+      "properties": {
+        "templateFile": "TalhaPipelineStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::315997497220:role/cdk-talha-deploy-role-315997497220-us-east-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::315997497220:role/cdk-talha-cfn-exec-role-315997497220-us-east-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-talha-assets-315997497220-us-east-2/0a445771ebe3783cdd6813b0e48c4285cccde033e2ab99cb295d0609c7065121.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/talha/version",
+        "additionalDependencies": [
+          "TalhaPipelineStack.assets"
+        ]
+      },
+      "dependencies": [
+        "TalhaPipelineStack.assets"
+      ],
+      "metadata": {
+        "/TalhaPipelineStack/Pipeline/Pipeline/ArtifactsBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineArtifactsBucketAEA9A052",
+            "trace": [
+              "new Bucket (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-s3/lib/bucket.js:618:26)",
+              "new Pipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:212:27)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:105:30)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/ArtifactsBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineArtifactsBucketPolicyF53CCC52",
+            "trace": [
+              "new BucketPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-s3/lib/bucket-policy.js:34:25)",
+              "Bucket.addToResourcePolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-s3/lib/bucket.js:153:27)",
+              "Function.addToPrincipalOrResource (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/grant.js:72:49)",
+              "Bucket.grant (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-s3/lib/bucket.js:472:31)",
+              "Bucket.grantRead (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-s3/lib/bucket.js:282:21)",
+              "CloudFormationCreateReplaceChangeSetAction.bound (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline-actions/lib/cloudformation/pipeline-actions.js:43:28)",
+              "CloudFormationCreateReplaceChangeSetAction.bound (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline-actions/lib/cloudformation/pipeline-actions.js:156:36)",
+              "CloudFormationCreateReplaceChangeSetAction.bound (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline-actions/lib/cloudformation/pipeline-actions.js:207:36)",
+              "CloudFormationCreateReplaceChangeSetAction.bind (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/action.js:107:21)",
+              "RichAction.bind (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/rich-action.js:25:28)",
+              "Pipeline._attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:356:41)",
+              "Stage.attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:124:31)",
+              "Stage.addAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:71:33)",
+              "Object.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:276:23)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineRoleB27FAA37",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "new Pipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:222:35)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:105:30)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineRoleDefaultPolicy7BDC1ABB",
+            "trace": [
+              "new Policy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/policy.js:58:26)",
+              "Role.addToPrincipalPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:213:34)",
+              "Function.addToPrincipal (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/grant.js:93:65)",
+              "Function.addToPrincipalOrResource (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/grant.js:47:30)",
+              "Bucket.grant (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-s3/lib/bucket.js:472:31)",
+              "Bucket.grantReadWrite (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-s3/lib/bucket.js:358:21)",
+              "new Pipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:235:29)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:105:30)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Pipeline9850B417",
+            "trace": [
+              "new Pipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:225:30)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:105:30)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Build/synth/CdkBuildProject/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineBuildsynthCdkBuildProjectRoleB4046BF5",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "new Project (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:313:35)",
+              "new PipelineProject (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/pipeline-project.js:20:9)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:145:25)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Build/synth/CdkBuildProject/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineBuildsynthCdkBuildProjectRoleDefaultPolicy2BB7CBA8",
+            "trace": [
+              "new Policy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/policy.js:58:26)",
+              "Role.addToPrincipalPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:213:34)",
+              "PipelineProject.addToRolePolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:61:23)",
+              "new Project (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:398:14)",
+              "new PipelineProject (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/pipeline-project.js:20:9)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:145:25)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Build/synth/CdkBuildProject/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineBuildsynthCdkBuildProject9DD10C14",
+            "trace": [
+              "new Project (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:355:26)",
+              "new PipelineProject (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/pipeline-project.js:20:9)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:145:25)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Build/synth/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineBuildsynthCodePipelineActionRole0829069A",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "Pipeline.getRoleForAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:508:26)",
+              "Pipeline._attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:352:33)",
+              "Stage.attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:124:31)",
+              "Stage.addAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:71:33)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:167:15)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Build/synth/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineBuildsynthCodePipelineActionRoleDefaultPolicyD8D8B686",
+            "trace": [
+              "new Policy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/policy.js:58:26)",
+              "Role.addToPrincipalPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:213:34)",
+              "Role.addToPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:226:21)",
+              "CodeBuildAction.bound (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline-actions/lib/codebuild/build-action.js:80:22)",
+              "CodeBuildAction.bind (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/action.js:107:21)",
+              "RichAction.bind (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/rich-action.js:25:28)",
+              "Pipeline._attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:356:41)",
+              "Stage.attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:124:31)",
+              "Stage.addAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:71:33)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:167:15)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineUpdatePipelineSelfMutateCodePipelineActionRoleD6D4E5CF",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "Pipeline.getRoleForAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:508:26)",
+              "Pipeline._attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:352:33)",
+              "Stage.attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:124:31)",
+              "Stage.addAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:71:33)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:167:15)",
+              "Object.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:58:40)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineUpdatePipelineSelfMutateCodePipelineActionRoleDefaultPolicyE626265B",
+            "trace": [
+              "new Policy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/policy.js:58:26)",
+              "Role.addToPrincipalPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:213:34)",
+              "Role.addToPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:226:21)",
+              "CodeBuildAction.bound (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline-actions/lib/codebuild/build-action.js:80:22)",
+              "CodeBuildAction.bind (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/action.js:107:21)",
+              "RichAction.bind (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/rich-action.js:25:28)",
+              "Pipeline._attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:356:41)",
+              "Stage.attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:124:31)",
+              "Stage.addAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:71:33)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:167:15)",
+              "Object.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:58:40)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Assets/FileAsset1/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineAssetsFileAsset1CodePipelineActionRoleC0EC649A",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "Pipeline.getRoleForAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:508:26)",
+              "Pipeline._attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:352:33)",
+              "Stage.attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:124:31)",
+              "Stage.addAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:71:33)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:167:15)",
+              "Object.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:58:40)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Assets/FileAsset1/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineAssetsFileAsset1CodePipelineActionRoleDefaultPolicy5F0BE7E8",
+            "trace": [
+              "new Policy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/policy.js:58:26)",
+              "Role.addToPrincipalPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:213:34)",
+              "Role.addToPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:226:21)",
+              "CodeBuildAction.bound (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline-actions/lib/codebuild/build-action.js:80:22)",
+              "CodeBuildAction.bind (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/action.js:107:21)",
+              "RichAction.bind (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/rich-action.js:25:28)",
+              "Pipeline._attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:356:41)",
+              "Stage.attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:124:31)",
+              "Stage.addAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:71:33)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:167:15)",
+              "Object.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:58:40)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Beta/unit_test/unit_test/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineBetaunittestRoleC797D05D",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "new Project (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:313:35)",
+              "new PipelineProject (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/pipeline-project.js:20:9)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:145:25)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Beta/unit_test/unit_test/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineBetaunittestRoleDefaultPolicyB28BCE5B",
+            "trace": [
+              "new Policy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/policy.js:58:26)",
+              "Role.addToPrincipalPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:213:34)",
+              "PipelineProject.addToRolePolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:61:23)",
+              "new Project (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:398:14)",
+              "new PipelineProject (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/pipeline-project.js:20:9)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:145:25)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Beta/unit_test/unit_test/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineBetaunittestA4B9ADF1",
+            "trace": [
+              "new Project (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:355:26)",
+              "new PipelineProject (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/pipeline-project.js:20:9)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:145:25)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Beta/unit_test/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineBetaunittestCodePipelineActionRole49C177FA",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "Pipeline.getRoleForAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:508:26)",
+              "Pipeline._attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:352:33)",
+              "Stage.attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:124:31)",
+              "Stage.addAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:71:33)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:167:15)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Beta/unit_test/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineBetaunittestCodePipelineActionRoleDefaultPolicyF4FCF802",
+            "trace": [
+              "new Policy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/policy.js:58:26)",
+              "Role.addToPrincipalPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:213:34)",
+              "Role.addToPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:226:21)",
+              "CodeBuildAction.bound (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline-actions/lib/codebuild/build-action.js:80:22)",
+              "CodeBuildAction.bind (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/action.js:107:21)",
+              "RichAction.bind (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/rich-action.js:25:28)",
+              "Pipeline._attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:356:41)",
+              "Stage.attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:124:31)",
+              "Stage.addAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:71:33)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:167:15)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Pipeline/Prod/PromoteToProd/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineProdPromoteToProdCodePipelineActionRole08AAED6C",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "Pipeline.getRoleForAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:508:26)",
+              "Pipeline._attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.js:352:33)",
+              "Stage.attachActionToPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:124:31)",
+              "Stage.addAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codepipeline/lib/private/stage.js:71:33)",
+              "Object.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:256:27)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/UpdatePipeline/SelfMutation/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineUpdatePipelineSelfMutationRole57E559E8",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "new Project (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:313:35)",
+              "new PipelineProject (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/pipeline-project.js:20:9)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:145:25)",
+              "Object.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:58:40)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineUpdatePipelineSelfMutationRoleDefaultPolicyA225DA4E",
+            "trace": [
+              "new Policy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/policy.js:58:26)",
+              "Role.addToPrincipalPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:213:34)",
+              "PipelineProject.addToRolePolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:61:23)",
+              "new Project (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:398:14)",
+              "new PipelineProject (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/pipeline-project.js:20:9)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:145:25)",
+              "Object.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:58:40)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/UpdatePipeline/SelfMutation/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineUpdatePipelineSelfMutationDAA41400",
+            "trace": [
+              "new Project (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:355:26)",
+              "new PipelineProject (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/pipeline-project.js:20:9)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:145:25)",
+              "Object.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:58:40)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Assets/FileRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineAssetsFileRole59943A77",
+            "trace": [
+              "new Role (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:74:22)",
+              "new AssetSingletonRole (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/private/asset-singleton-role.js:14:9)",
+              "CodePipeline.obtainAssetCodeBuildRole (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:496:27)",
+              "CodePipeline.publishAssetsAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:373:27)",
+              "CodePipeline.actionFromNode (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:216:29)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:154:46)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Assets/FileRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineAssetsFileRoleDefaultPolicy14DB8755",
+            "trace": [
+              "new Policy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/policy.js:58:26)",
+              "AssetSingletonRole.addToPrincipalPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:213:34)",
+              "AssetSingletonRole.addToPrincipalPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/private/asset-singleton-role.js:73:22)",
+              "AssetSingletonRole.addToPolicy (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-iam/lib/role.js:226:21)",
+              "new AssetSingletonRole (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/private/asset-singleton-role.js:17:14)",
+              "CodePipeline.obtainAssetCodeBuildRole (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:496:27)",
+              "CodePipeline.publishAssetsAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:373:27)",
+              "CodePipeline.actionFromNode (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:216:29)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:154:46)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/Pipeline/Assets/FileAsset1/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineAssetsFileAsset185A67CB4",
+            "trace": [
+              "new Project (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/project.js:355:26)",
+              "new PipelineProject (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/aws-codebuild/lib/pipeline-project.js:20:9)",
+              "CodeBuildFactory.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:145:25)",
+              "Object.produceAction (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/_codebuild-factory.js:58:40)",
+              "CodePipeline.pipelineStagesAndActionsFromGraph (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:156:48)",
+              "CodePipeline.doBuildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/codepipeline/codepipeline.js:118:14)",
+              "CodePipeline.buildPipeline (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:99:14)",
+              "CodePipeline.buildJustInTime (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:107:18)",
+              "Object.visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/pipelines/lib/main/pipeline-base.js:44:57)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:86:20)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "recurse (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:98:17)",
+              "invokeAspects (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:72:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:16:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:22:30)",
+              "/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:139:9",
+              "visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "injectMetadataResources (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion",
+            "trace": [
+              "addBootstrapVersionRule (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stack-synthesizers/default-synthesizer.js:449:19)",
+              "DefaultStackSynthesizer.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stack-synthesizers/default-synthesizer.js:212:13)",
+              "/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:155:35",
+              "visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "synthesizeTree (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:148:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:33:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ],
+        "/TalhaPipelineStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion",
+            "trace": [
+              "addBootstrapVersionRule (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stack-synthesizers/default-synthesizer.js:457:5)",
+              "DefaultStackSynthesizer.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stack-synthesizers/default-synthesizer.js:212:13)",
+              "/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:155:35",
+              "visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "synthesizeTree (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:148:5)",
+              "Object.synthesize (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/private/synthesis.js:33:5)",
+              "App.synth (/tmp/jsii-kernel-rRIhlM/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/tmp/tmpjx8ilaq0/lib/program.js:8860:24)",
+              "/tmp/tmpjx8ilaq0/lib/program.js:8248:107",
+              "Kernel._ensureSync (/tmp/tmpjx8ilaq0/lib/program.js:8841:28)",
+              "Kernel.invoke (/tmp/tmpjx8ilaq0/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/tmp/tmpjx8ilaq0/lib/program.js:9757:36)",
+              "KernelHost.run (/tmp/tmpjx8ilaq0/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/tmp/tmpjx8ilaq0/lib/program.js:9721:46)",
+              "processImmediate (node:internal/timers:464:21)"
+            ]
+          }
+        ]
+      },
+      "displayName": "TalhaPipelineStack"
+    }
+  }
+}
