@@ -7,7 +7,7 @@ import json
 apis = json.load(os.popen('aws apigateway get-rest-apis'))  # popen runs the cli commands
 apis = apis["items"]
 for dic in apis:
-    if dic["name"] == "AzbApiSprint3":
+    if dic["name"] == "AzbApi":
         api_ID = dic["id"]
         break
 

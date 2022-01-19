@@ -10,7 +10,9 @@ from aws_cdk import (
     aws_cloudwatch_actions as actions_,
     aws_dynamodb as db,
     aws_codedeploy as codedeploy,
-    aws_apigateway as gateway
+    aws_apigateway as gateway,
+    aws_ecs as ecs,
+    aws_ec2 as ec2
 )
 from resources import constants as constants
 from resources import s3bucket
@@ -49,7 +51,7 @@ class PcRepoAzbStack1(cdk.Stack):
         dynamo_sprint3_url_list = sprint3_dynamo.getting_sprint3_dynamo_data() # Line 87
         sprint3_lambda = self.create_lambda("sprint3Lambda", "./resources", "sprintt3_lambda.lambda_handler", lambda_role)
         # Making an api gateway
-        api = self.create_gateway('AzbApiSprint3',sprint3_lambda)
+        api = self.create_gateway('AzbApiSprint5',sprint3_lambda)
         api_resource1 = api.root.add_resource("health")     # Resource is the path with the url
         api_resource1.add_method("GET") # GET /health
         api_resource2 = api.root.add_resource("url")
@@ -139,6 +141,33 @@ class PcRepoAzbStack1(cdk.Stack):
         codedeploy.LambdaDeploymentGroup(self, "WebHealth Lambda", alias=alias,
                                         deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
                                         alarms=[alarm_roll]
+        )
+        
+        ################################ Sprint 5 #################################
+        vpc = ec2.Vpc.from_lookup(self, "Vpc",
+                                is_default=True)
+        
+        cluster = ecs.Cluster(self, "AZBStackCluster1",
+                            vpc=vpc)
+
+        # Add capacity to it
+        cluster.add_capacity("DefaultAutoScalingGroupCapacity",
+            instance_type=ec2.InstanceType("t2.micro"),
+            desired_capacity=3
+        )
+        
+        task_definition = ecs.FargateTaskDefinition(self, "azbpyresttesttask1", 
+                        memory_limit_mi_b=512, cpu=256)
+        
+        task_definition.add_container("AZBStackContainer",
+            image=ecs.ContainerImage.from_ecr_repository("abdullahpyresttest",tag="pyresttest"),
+            memory_limit_mi_b=512
+        )
+       
+        # Instantiate an Amazon ECS Service
+        ecs_service = ecs.FargateService(self, "azbservice1",
+            cluster=cluster,
+            task_definition=task_definition
         )
         
         
