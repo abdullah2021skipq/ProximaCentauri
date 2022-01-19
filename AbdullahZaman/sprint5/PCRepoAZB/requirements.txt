@@ -13,5 +13,6 @@ aws_cdk.assertions==1.135.0
 aws_cdk.aws_apigateway==1.135.0
 aws_cdk.aws_ecs==1.135.0
 aws_cdk.aws_ec2==1.135.0
+aws_cdk.aws_ecr==1.135.0
 boto3
 pytest

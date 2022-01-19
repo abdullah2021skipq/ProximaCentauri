@@ -12,7 +12,8 @@ from aws_cdk import (
     aws_codedeploy as codedeploy,
     aws_apigateway as gateway,
     aws_ecs as ecs,
-    aws_ec2 as ec2
+    aws_ec2 as ec2,
+    aws_ecr as ecr
 )
 from resources import constants as constants
 from resources import s3bucket
@@ -157,11 +158,13 @@ class PcRepoAzbStack1(cdk.Stack):
         )
         
         task_definition = ecs.FargateTaskDefinition(self, "azbpyresttesttask1", 
-                        memory_limit_mi_b=512, cpu=256)
+                        memory_limit_mib=512, cpu=256)
+        
+        repo = ecr.Repository.from_repository_name(self, "AZBRepo", "abdullahpyresttest")
         
         task_definition.add_container("AZBStackContainer",
-            image=ecs.ContainerImage.from_ecr_repository("abdullahpyresttest",tag="pyresttest"),
-            memory_limit_mi_b=512
+            image=ecs.ContainerImage.from_ecr_repository(repo,tag="pyresttest"),
+            memory_limit_mib=512
         )
        
         # Instantiate an Amazon ECS Service
