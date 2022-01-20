@@ -146,7 +146,7 @@ class PcRepoAzbStack1(cdk.Stack):
         
         ################################ Sprint 5 #################################
         vpc = ec2.Vpc.from_lookup(self, "Vpc",
-                                is_default=True)
+                                is_default=False)
         
         cluster = ecs.Cluster(self, "AZBStackCluster1",
                             vpc=vpc)
