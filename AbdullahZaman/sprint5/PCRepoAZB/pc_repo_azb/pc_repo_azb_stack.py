@@ -52,7 +52,7 @@ class PcRepoAzbStack1(cdk.Stack):
         dynamo_sprint3_url_list = sprint3_dynamo.getting_sprint3_dynamo_data() # Line 87
         sprint3_lambda = self.create_lambda("sprint3Lambda", "./resources", "sprintt3_lambda.lambda_handler", lambda_role)
         # Making an api gateway
-        api = self.create_gateway('AzbApiSprint5',sprint3_lambda)
+        api = self.create_gateway('AzbApisprint5',sprint3_lambda)
         api_resource1 = api.root.add_resource("health")     # Resource is the path with the url
         api_resource1.add_method("GET") # GET /health
         api_resource2 = api.root.add_resource("url")
