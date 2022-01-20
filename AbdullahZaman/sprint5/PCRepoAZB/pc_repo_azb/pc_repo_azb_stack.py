@@ -143,7 +143,7 @@ class PcRepoAzbStack1(cdk.Stack):
                                         deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
                                         alarms=[alarm_roll]
         )
-        
+        """
         ################################ Sprint 5 #################################
         vpc = ec2.Vpc.from_lookup(self, "Vpc",
                                 is_default=True)
@@ -172,7 +172,7 @@ class PcRepoAzbStack1(cdk.Stack):
             cluster=cluster,
             task_definition=task_definition
         )
-        
+        """
         
 
     def create_lambda_role(self):
