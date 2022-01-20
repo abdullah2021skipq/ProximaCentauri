@@ -167,7 +167,7 @@ class PcRepoAzbStack1(cdk.Stack):
             memory_limit_mib=512
         )
        
-        # Instantiate an Amazon ECS Service
+        ## Instantiate an Amazon ECS Service
         ecs_service = ecs.FargateService(self, "azbservice1",
             cluster=cluster,
             task_definition=task_definition
