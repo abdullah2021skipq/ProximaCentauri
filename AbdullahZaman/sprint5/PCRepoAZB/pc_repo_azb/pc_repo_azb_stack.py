@@ -148,7 +148,7 @@ class PcRepoAzbStack1(cdk.Stack):
         vpc = ec2.Vpc.from_lookup(self, "Vpc",
                                 is_default=True)
         
-        cluster = ecs.Cluster(self, "AZBStackCluster1",
+        cluster = ecs.Cluster(self, "AZBStackCluster2",
                             vpc=vpc)
 
         # Add capacity to it
@@ -156,23 +156,39 @@ class PcRepoAzbStack1(cdk.Stack):
             instance_type=ec2.InstanceType("t2.micro"),
             desired_capacity=3
         )
-        
-        task_definition = ecs.FargateTaskDefinition(self, "azbpyresttesttask1", 
+        ##### Defining a task for pyresttest
+        task_definition = ecs.FargateTaskDefinition(self, "azbPYRESTTESTtask1", 
                         memory_limit_mib=512, cpu=256)
         
-        repo = ecr.Repository.from_repository_name(self, "AZBRepo", "abdullahpyresttest")
+        repo = ecr.Repository.from_repository_name(self, "AZBRepo", "azb-pyresttest")
         
-        task_definition.add_container("AZBStackContainer",
+        task_definition.add_container("AZBpyresttestContainer",
             image=ecs.ContainerImage.from_ecr_repository(repo,tag="pyresttest"),
             memory_limit_mib=512
         )
        
         ## Instantiate an Amazon ECS Service
-        ecs_service = ecs.FargateService(self, "azbservice1",
+        ecs_service = ecs.FargateService(self, "azbPYRESTTESTservice",
             cluster=cluster,
             task_definition=task_definition
         )
         
+        ######### Defining Task for Syntribos
+        task_definition1 = ecs.FargateTaskDefinition(self, "azbSYNTRIBOStask1", 
+                        memory_limit_mib=512, cpu=256)
+        
+        repo1 = ecr.Repository.from_repository_name(self, "AZBRepo", "azb-syntribos")
+        
+        task_definition1.add_container("AZBsyntribosContainer",
+            image=ecs.ContainerImage.from_ecr_repository(repo1,tag="syntribos"),
+            memory_limit_mib=512
+        )
+       
+        ## Instantiate an Amazon ECS Service
+        ecs_service1 = ecs.FargateService(self, "azbSYNTRIBOSservice",
+            cluster=cluster,
+            task_definition=task_definition1
+        )
         
 
     def create_lambda_role(self):
