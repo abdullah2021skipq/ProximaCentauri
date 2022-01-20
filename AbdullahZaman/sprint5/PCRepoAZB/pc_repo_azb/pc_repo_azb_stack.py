@@ -177,7 +177,7 @@ class PcRepoAzbStack1(cdk.Stack):
         task_definition1 = ecs.FargateTaskDefinition(self, "azbSYNTRIBOStask1", 
                         memory_limit_mib=512, cpu=256)
         
-        repo1 = ecr.Repository.from_repository_name(self, "AZBRepo", "azb-syntribos")
+        repo1 = ecr.Repository.from_repository_name(self, "AZBRepo1", "azb-syntribos")
         
         task_definition1.add_container("AZBsyntribosContainer",
             image=ecs.ContainerImage.from_ecr_repository(repo1,tag="syntribos"),
