@@ -19,4 +19,4 @@ def test_alarm_count():
     template=app.synth().get_stack_by_name('Unittest').template
     fun=[resource for resource in template['Resources'].values() if resource['Type']=='AWS::CloudWatch::Alarm']
 
-    assert len(fun)>=1
+    assert len(fun)>1
