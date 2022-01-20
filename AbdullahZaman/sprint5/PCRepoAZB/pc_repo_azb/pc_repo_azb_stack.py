@@ -143,7 +143,7 @@ class PcRepoAzbStack1(cdk.Stack):
                                         deployment_config=codedeploy.LambdaDeploymentConfig.LINEAR_10_PERCENT_EVERY_1_MINUTE,
                                         alarms=[alarm_roll]
         )
-        """
+        
         ################################ Sprint 5 #################################
         vpc = ec2.Vpc.from_lookup(self, "Vpc",
                                 is_default=True)
@@ -172,7 +172,7 @@ class PcRepoAzbStack1(cdk.Stack):
             cluster=cluster,
             task_definition=task_definition
         )
-        """
+        
         
 
     def create_lambda_role(self):
@@ -186,6 +186,15 @@ class PcRepoAzbStack1(cdk.Stack):
                 aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSLambdaInvocation-DynamoDB"),
                 aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonAPIGatewayAdministrator"),
                 aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonAPIGatewayInvokeFullAccess"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonECS_FullAccess"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSAppRunnerServicePolicyForECRAccess"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AWSECRPullThroughCache_ServiceRolePolicy"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("EC2InstanceProfileForImageBuilderECRContainerBuilds"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("ECRReplicationServiceRolePolicy"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonEC2ContainerRegistryFullAccess"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonEC2FullAccess"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonEC2RoleforDataPipelineRole"),
+                aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonEC2RoleforAWSCodeDeploy"),
                 #aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonAPIGatewayPushToCloudWatchLogs"),
                 #aws_iam.ManagedPolicy.from_aws_managed_policy_name("APIGatewayServiceRolePolicy"),
                 aws_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonDynamoDBFullAccess")
